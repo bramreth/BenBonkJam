@@ -130,7 +130,7 @@ func interogate():
 	$Node2D/Panel/VBoxContainer/name.text = n
 	$Node2D/Panel/VBoxContainer/fact.text = f
 	$Node2D/Panel/interog_player.play("open")
-	var result = {"c": body.self_modulate, "s": suspicion, "h": $body/head/shade.visible}
+	return {"c": body.self_modulate, "s": suspicion, "h": $body/head/shade.visible, "uid": self}
 
 func alert(on):
 	if dead: return

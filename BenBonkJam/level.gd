@@ -31,7 +31,8 @@ func setup_wave():
 		s.setup(list)
 		s.connect("death", self, "parse_death")
 	wolves = num_enemies * len(spawners)
-	cam.initg(num_enemies * len(spawners), acceptable_casualties)
+	print(num_enemies + num_allies)
+	cam.initg(num_enemies * len(spawners), acceptable_casualties, (num_enemies + num_allies)*get_tree().get_nodes_in_group("spawner").size())
 	# we need to setup the enemy pattern here
 
 func parse_death(type):

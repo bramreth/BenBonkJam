@@ -51,21 +51,21 @@ __meta__ = {
 }
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control/CenterContainer"]
-margin_left = 55.0
-margin_top = 14.0
-margin_right = 294.0
-margin_bottom = 86.0
+margin_left = 79.0
+margin_top = 20.0
+margin_right = 270.0
+margin_bottom = 80.0
 
 [node name="wolves_remaing" type="Label" parent="CanvasLayer/Control/CenterContainer/VBoxContainer"]
-margin_right = 239.0
-margin_bottom = 34.0
+margin_right = 191.0
+margin_bottom = 28.0
 theme = ExtResource( 3 )
 text = "wolves remaining:"
 
 [node name="civilian_casualties" type="Label" parent="CanvasLayer/Control/CenterContainer/VBoxContainer"]
-margin_top = 38.0
-margin_right = 239.0
-margin_bottom = 72.0
+margin_top = 32.0
+margin_right = 191.0
+margin_bottom = 60.0
 text = "civilian casualties: "
 
 [node name="CenterContainer2" type="CenterContainer" parent="CanvasLayer/Control"]
@@ -77,10 +77,10 @@ __meta__ = {
 }
 
 [node name="level" type="Label" parent="CanvasLayer/Control/CenterContainer2"]
-margin_left = 134.0
-margin_top = 33.0
-margin_right = 215.0
-margin_bottom = 67.0
+margin_left = 142.0
+margin_top = 36.0
+margin_right = 208.0
+margin_bottom = 64.0
 text = "level: "
 
 [node name="blur" type="ColorRect" parent="CanvasLayer"]
@@ -106,10 +106,10 @@ __meta__ = {
 
 [node name="result" type="Label" parent="CanvasLayer/blur/CenterContainer"]
 modulate = Color( 1, 1, 1, 0 )
-margin_left = 903.0
-margin_top = 523.0
-margin_right = 1016.0
-margin_bottom = 557.0
+margin_left = 915.0
+margin_top = 526.0
+margin_right = 1005.0
+margin_bottom = 554.0
 text = "YOU LOSE"
 
 [node name="phone" parent="." instance=ExtResource( 4 )]

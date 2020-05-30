@@ -272,7 +272,6 @@ text = "name:"
 margin_top = 24.0
 margin_right = 112.0
 margin_bottom = 52.0
-rect_scale = Vector2( 1e-05, 1 )
 size_flags_horizontal = 3
 size_flags_vertical = 1
 
@@ -289,7 +288,6 @@ text = "about:"
 margin_top = 80.0
 margin_right = 112.0
 margin_bottom = 108.0
-rect_scale = Vector2( 1e-05, 1 )
 size_flags_horizontal = 3
 size_flags_vertical = 1
 
@@ -306,7 +304,6 @@ text = "status:"
 margin_top = 136.0
 margin_right = 112.0
 margin_bottom = 164.0
-rect_scale = Vector2( 1e-05, 1 )
 size_flags_horizontal = 3
 size_flags_vertical = 1
 

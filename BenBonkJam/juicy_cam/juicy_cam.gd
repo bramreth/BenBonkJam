@@ -13,7 +13,6 @@ export var time_scale = 150
 
 export(float, 0, 1) var decay = 0.6
 var won = false
-
 var time = 0
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -66,10 +65,12 @@ func _on_CurveTween_curve_tween(sat):
 	$CanvasLayer/blur.get_material().set_shader_param("str", sat)
 	$CanvasLayer/blur/CenterContainer/result.modulate.a = sat
 
-func initg(total_w, total_c):
+func initg(total_w, total_c, p):
 	$CanvasLayer/Control/CenterContainer/VBoxContainer/wolves_remaing.text = "wolves remaing: " + str(total_w)
 	$CanvasLayer/Control/CenterContainer/VBoxContainer/civilian_casualties.text = "civilian casualties: " + str(0) + " / " + str(total_c)
 	ac = total_c
+	$phone.pop = p
+	
 	
 func civilian_casualty(c):
 	$CanvasLayer/Control/CenterContainer/VBoxContainer/civilian_casualties.text = "civilian casualties: " + str(c) + " / " + str(ac)
@@ -78,3 +79,5 @@ func wolf_death(w):
 	$CanvasLayer/Control/CenterContainer/VBoxContainer/wolves_remaing.text = "wolves remaing: " + str(w)
 
 	
+func gather_data(res):
+	$phone.txt(res)
