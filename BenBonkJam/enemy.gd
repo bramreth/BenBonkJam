@@ -5,6 +5,8 @@ var out_of_sight = false
 var aggro = false
 onready var atk_area = get_node("body/head/attack_area")
 func _ready():
+	randomize()
+	suspicion = 2 + randf() * 3
 	player = false
 	generate_costume(true)
 	if Manager.level == 2: 

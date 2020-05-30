@@ -5,6 +5,8 @@ var out_of_sight = false
 var aggro = false
 
 func _ready():
+	randomize()
+	suspicion = randf() * 5
 	player = false
 	generate_costume(false)
 

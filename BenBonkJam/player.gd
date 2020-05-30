@@ -15,10 +15,20 @@ var dead = false
 var cam
 onready var f_check = get_node("body/head/RayCast2D")
 export(Array, Color) var outfits
+var suspicion = 0
+var n = ""
+var f = ""
+
 
 func _ready():
+	randomize()
+#	var s = ((randf()-0.5)/5)
+#	scale += Vector2(s,s)
+	n = Names.forename[randi()%len(Names.forename)] + " " + Names.surname[randi()%len(Names.surname)]
+	f = Names.facts[randi()%len(Names.facts)]
 	Manager.update_outfits(outfits)
 	cam = get_tree().get_nodes_in_group("cam")[0]
+	
 	
 func damage(d, origin=Vector2(0,0)):
 	$spurt.restart()
@@ -101,7 +111,26 @@ func generate_costume(is_enemy):
 	head.self_modulate.b = clamp(head.self_modulate.b * 1.33, 0, 1)
 	
 func interogate():
+	if dead: return
+	var txt = ""
+	match ceil(suspicion):
+		1.0:
+			txt = "looks innocent"
+		2.0:
+			txt = "slightly suspicious"
+		3.0:
+			txt = "suspicious"
+		4.0:
+			txt = "very suspicious"
+		5.0:
+			txt = "looks guilty"
+		_:
+			txt = ""
+	$Node2D/Panel/VBoxContainer/suspicion.text = txt
+	$Node2D/Panel/VBoxContainer/name.text = n
+	$Node2D/Panel/VBoxContainer/fact.text = f
 	$Node2D/Panel/interog_player.play("open")
+	var result = {"c": body.self_modulate, "s": suspicion, "h": $body/head/shade.visible}
 
 func alert(on):
 	if dead: return
