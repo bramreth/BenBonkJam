@@ -1,9 +1,8 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://better_player.gd" type="Script" id=2]
 [ext_resource path="res://assets/tri.png" type="Texture" id=3]
-[ext_resource path="res://CurveTween/CurveTween.gd" type="Script" id=4]
 
 [sub_resource type="ParticlesMaterial" id=1]
 lifetime_randomness = 0.5
@@ -18,8 +17,76 @@ angle_random = 1.0
 scale = 0.1
 color = Color( 2, 1.96, 0.8, 1 )
 
-[sub_resource type="Curve" id=2]
-_data = [ Vector2( 0, 0 ), 0.0, 0.0, 0, 0, Vector2( 0.241026, 1 ), -0.693456, -0.693456, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
+[sub_resource type="Curve" id=4]
+_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), -3.15135, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=5]
+curve = SubResource( 4 )
+
+[sub_resource type="ParticlesMaterial" id=6]
+flag_disable_z = true
+spread = 33.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 800.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+scale = 0.1
+scale_curve = SubResource( 5 )
+color = Color( 1, 0.94902, 0, 1 )
+
+[sub_resource type="Animation" id=3]
+resource_name = "reload"
+length = 0.7
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0.3, 0.5, 0.7 ),
+"transitions": PoolRealArray( 2.14355, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( -1, 1 ), Vector2( 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.3, 0.5, 0.7 ),
+"transitions": PoolRealArray( 2.14355, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 20.0, 0.0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath(".:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 0.25, 2.07053, 1 ),
+"update": 0,
+"values": [ Vector2( 150, 128 ), Vector2( 100, 128 ), Vector2( 150, 128 ) ]
+}
+tracks/3/type = "method"
+tracks/3/path = NodePath("shell")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0.5 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "restart"
+} ]
+}
 
 [node name="player" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
@@ -34,8 +101,8 @@ self_modulate = Color( 1, 0.8, 0.8, 1 )
 
 [node name="gun" type="Polygon2D" parent="body/head" index="1"]
 position = Vector2( 150, 128 )
-color = Color( 0.803922, 0.517647, 0.945098, 1 )
-polygon = PoolVector2Array( -42.6667, -42.6667, -42.6667, 42.6667, 85.3333, 42.6667, 85.3333, -42.6667 )
+color = Color( 0.494118, 1, 0.960784, 1 )
+polygon = PoolVector2Array( -22, -42.6667, -22, 42.6666, 85.3333, 42.6667, 85.3333, -42.6667 )
 
 [node name="origin" type="Position2D" parent="body/head/gun" index="0"]
 position = Vector2( 85.3333, -7.62939e-06 )
@@ -50,12 +117,25 @@ local_coords = false
 process_material = SubResource( 1 )
 texture = ExtResource( 3 )
 
-[node name="Timer" type="Timer" parent="body/head/gun" index="1"]
-wait_time = 0.25
-autostart = true
+[node name="Polygon2D" type="Polygon2D" parent="body/head/gun" index="1"]
+position = Vector2( 0, -7.62939e-06 )
+scale = Vector2( 1, 1 )
+z_index = -1
+color = Color( 0.196078, 0.113725, 0, 1 )
+polygon = PoolVector2Array( -22, -42.6667, -22, 42.6666, -64.6667, 42.6666, -107.333, -42.6667, -22, -42.6667 )
 
-[node name="CurveTween" type="Tween" parent="body/head/gun" index="2"]
-script = ExtResource( 4 )
-curve = SubResource( 2 )
-[connection signal="timeout" from="body/head/gun/Timer" to="." method="_on_Timer_timeout"]
-[connection signal="curve_tween" from="body/head/gun/CurveTween" to="." method="_on_CurveTween_curve_tween"]
+[node name="shell" type="Particles2D" parent="body/head/gun" index="2"]
+position = Vector2( 84.2905, 41.8883 )
+rotation = 0.758964
+emitting = false
+amount = 1
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+local_coords = false
+process_material = SubResource( 6 )
+texture = ExtResource( 3 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="body/head/gun" index="3"]
+anims/reload = SubResource( 3 )
+[connection signal="animation_finished" from="body/head/gun/AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
