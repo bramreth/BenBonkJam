@@ -7,6 +7,14 @@ var aggro = false
 func _ready():
 	player = false
 
+func die():
+	dead = true
+	$Particles2D.emitting = true
+	$thought.emitting = false
+	$attack.emitting = false
+	$body.modulate = Color.black
+	cam.add_trauma(0.4)
+
 func _process(delta):
 	if dead: return
 	var spot1 = $body/head/RayCast2D.get_collider()
@@ -31,6 +39,7 @@ func handle_inputs():
 		direction = Vector2(cos(angle), sin(angle))
 
 func out_of_sight(b):
+	if dead: return
 	if b and seen_player and position.distance_to(seen_player.position) < 300:
 		aggro = true
 		$thought.emitting = false

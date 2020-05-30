@@ -9,15 +9,22 @@ export var SPEED = 800
 onready var head = get_node("body/head")
 export var health = 1
 var dead = false
+var cam
 
+func _ready():
+	cam = get_tree().get_nodes_in_group("cam")[0]
+	
 func damage(d):
 	if dead: return
 	health -= d
 	if health < 0:
-		dead = true
-		$Particles2D.emitting = true
-		$body.modulate = Color.black
+		die()
 		
+func die():
+	dead = true
+	$Particles2D.emitting = true
+	$body.modulate = Color.black
+	cam.add_trauma(0.4)
 
 func _physics_process(delta):
 	if dead: return
