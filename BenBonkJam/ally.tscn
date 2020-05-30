@@ -37,16 +37,16 @@ modulate = Color( 1, 1, 1, 1 )
 self_modulate = Color( 0.227451, 0.890196, 0.454902, 1 )
 
 [node name="head" parent="body" index="0"]
-modulate = Color( 1, 0.301961, 0.301961, 1 )
+modulate = Color( 1, 1, 1, 1 )
 self_modulate = Color( 0.196078, 1, 0.494118, 1 )
 
-[node name="RayCast2D" type="RayCast2D" parent="body/head" index="1"]
+[node name="RayCast2D" parent="body/head" index="0"]
 position = Vector2( 0, -0.000244141 )
 rotation = -0.261799
-enabled = true
+scale = Vector2( 1, 1 )
 cast_to = Vector2( 2400, 0 )
 
-[node name="RayCast2D2" type="RayCast2D" parent="body/head" index="2"]
+[node name="RayCast2D2" type="RayCast2D" parent="body/head" index="1"]
 position = Vector2( 0, -0.000244141 )
 rotation = 0.261799
 enabled = true

@@ -30,6 +30,7 @@ color = Color( 1, 1, 1, 0.215686 )
 polygon = PoolVector2Array( 0.00012207, 644, 704, 644, 704, 452, 896, 452, 896, 516, 2176, 516, 2176, 452, 2368, 452, 2368, 644, 3072, 644, 3072, 900, 2368, 900, 2368, 1156, 2496, 1276, 2368, 1412, 2240, 1284, 1984, 1500, 1792, 1500, 1792, 1804, 1216, 1804, 1216, 1500, 1024, 1500, 768, 1284, 640, 1412, 528, 1284, 640, 1156, 640, 900, 0.00012207, 900 )
 
 [node name="village_green" type="Area2D" parent="."]
+z_index = -1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="village_green"]
 shape = SubResource( 1 )
@@ -41,6 +42,7 @@ polygon = PoolVector2Array( -496, -300, -496, 300, 496, 300, 496, -300 )
 [node name="church" type="Area2D" parent="."]
 position = Vector2( 0, -624 )
 scale = Vector2( 0.8, 0.8 )
+z_index = -1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="church"]
 shape = SubResource( 1 )
@@ -53,6 +55,7 @@ polygon = PoolVector2Array( -496, -300, -496, 300, 496, 300, 496, -300 )
 position = Vector2( -944, 504 )
 rotation = 0.785397
 scale = Vector2( 0.72, 0.64 )
+z_index = -1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="cafe"]
 shape = SubResource( 1 )
@@ -65,6 +68,7 @@ polygon = PoolVector2Array( -496, -300, -496, 300, 496, 300, 496, -300 )
 position = Vector2( 927, 504 )
 rotation = -0.785397
 scale = Vector2( 0.72, 0.64 )
+z_index = -1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="pub"]
 shape = SubResource( 1 )
@@ -77,6 +81,7 @@ polygon = PoolVector2Array( -496, -300, -496, 300, 496, 300, 496, -300 )
 position = Vector2( -864, -640 )
 rotation = 3.14159
 scale = Vector2( 0.72, 0.64 )
+z_index = -1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="clothing"]
 shape = SubResource( 1 )
@@ -88,6 +93,7 @@ polygon = PoolVector2Array( -496, -300, -496, 300, 496, 300, 496, -300 )
 [node name="greengrocer" type="Area2D" parent="."]
 position = Vector2( 872, -640 )
 scale = Vector2( 0.72, 0.64 )
+z_index = -1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="greengrocer"]
 shape = SubResource( 1 )
@@ -97,6 +103,7 @@ color = Color( 0.227451, 1, 0.262745, 1 )
 polygon = PoolVector2Array( -496, -300, -496, 300, 496, 300, 496, -300 )
 
 [node name="player" parent="." instance=ExtResource( 1 )]
+health = 1
 
 [node name="StaticBody2D" parent="." instance=ExtResource( 3 )]
 position = Vector2( 3008, -464 )
@@ -121,11 +128,15 @@ visible = false
 
 [node name="spawner" parent="." instance=ExtResource( 6 )]
 position = Vector2( 1216, -128 )
+delay = 0
 
 [node name="spawner2" parent="." instance=ExtResource( 6 )]
 position = Vector2( -1224, -128 )
 s = "b"
+delay = 1
 
 [node name="spawner3" parent="." instance=ExtResource( 6 )]
 position = Vector2( 0, 1024 )
 s = "c"
+delay = 2
+[connection signal="dead" from="player" to="." method="_on_player_dead"]

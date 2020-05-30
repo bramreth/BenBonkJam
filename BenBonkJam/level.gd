@@ -45,3 +45,7 @@ func parse_death(type):
 	if casualties >= acceptable_casualties:
 		print("YOU LOSE")
 		cam.lose()
+
+
+func _on_player_dead(type):
+	cam.die()

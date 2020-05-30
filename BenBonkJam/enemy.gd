@@ -3,7 +3,7 @@ extends "res://player.gd"
 var seen_player = false
 var out_of_sight = false
 var aggro = false
-
+onready var atk_area = get_node("body/head/attack_area")
 func _ready():
 	player = false
 
@@ -53,3 +53,12 @@ func out_of_sight(b):
 		$thought.emitting = false
 		$attack.emitting = true
 
+func test_aggro(player):
+	seen_player = player
+	aggro = true
+	$attack.emitting = true
+	
+func attack():
+	if atk_area.overlaps_body(seen_player):
+		seen_player.damage(1)
+		print("pow")

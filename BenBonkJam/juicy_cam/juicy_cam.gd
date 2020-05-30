@@ -46,6 +46,10 @@ func win():
 	menu = false
 	blur()
 	
+func die():
+	$CanvasLayer/blur/CenterContainer/result.text = "The wolves got them.\n that's a pity."
+	menu = false
+	blur()
 	
 func blur():
 	$CanvasLayer/blur/CurveTween.play(1.0, float(menu), float(not menu))

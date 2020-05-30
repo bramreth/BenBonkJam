@@ -12,7 +12,7 @@ onready var head = get_node("body/head")
 export var health = 1
 var dead = false
 var cam
-onready var f_check = get_node("RayCast2D")
+onready var f_check = get_node("body/head/RayCast2D")
 
 func _ready():
 	cam = get_tree().get_nodes_in_group("cam")[0]

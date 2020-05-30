@@ -3,7 +3,7 @@ extends RigidBody2D
 var cam
 var direction = Vector2()
 var speed = 2500
-export var d = 33
+export var d = 10
 var explode = false
 var explosion_thresh = 200
 var exploding = false

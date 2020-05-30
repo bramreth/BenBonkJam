@@ -98,7 +98,7 @@ self_modulate = Color( 0.0901961, 0.752941, 0.921569, 1 )
 modulate = Color( 1, 1, 1, 1 )
 self_modulate = Color( 1, 0.8, 0.8, 1 )
 
-[node name="gun" type="Polygon2D" parent="body/head" index="1"]
+[node name="gun" type="Polygon2D" parent="body/head" index="0"]
 position = Vector2( 150, 128 )
 color = Color( 0.494118, 1, 0.960784, 1 )
 polygon = PoolVector2Array( -22, -42.6667, -22, 42.6666, 85.3333, 42.6667, 85.3333, -42.6667 )
@@ -136,4 +136,10 @@ texture = ExtResource( 3 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="body/head/gun" index="3"]
 anims/reload = SubResource( 5 )
+
+[node name="Area2D" type="Area2D" parent="body/head" index="1"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="body/head/Area2D" index="0"]
+polygon = PoolVector2Array( 0, 0, -1365.33, 682.667, -1706.67, 0, -1365.33, -682.667 )
 [connection signal="animation_finished" from="body/head/gun/AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
+[connection signal="body_entered" from="body/head/Area2D" to="." method="_on_Area2D_body_entered"]
