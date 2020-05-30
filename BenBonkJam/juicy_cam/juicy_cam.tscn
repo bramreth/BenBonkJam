@@ -1,8 +1,23 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://juicy_cam/juicy_cam.gd" type="Script" id=1]
+[ext_resource path="res://CurveTween/CurveTween.gd" type="Script" id=2]
 
 [sub_resource type="OpenSimplexNoise" id=1]
+
+[sub_resource type="Shader" id=2]
+code = "shader_type canvas_item;
+uniform float str : hint_range(0.0,1.0);
+void fragment(){
+	COLOR = textureLod(SCREEN_TEXTURE, SCREEN_UV, 2f * str);
+}"
+
+[sub_resource type="ShaderMaterial" id=3]
+shader = SubResource( 2 )
+shader_param/str = 0.0
+
+[sub_resource type="Curve" id=4]
+_data = [ Vector2( 0, 0 ), 0.0, 1.0, 0, 1, Vector2( 1, 1 ), -0.900901, 0.0, 0, 0 ]
 
 [node name="Camera2D" type="Camera2D" groups=[
 "cam",
@@ -13,3 +28,64 @@ script = ExtResource( 1 )
 noise = SubResource( 1 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer/Control"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -100.0
+margin_bottom = 100.0
+rect_min_size = Vector2( 100, 100 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ammo" type="Label" parent="CanvasLayer/Control/CenterContainer"]
+margin_left = 27.0
+margin_top = 43.0
+margin_right = 72.0
+margin_bottom = 57.0
+text = "ammo:"
+
+[node name="CenterContainer2" type="CenterContainer" parent="CanvasLayer/Control"]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -100.0
+margin_top = -100.0
+rect_min_size = Vector2( 100, 100 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="karma" type="Label" parent="CanvasLayer/Control/CenterContainer2"]
+margin_left = 28.0
+margin_top = 43.0
+margin_right = 71.0
+margin_bottom = 57.0
+text = "karma:"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="blur" type="ColorRect" parent="CanvasLayer"]
+material = SubResource( 3 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CurveTween" type="Tween" parent="CanvasLayer/blur"]
+script = ExtResource( 2 )
+curve = SubResource( 4 )
+[connection signal="curve_tween" from="CanvasLayer/blur/CurveTween" to="." method="_on_CurveTween_curve_tween"]

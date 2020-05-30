@@ -1,7 +1,10 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 250, 200 )
+
+[sub_resource type="OccluderPolygon2D" id=2]
+polygon = PoolVector2Array( -248, -200, -248, 200, 248, 200, 248, -200 )
 
 [node name="StaticBody2D" type="StaticBody2D"]
 
@@ -11,3 +14,6 @@ shape = SubResource( 1 )
 [node name="Polygon2D" type="Polygon2D" parent="."]
 color = Color( 1, 0.686275, 0.25098, 1 )
 polygon = PoolVector2Array( -248, -200, -248, 200, 248, 200, 248, -200 )
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+occluder = SubResource( 2 )

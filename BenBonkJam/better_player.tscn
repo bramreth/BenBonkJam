@@ -17,13 +17,13 @@ angle_random = 1.0
 scale = 0.1
 color = Color( 2, 1.96, 0.8, 1 )
 
-[sub_resource type="Curve" id=4]
+[sub_resource type="Curve" id=2]
 _data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), -3.15135, 0.0, 0, 0 ]
 
-[sub_resource type="CurveTexture" id=5]
-curve = SubResource( 4 )
+[sub_resource type="CurveTexture" id=3]
+curve = SubResource( 2 )
 
-[sub_resource type="ParticlesMaterial" id=6]
+[sub_resource type="ParticlesMaterial" id=4]
 flag_disable_z = true
 spread = 33.0
 gravity = Vector3( 0, 0, 0 )
@@ -31,11 +31,10 @@ initial_velocity = 800.0
 orbit_velocity = 0.0
 orbit_velocity_random = 0.0
 scale = 0.1
-scale_curve = SubResource( 5 )
+scale_curve = SubResource( 3 )
 color = Color( 1, 0.94902, 0, 1 )
 
-[sub_resource type="Animation" id=3]
-resource_name = "reload"
+[sub_resource type="Animation" id=5]
 length = 0.7
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:scale")
@@ -119,7 +118,6 @@ texture = ExtResource( 3 )
 
 [node name="Polygon2D" type="Polygon2D" parent="body/head/gun" index="1"]
 position = Vector2( 0, -7.62939e-06 )
-scale = Vector2( 1, 1 )
 z_index = -1
 color = Color( 0.196078, 0.113725, 0, 1 )
 polygon = PoolVector2Array( -22, -42.6667, -22, 42.6666, -64.6667, 42.6666, -107.333, -42.6667, -22, -42.6667 )
@@ -133,9 +131,9 @@ lifetime = 0.5
 one_shot = true
 explosiveness = 1.0
 local_coords = false
-process_material = SubResource( 6 )
+process_material = SubResource( 4 )
 texture = ExtResource( 3 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="body/head/gun" index="3"]
-anims/reload = SubResource( 3 )
+anims/reload = SubResource( 5 )
 [connection signal="animation_finished" from="body/head/gun/AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
