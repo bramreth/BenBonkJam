@@ -6,6 +6,7 @@ var aggro = false
 
 func _ready():
 	player = false
+	generate_costume(false)
 
 func die():
 	if dead: return
@@ -15,7 +16,6 @@ func die():
 	$attack.emitting = false
 	$body.modulate = Color.black
 	cam.add_trauma(0.4)
-	
 	emit_signal("dead", 1)
 
 func _process(delta):

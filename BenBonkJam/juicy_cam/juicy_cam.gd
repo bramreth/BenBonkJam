@@ -12,11 +12,12 @@ export var max_r = 25
 export var time_scale = 150
 
 export(float, 0, 1) var decay = 0.6
+var won = false
 
 var time = 0
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	$CanvasLayer/Control/CenterContainer2/level.text = "level: " + str(Manager.progression)
 
 func add_trauma(trauma_in):
 	trauma = clamp(trauma + trauma_in, 0, 1)
@@ -33,8 +34,12 @@ func _process(delta):
 	if trauma > 0: trauma = clamp(trauma - (delta * decay), 0, 1)
 
 func _input(event):
+	if Input.get_action_strength("tab"):
+		$phone.toggle(not $phone.toggle)
 	if not menu: return
-	if Input.get_action_strength("ui_accept"): get_tree().reload_current_scene()
+	if Input.get_action_strength("ui_accept"): 
+		Manager.next_level(won)
+		get_tree().reload_current_scene()
 		
 func lose():
 	$CanvasLayer/blur/CenterContainer/result.text = "too many civilian casualties."
@@ -44,6 +49,7 @@ func lose():
 func win():
 	$CanvasLayer/blur/CenterContainer/result.text = "you eliminated the wolves.\n well done agent."
 	menu = false
+	won = true
 	blur()
 	
 func die():

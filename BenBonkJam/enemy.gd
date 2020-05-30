@@ -6,10 +6,16 @@ var aggro = false
 onready var atk_area = get_node("body/head/attack_area")
 func _ready():
 	player = false
+	generate_costume(true)
+	if Manager.level == 2: 
+		aggro = true
+		seen_player = get_tree().get_nodes_in_group("player")[0]
 
 func die():
 	if dead: return
 	dead = true
+	aggro = false
+	$body/head/knife/AnimationPlayer.stop()
 	$Particles2D.emitting = true
 	$thought.emitting = false
 	$attack.emitting = false
@@ -32,6 +38,7 @@ func _process(delta):
 	handle_inputs()
 
 func handle_inputs():
+	if dead: return
 	if global_position.x < -1040:
 		direction.x = 0.3
 	elif global_position.x > 1040:
@@ -54,11 +61,12 @@ func out_of_sight(b):
 		$attack.emitting = true
 
 func test_aggro(player):
+	if dead: return
 	seen_player = player
 	aggro = true
 	$attack.emitting = true
 	
 func attack():
+	if dead: return
 	if atk_area.overlaps_body(seen_player):
-		seen_player.damage(1)
-		print("pow")
+		seen_player.damage(1, global_position)

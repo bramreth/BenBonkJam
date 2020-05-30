@@ -12,10 +12,15 @@ func _ready():
 	setup_wave()
 	
 func setup_wave():
+	var num_enemies = 0
+	var num_allies = 0
 	var spawners = get_tree().get_nodes_in_group("spawner")
-	var num_enemies = 2
-	var num_allies = 1
-	
+	if Manager.level == 2:
+		num_enemies = (Manager.progression * 2) + randi() %  Manager.progression
+	else:
+		num_enemies = Manager.progression + randi() %  Manager.progression
+		num_allies = Manager.progression + randi() %  Manager.progression
+		
 	for s in get_tree().get_nodes_in_group("spawner"):
 		var list = []
 		for i in range(num_enemies):

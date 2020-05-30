@@ -9,15 +9,20 @@ var acc = 0.15
 var dcc = 0.2
 export var SPEED = 800
 onready var head = get_node("body/head")
+onready var body = get_node("body")
 export var health = 1
 var dead = false
 var cam
 onready var f_check = get_node("body/head/RayCast2D")
+export(Array, Color) var outfits
 
 func _ready():
+	Manager.update_outfits(outfits)
 	cam = get_tree().get_nodes_in_group("cam")[0]
 	
-func damage(d):
+func damage(d, origin=Vector2(0,0)):
+	$spurt.restart()
+	$spurt.look_at(origin)
 	if dead: return
 	health -= d
 	if health < 0:
@@ -29,7 +34,10 @@ func die():
 	$Particles2D.emitting = true
 	$body.modulate = Color.black
 	if player: cam.add_trauma(1)
-	else: cam.add_trauma(0.15)
+	else: 
+		cam.add_trauma(0.15)
+		
+		
 
 func _physics_process(delta):
 	if dead: return
@@ -72,3 +80,35 @@ static func normalize_angle(x):
 func _on_line_of_sight_body_exited(body):
 	if body.name == "enemy" and player:
 		body.out_of_sight(true)
+
+func generate_costume(is_enemy):
+	var costumes = outfits.duplicate()
+	if Manager.level == 0:
+		#enemies wear shades
+		if is_enemy: $body/head/shade.visible = true
+	else:
+		$body/head/shade.visible = randi() % 2 == 0
+		
+	if Manager.level == 1:
+		#enemies are one color
+		if Manager.enemy_color in costumes: costumes.erase(Manager.enemy_color)
+#		print(costumes)
+	body.self_modulate = costumes[randi() % len(costumes)]
+	if Manager.level == 1 and is_enemy: body.self_modulate = Manager.enemy_color
+	head.self_modulate = body.self_modulate
+	head.self_modulate.r = clamp(head.self_modulate.r * 1.33, 0, 1)
+	head.self_modulate.g = clamp(head.self_modulate.g * 1.33, 0, 1)
+	head.self_modulate.b = clamp(head.self_modulate.b * 1.33, 0, 1)
+	
+func interogate():
+	$Node2D/Panel/interog_player.play("open")
+
+func alert(on):
+	if dead: return
+	if on:
+		$body/alert/AnimationPlayer.play("alert")
+	else:
+		$body/alert/AnimationPlayer.play_backwards("alert")
+
+func _on_Timer_timeout():
+	$Node2D/Panel/interog_player.play_backwards("open")

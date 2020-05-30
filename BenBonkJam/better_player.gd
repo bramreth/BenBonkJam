@@ -18,6 +18,18 @@ func _physics_process(delta):
 	if dead: return
 	if Input.get_action_strength("click") and can_shoot:
 		shoot()
+	if Input.get_action_strength("ui_cancel"):
+		get_tree().quit()
+		
+func _input(event):
+	if Input.get_action_strength("rclick"):
+		var q = false
+		for item in $body/head/interrog.get_overlapping_bodies():
+			if not item == self:
+				item.interogate()
+			else:
+				q = true
+		if q and not $body/head/q.emitting: $body/head/q.restart()
 		
 func die():
 	if dead: return
@@ -39,3 +51,13 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 func _on_Area2D_body_entered(body):
 	if body.name.match("*enemy*"):
 		body.test_aggro(self)
+
+
+func _on_interrog_body_entered(body):
+	if body.name.match("*enemy*") or body.name.match("*ally*"):
+		body.alert(true)
+
+
+func _on_interrog_body_exited(body):
+	if body.name.match("*enemy*") or body.name.match("*ally*"):
+		body.alert(false)

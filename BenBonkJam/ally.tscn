@@ -32,12 +32,10 @@ color_ramp = SubResource( 2 )
 [node name="ally" instance=ExtResource( 4 )]
 script = ExtResource( 3 )
 
-[node name="body" parent="." index="0"]
-modulate = Color( 1, 1, 1, 1 )
+[node name="body" parent="." index="1"]
 self_modulate = Color( 0.227451, 0.890196, 0.454902, 1 )
 
 [node name="head" parent="body" index="0"]
-modulate = Color( 1, 1, 1, 1 )
 self_modulate = Color( 0.196078, 1, 0.494118, 1 )
 
 [node name="RayCast2D" parent="body/head" index="0"]
@@ -53,6 +51,7 @@ enabled = true
 cast_to = Vector2( 2400, 0 )
 
 [node name="thought" type="Particles2D" parent="." index="2"]
+visible = false
 emitting = false
 amount = 3
 process_material = SubResource( 5 )
@@ -63,3 +62,6 @@ emitting = false
 amount = 3
 process_material = SubResource( 5 )
 texture = ExtResource( 2 )
+
+[node name="Timer" parent="Node2D" index="1"]
+wait_time = 7.0

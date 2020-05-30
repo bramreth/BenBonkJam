@@ -91,12 +91,10 @@ color_ramp = SubResource( 3 )
 [node name="player" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
 
-[node name="body" parent="." index="0"]
-modulate = Color( 1, 1, 1, 1 )
+[node name="body" parent="." index="1"]
 self_modulate = Color( 0.227451, 0.890196, 0.454902, 1 )
 
 [node name="head" parent="body" index="0"]
-modulate = Color( 1, 1, 1, 1 )
 self_modulate = Color( 0.196078, 1, 0.494118, 1 )
 
 [node name="RayCast2D" parent="body/head" index="0"]
@@ -126,6 +124,7 @@ anims/slash = SubResource( 1 )
 polygon = PoolVector2Array( 0, 0, 128, -256, 213.333, -213.333, 256, 0, 213.333, 213.333, 128, 256 )
 
 [node name="thought" type="Particles2D" parent="." index="2"]
+visible = false
 emitting = false
 amount = 3
 process_material = SubResource( 6 )
@@ -137,5 +136,5 @@ amount = 3
 process_material = SubResource( 6 )
 texture = ExtResource( 3 )
 
-[node name="LightOccluder2D" parent="." index="6"]
-visible = false
+[node name="Timer" parent="Node2D" index="1"]
+wait_time = 8.0

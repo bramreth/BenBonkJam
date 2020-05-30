@@ -22,11 +22,11 @@ script = ExtResource( 2 )
 [node name="floor" type="Polygon2D" parent="."]
 position = Vector2( -1536, -900 )
 z_index = -2
-color = Color( 0.239216, 0.239216, 0.239216, 1 )
+color = Color( 0.227451, 0.890196, 0.454902, 0.435294 )
 polygon = PoolVector2Array( 0, 0, 0, 1800, 3072, 1800, 3072, 0 )
 
 [node name="Polygon2D" type="Polygon2D" parent="floor"]
-color = Color( 1, 1, 1, 0.215686 )
+color = Color( 0.239216, 0.239216, 0.239216, 1 )
 polygon = PoolVector2Array( 0.00012207, 644, 704, 644, 704, 452, 896, 452, 896, 516, 2176, 516, 2176, 452, 2368, 452, 2368, 644, 3072, 644, 3072, 900, 2368, 900, 2368, 1156, 2496, 1276, 2368, 1412, 2240, 1284, 1984, 1500, 1792, 1500, 1792, 1804, 1216, 1804, 1216, 1500, 1024, 1500, 768, 1284, 640, 1412, 528, 1284, 640, 1156, 640, 900, 0.00012207, 900 )
 
 [node name="village_green" type="Area2D" parent="."]
@@ -51,6 +51,16 @@ shape = SubResource( 1 )
 color = Color( 0.0784314, 0.0784314, 0.0784314, 1 )
 polygon = PoolVector2Array( -496, -300, -496, 300, 496, 300, 496, -300 )
 
+[node name="walls" type="StaticBody2D" parent="church"]
+collision_layer = 0
+collision_mask = 0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="church/walls"]
+polygon = PoolVector2Array( -500, -300, -500, 300, -160, 300, -160, 280, -480, 280, -480, -280, 480, -280, 480, 280, 160, 280, 160, 300, 500, 300, 500, -300 )
+
+[node name="Polygon2D" type="Polygon2D" parent="church/walls/CollisionPolygon2D"]
+polygon = PoolVector2Array( -160, 300, -160, 280, -480, 280, -480, -280, 480, -280, 480, 280, 160, 280, 160, 300, 500, 300, 500, -300, -500, -300, -500, 300 )
+
 [node name="cafe" type="Area2D" parent="."]
 position = Vector2( -944, 504 )
 rotation = 0.785397
@@ -63,6 +73,19 @@ shape = SubResource( 1 )
 [node name="Polygon2D" type="Polygon2D" parent="cafe"]
 color = Color( 0.494118, 1, 0.960784, 1 )
 polygon = PoolVector2Array( -496, -300, -496, 300, 496, 300, 496, -300 )
+
+[node name="walls2" type="StaticBody2D" parent="cafe"]
+position = Vector2( 0.356689, 0.358643 )
+rotation = -3.14159
+scale = Vector2( 1.01076, 1.0231 )
+collision_layer = 0
+collision_mask = 0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="cafe/walls2"]
+polygon = PoolVector2Array( -500, -300, -500, 300, -54.0109, 299.736, -54.4619, 284.706, -480, 280, -480, -280, 480, -280, 480, 280, 192.786, 280.447, 192.786, 299.484, 500, 300, 500, -300 )
+
+[node name="Polygon2D" type="Polygon2D" parent="cafe/walls2/CollisionPolygon2D"]
+polygon = PoolVector2Array( -53.5602, 299.736, -54.2364, 283.454, -480, 280, -480, -280, 480, -280, 480, 280, 193.237, 280.447, 193.913, 300.236, 500, 300, 500, -300, -500, -300, -500, 300 )
 
 [node name="pub" type="Area2D" parent="."]
 position = Vector2( 927, 504 )
@@ -77,6 +100,19 @@ shape = SubResource( 1 )
 color = Color( 1, 0.686275, 0.25098, 1 )
 polygon = PoolVector2Array( -496, -300, -496, 300, 496, 300, 496, -300 )
 
+[node name="walls3" type="StaticBody2D" parent="pub"]
+position = Vector2( 1.03021, 1.07861 )
+rotation = -3.14159
+scale = Vector2( 1.00476, 1.01092 )
+collision_layer = 0
+collision_mask = 0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="pub/walls3"]
+polygon = PoolVector2Array( -500, -300, -500, 300, -160, 300, -160, 280, -480, 280, -480, -280, 480, -280, 480, 280, 104.222, 283.601, 103.862, 297.68, 500, 300, 500, -300 )
+
+[node name="Polygon2D" type="Polygon2D" parent="pub/walls3/CollisionPolygon2D"]
+polygon = PoolVector2Array( -160, 300, -160, 280, -480, 280, -480, -280, 480, -280, 480, 280, 103.862, 284.004, 103.862, 298.485, 500, 300, 500, -300, -500, -300, -500, 300 )
+
 [node name="clothing" type="Area2D" parent="."]
 position = Vector2( -864, -640 )
 rotation = 3.14159
@@ -90,6 +126,19 @@ shape = SubResource( 1 )
 color = Color( 1, 0.8, 0.8, 1 )
 polygon = PoolVector2Array( -496, -300, -496, 300, 496, 300, 496, -300 )
 
+[node name="walls4" type="StaticBody2D" parent="clothing"]
+position = Vector2( -0.000244141, 0 )
+rotation = -3.14159
+scale = Vector2( 1.00865, 1.01932 )
+collision_layer = 0
+collision_mask = 0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="clothing/walls4"]
+polygon = PoolVector2Array( -500, -300, -500, 300, 44.437, 300, 44.9574, 280, -480, 280, -480, -280, 480, -280, 480, 280, 306.68, 280.097, 305.9, 299.791, 500, 300, 500, -300 )
+
+[node name="Polygon2D" type="Polygon2D" parent="clothing/walls4/CollisionPolygon2D"]
+polygon = PoolVector2Array( 43.6566, 300, 43.9167, 280, -480, 280, -480, -280, 480, -280, 480, 280, 307.981, 280, 304.599, 300, 500, 300, 500, -300, -500, -300, -500, 300 )
+
 [node name="greengrocer" type="Area2D" parent="."]
 position = Vector2( 872, -640 )
 scale = Vector2( 0.72, 0.64 )
@@ -102,8 +151,22 @@ shape = SubResource( 1 )
 color = Color( 0.227451, 1, 0.262745, 1 )
 polygon = PoolVector2Array( -496, -300, -496, 300, 496, 300, 496, -300 )
 
+[node name="walls5" type="StaticBody2D" parent="greengrocer"]
+position = Vector2( 0, -0.00012207 )
+rotation = -5.55316e-07
+scale = Vector2( 1.00865, 1.01932 )
+collision_layer = 0
+collision_mask = 0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="greengrocer/walls5"]
+position = Vector2( 0, 0.00012207 )
+polygon = PoolVector2Array( -500, -300, -500, 300, -319.217, 300.376, -319.344, 279.897, -480, 280, -480, -280, 480, -280, 480, 280, -53.9746, 275.402, -55.9004, 294.161, 500, 300, 500, -300 )
+
+[node name="Polygon2D" type="Polygon2D" parent="greengrocer/walls5/CollisionPolygon2D"]
+polygon = PoolVector2Array( -319.388, 300.306, -319.79, 279.913, -480, 280, -480, -280, 480, -280, 480, 280, -54.4559, 275.402, -54.9375, 295.233, 500, 300, 500, -300, -500, -300, -500, 300 )
+
 [node name="player" parent="." instance=ExtResource( 1 )]
-health = 1
+outfits = [  ]
 
 [node name="StaticBody2D" parent="." instance=ExtResource( 3 )]
 position = Vector2( 3008, -464 )
@@ -117,7 +180,7 @@ scale = Vector2( 0.619125, 0.619125 )
 environment = SubResource( 2 )
 
 [node name="Camera2D" parent="." instance=ExtResource( 4 )]
-zoom = Vector2( 2, 2 )
+zoom = Vector2( 1.2, 1.2 )
 noise = SubResource( 3 )
 max_x = 200
 max_y = 200

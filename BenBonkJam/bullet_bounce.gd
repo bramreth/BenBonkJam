@@ -18,13 +18,14 @@ func _on_bullet_body_entered(body):
 		explode()
 	if body.name == "player" or body.name.match("*enemy*") or body.name.match("*ally*"):
 		if not body.dead:
-			body.damage(d)
+			body.damage(d, global_position)
 			queue_free()
 
 func explode():
 	if exploding: return
 	exploding = true
-	cam.add_trauma(0.4)
+	cam = get_tree().get_nodes_in_group("cam")[0]
+	if cam: cam.add_trauma(0.4)
 	linear_damp = 100
 	$AudioStreamPlayer2D.pitch_scale += (randf()-0.5) / 10
 	$AudioStreamPlayer2D.play()
@@ -36,7 +37,7 @@ func explode():
 	for item in $Area2D.get_overlapping_bodies():
 		if item.name == "player" or item.name.match("*enemy*") or item.name.match("*ally*"):
 			if not item.dead:
-				item.damage(d)
+				item.damage(d, global_position)
 		
 
 func _on_Timer_timeout():

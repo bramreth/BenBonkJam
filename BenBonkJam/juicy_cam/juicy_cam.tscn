@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://juicy_cam/juicy_cam.gd" type="Script" id=1]
 [ext_resource path="res://CurveTween/CurveTween.gd" type="Script" id=2]
 [ext_resource path="res://theme.tres" type="Theme" id=3]
+[ext_resource path="res://message.tscn" type="PackedScene" id=4]
 
 [sub_resource type="OpenSimplexNoise" id=1]
 
@@ -67,6 +68,21 @@ margin_right = 239.0
 margin_bottom = 72.0
 text = "civilian casualties: "
 
+[node name="CenterContainer2" type="CenterContainer" parent="CanvasLayer/Control"]
+margin_right = 350.0
+margin_bottom = 100.0
+rect_min_size = Vector2( 150, 80 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="level" type="Label" parent="CanvasLayer/Control/CenterContainer2"]
+margin_left = 134.0
+margin_top = 33.0
+margin_right = 215.0
+margin_bottom = 67.0
+text = "level: "
+
 [node name="blur" type="ColorRect" parent="CanvasLayer"]
 material = SubResource( 3 )
 anchor_right = 1.0
@@ -90,9 +106,11 @@ __meta__ = {
 
 [node name="result" type="Label" parent="CanvasLayer/blur/CenterContainer"]
 modulate = Color( 1, 1, 1, 0 )
-margin_left = 455.0
-margin_top = 283.0
-margin_right = 568.0
-margin_bottom = 317.0
+margin_left = 903.0
+margin_top = 523.0
+margin_right = 1016.0
+margin_bottom = 557.0
 text = "YOU LOSE"
+
+[node name="phone" parent="." instance=ExtResource( 4 )]
 [connection signal="curve_tween" from="CanvasLayer/blur/CurveTween" to="." method="_on_CurveTween_curve_tween"]

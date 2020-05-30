@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://better_player.gd" type="Script" id=2]
 [ext_resource path="res://assets/tri.png" type="Texture" id=3]
+[ext_resource path="res://assets/thought.png" type="Texture" id=4]
 
 [sub_resource type="ParticlesMaterial" id=1]
 lifetime_randomness = 0.5
@@ -87,18 +88,42 @@ tracks/3/keys = {
 } ]
 }
 
-[node name="player" instance=ExtResource( 1 )]
-script = ExtResource( 2 )
+[sub_resource type="Curve" id=6]
+_data = [ Vector2( 0, 0 ), 0.0, 0.0, 0, 0, Vector2( 0.0754717, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
 
-[node name="body" parent="." index="0"]
-modulate = Color( 1, 1, 1, 1 )
+[sub_resource type="CurveTexture" id=7]
+curve = SubResource( 6 )
+
+[sub_resource type="ParticlesMaterial" id=8]
+flag_align_y = true
+flag_disable_z = true
+spread = 65.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 180.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+scale = 0.3
+scale_curve = SubResource( 7 )
+
+[node name="player" groups=[
+"player",
+] instance=ExtResource( 1 )]
+script = ExtResource( 2 )
+health = 3
+
+[node name="body" parent="." index="1"]
 self_modulate = Color( 0.0901961, 0.752941, 0.921569, 1 )
 
 [node name="head" parent="body" index="0"]
-modulate = Color( 1, 1, 1, 1 )
 self_modulate = Color( 1, 0.8, 0.8, 1 )
 
-[node name="gun" type="Polygon2D" parent="body/head" index="0"]
+[node name="interrog" type="Area2D" parent="body/head" index="0"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="body/head/interrog" index="0"]
+rotation = -3.14159
+polygon = PoolVector2Array( 0, 0, 0.00303277, 682.667, -682.665, 341.336, -682.668, -341.33, -0.00303277, -682.667 )
+
+[node name="gun" type="Polygon2D" parent="body/head" index="1"]
 position = Vector2( 150, 128 )
 color = Color( 0.494118, 1, 0.960784, 1 )
 polygon = PoolVector2Array( -22, -42.6667, -22, 42.6666, 85.3333, 42.6667, 85.3333, -42.6667 )
@@ -137,9 +162,23 @@ texture = ExtResource( 3 )
 [node name="AnimationPlayer" type="AnimationPlayer" parent="body/head/gun" index="3"]
 anims/reload = SubResource( 5 )
 
-[node name="Area2D" type="Area2D" parent="body/head" index="1"]
+[node name="Area2D" type="Area2D" parent="body/head" index="2"]
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="body/head/Area2D" index="0"]
 polygon = PoolVector2Array( 0, 0, -1365.33, 682.667, -1706.67, 0, -1365.33, -682.667 )
+
+[node name="q" type="Particles2D" parent="body/head" index="6"]
+position = Vector2( 170.667, 0 )
+scale = Vector2( 5.33333, 5.33333 )
+emitting = false
+amount = 4
+lifetime = 0.8
+one_shot = true
+explosiveness = 0.8
+local_coords = false
+process_material = SubResource( 8 )
+texture = ExtResource( 4 )
+[connection signal="body_entered" from="body/head/interrog" to="." method="_on_interrog_body_entered"]
+[connection signal="body_exited" from="body/head/interrog" to="." method="_on_interrog_body_exited"]
 [connection signal="animation_finished" from="body/head/gun/AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
 [connection signal="body_entered" from="body/head/Area2D" to="." method="_on_Area2D_body_entered"]

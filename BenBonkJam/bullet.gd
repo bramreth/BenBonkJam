@@ -11,7 +11,7 @@ func _physics_process(delta):
 
 func _on_bullet_body_entered(body):
 	if body.name == "player" or body.name.match("*enemy*"):
-		body.damage(d)
+		body.damage(d, global_position)
 		queue_free()
 
 
