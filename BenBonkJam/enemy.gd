@@ -35,12 +35,14 @@ func handle_inputs():
 	elif position.x > 800:
 		direction.x = -0.3
 	if aggro:
+		if not $body/head/knife/AnimationPlayer.is_playing():
+			$body/head/knife/AnimationPlayer.play("slash")
 		var angle = get_angle_to(seen_player.position)
 		direction = Vector2(cos(angle), sin(angle))
 
 func out_of_sight(b):
 	if dead: return
-	if b and seen_player and position.distance_to(seen_player.position) < 300:
+	if b and seen_player: # and position.distance_to(seen_player.position) < 300:
 		aggro = true
 		$thought.emitting = false
 		$attack.emitting = true

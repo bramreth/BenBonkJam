@@ -1,0 +1,18 @@
+[gd_resource type="AudioBusLayout" load_steps=2 format=2]
+
+[sub_resource type="AudioEffectEQ" id=1]
+resource_name = "EQ"
+band_db/32_hz = 3.4
+band_db/100_hz = 8.1
+band_db/320_hz = 4.2
+band_db/3200_hz = 6.8
+
+[resource]
+bus/1/name = "boom"
+bus/1/solo = false
+bus/1/mute = false
+bus/1/bypass_fx = false
+bus/1/volume_db = 0.0
+bus/1/send = "Master"
+bus/1/effect/0/effect = SubResource( 1 )
+bus/1/effect/0/enabled = true

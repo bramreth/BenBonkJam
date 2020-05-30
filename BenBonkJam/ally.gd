@@ -34,14 +34,11 @@ func handle_inputs():
 		direction.x = 0.3
 	elif position.x > 800:
 		direction.x = -0.3
-	if aggro:
-		var angle = get_angle_to(seen_player.position)
-		direction = Vector2(cos(angle), sin(angle))
 
 func out_of_sight(b):
 	if dead: return
 	if b and seen_player and position.distance_to(seen_player.position) < 300:
 		aggro = true
 		$thought.emitting = false
-		$attack.emitting = true
+#		$attack.emitting = true
 

@@ -7,6 +7,7 @@ var explode = false
 var explosion_thresh = 200
 	
 func _ready():
+	randomize()
 	apply_central_impulse(direction * speed)
 
 func _on_bullet_body_entered(body):
@@ -19,7 +20,8 @@ func _on_bullet_body_entered(body):
 
 func explode():
 	linear_damp = 100
-	
+	$AudioStreamPlayer2D.pitch_scale += (randf()-0.5) / 10
+	$AudioStreamPlayer2D.play()
 	$Light2D/CurveTween.play(1, 0, 2)
 	$Timer.set_paused(true)
 	$Sprite/CurveTween.play(0.15, 0, $Sprite.scale.x)
