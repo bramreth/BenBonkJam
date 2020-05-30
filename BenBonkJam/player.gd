@@ -1,5 +1,7 @@
 extends KinematicBody2D
 
+signal dead(type)
+
 var player = true
 var direction = Vector2(0,0)
 var velocity = Vector2(0,0)
@@ -10,6 +12,7 @@ onready var head = get_node("body/head")
 export var health = 1
 var dead = false
 var cam
+onready var f_check = get_node("RayCast2D")
 
 func _ready():
 	cam = get_tree().get_nodes_in_group("cam")[0]
@@ -21,10 +24,12 @@ func damage(d):
 		die()
 		
 func die():
+	if dead: return
 	dead = true
 	$Particles2D.emitting = true
 	$body.modulate = Color.black
-	cam.add_trauma(0.4)
+	if player: cam.add_trauma(1)
+	else: cam.add_trauma(0.15)
 
 func _physics_process(delta):
 	if dead: return
@@ -35,7 +40,13 @@ func _physics_process(delta):
 	move_and_slide(velocity)
 	velocity = velocity * pow(0.8,15 * delta)
 	if player: head.look_at(get_global_mouse_position())
-	elif direction: head.rotation = lerp_angle(head.rotation, direction.angle(), acc)
+	elif direction: 
+		head.rotation = lerp_angle(head.rotation, direction.angle(), acc)
+		if f_check.get_collider():
+			direction = direction.tangent()
+			#FIXME this is a bad way to stop collisions
+			
+	
 
 func _input(InputEvent):
 	handle_inputs()

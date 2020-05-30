@@ -1,7 +1,7 @@
 extends Camera2D
 
 var menu = false
-
+var ac = 0
 export (OpenSimplexNoise) var noise
 export(float, 0, 1) var trauma = 0.0
 
@@ -31,15 +31,22 @@ func _process(delta):
 	rotation_degrees = noise.get_noise_3d(0, 0, time * time_scale) * max_r * shake
 	
 	if trauma > 0: trauma = clamp(trauma - (delta * decay), 0, 1)
-	
-func set_stats(karma, ammo):
-	$CanvasLayer/Control/CenterContainer/ammo.text = "ammo: \n" + str(ammo)
-	$CanvasLayer/Control/CenterContainer2/karma.text = "karma: \n" + str(karma)
 
 func _input(event):
-	if Input.get_action_strength("ui_accept"):
-		blur()
-
+	if not menu: return
+	if Input.get_action_strength("ui_accept"): get_tree().reload_current_scene()
+		
+func lose():
+	$CanvasLayer/blur/CenterContainer/result.text = "too many civilian casualties."
+	menu = false
+	blur()
+	
+func win():
+	$CanvasLayer/blur/CenterContainer/result.text = "you eliminated the wolves.\n well done agent."
+	menu = false
+	blur()
+	
+	
 func blur():
 	$CanvasLayer/blur/CurveTween.play(1.0, float(menu), float(not menu))
 	menu = not menu
@@ -47,3 +54,17 @@ func blur():
 
 func _on_CurveTween_curve_tween(sat):
 	$CanvasLayer/blur.get_material().set_shader_param("str", sat)
+	$CanvasLayer/blur/CenterContainer/result.modulate.a = sat
+
+func initg(total_w, total_c):
+	$CanvasLayer/Control/CenterContainer/VBoxContainer/wolves_remaing.text = "wolves remaing: " + str(total_w)
+	$CanvasLayer/Control/CenterContainer/VBoxContainer/civilian_casualties.text = "civilian casualties: " + str(0) + " / " + str(total_c)
+	ac = total_c
+	
+func civilian_casualty(c):
+	$CanvasLayer/Control/CenterContainer/VBoxContainer/civilian_casualties.text = "civilian casualties: " + str(c) + " / " + str(ac)
+	
+func wolf_death(w):
+	$CanvasLayer/Control/CenterContainer/VBoxContainer/wolves_remaing.text = "wolves remaing: " + str(w)
+
+	

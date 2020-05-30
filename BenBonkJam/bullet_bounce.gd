@@ -1,24 +1,30 @@
 extends RigidBody2D
 
+var cam
 var direction = Vector2()
 var speed = 2500
 export var d = 33
 var explode = false
 var explosion_thresh = 200
+var exploding = false
 	
 func _ready():
 	randomize()
+	cam = get_tree().get_nodes_in_group("cam")[0]
 	apply_central_impulse(direction * speed)
 
 func _on_bullet_body_entered(body):
 	if explode and linear_velocity.length() > explosion_thresh:	
 		explode()
-	if body.name == "player" or body.name.begins_with("enemy") or body.name.begins_with("ally"):
+	if body.name == "player" or body.name.match("*enemy*") or body.name.match("*ally*"):
 		if not body.dead:
 			body.damage(d)
 			queue_free()
 
 func explode():
+	if exploding: return
+	exploding = true
+	cam.add_trauma(0.4)
 	linear_damp = 100
 	$AudioStreamPlayer2D.pitch_scale += (randf()-0.5) / 10
 	$AudioStreamPlayer2D.play()
@@ -26,9 +32,9 @@ func explode():
 	$Timer.set_paused(true)
 	$Sprite/CurveTween.play(0.15, 0, $Sprite.scale.x)
 	$AnimationPlayer.play("explode")
-	print($Area2D.get_overlapping_bodies())
+#	print($Area2D.get_overlapping_bodies())
 	for item in $Area2D.get_overlapping_bodies():
-		if item.name == "player" or item.name.begins_with("enemy") or item.name.begins_with("ally"):
+		if item.name == "player" or item.name.match("*enemy*") or item.name.match("*ally*"):
 			if not item.dead:
 				item.damage(d)
 		

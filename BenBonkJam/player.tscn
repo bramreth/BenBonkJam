@@ -40,7 +40,9 @@ color_ramp = SubResource( 4 )
 [sub_resource type="OccluderPolygon2D" id=8]
 polygon = PoolVector2Array( -24, -8, -8, -24, 8, -24, 24, -8, 24, 8, 8, 24, -8, 24, -24, 8, -24, -8, -24, -8 )
 
-[node name="player" type="KinematicBody2D"]
+[node name="player" type="KinematicBody2D" groups=[
+"person",
+]]
 script = ExtResource( 2 )
 
 [node name="body" type="Sprite" parent="."]
@@ -83,4 +85,9 @@ __meta__ = {
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="."]
 occluder = SubResource( 8 )
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+rotation = -1.57079
+enabled = true
+cast_to = Vector2( 0, 75 )
 [connection signal="body_exited" from="body/head/line_of_sight" to="." method="_on_line_of_sight_body_exited"]

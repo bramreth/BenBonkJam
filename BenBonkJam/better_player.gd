@@ -3,8 +3,6 @@ extends "res://player.gd"
 var bullet = preload("res://bullet_bounce.tscn")
 var can_shoot = true
 
-func _ready():
-	update_stats()
 		
 func shoot():
 	can_shoot = false
@@ -29,5 +27,3 @@ func _on_CurveTween_curve_tween(sat):
 func _on_AnimationPlayer_animation_finished(anim_name):
 	can_shoot = true
 
-func update_stats():
-	cam.set_stats(4,15)

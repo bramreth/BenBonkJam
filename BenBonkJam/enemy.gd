@@ -8,12 +8,14 @@ func _ready():
 	player = false
 
 func die():
+	if dead: return
 	dead = true
 	$Particles2D.emitting = true
 	$thought.emitting = false
 	$attack.emitting = false
 	$body.modulate = Color.black
 	cam.add_trauma(0.4)
+	emit_signal("dead", 0)
 
 func _process(delta):
 	if dead: return
@@ -30,10 +32,14 @@ func _process(delta):
 	handle_inputs()
 
 func handle_inputs():
-	if position.x < 100:
+	if global_position.x < -1040:
 		direction.x = 0.3
-	elif position.x > 800:
+	elif global_position.x > 1040:
 		direction.x = -0.3
+	if global_position.y < -700:
+		direction.y = 0.3
+	elif global_position.y > 896:
+		direction.y = -0.3
 	if aggro:
 		if not $body/head/knife/AnimationPlayer.is_playing():
 			$body/head/knife/AnimationPlayer.play("slash")
