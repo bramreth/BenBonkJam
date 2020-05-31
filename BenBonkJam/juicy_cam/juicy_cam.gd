@@ -49,14 +49,14 @@ func _input(event):
 		
 func lose(k, m):
 	$CanvasLayer/TextureRect/AnimationPlayer.play("speak")
-	$CanvasLayer/TextureRect/CenterContainer/result.text = "too many civilian casualties. \n unnaceptable."
+	$CanvasLayer/TextureRect/CenterContainer/result.text = "too many civilian casualties. \n unnaceptable.\n press space to continue"
 	menu = false
 	$CanvasLayer/phone.win(false, k, m)
 	blur()
 	
 func win(k, m):
 	$CanvasLayer/TextureRect/AnimationPlayer.play("speak")
-	$CanvasLayer/TextureRect/CenterContainer/result.text = "you eliminated the wolves.\n well done agent."
+	$CanvasLayer/TextureRect/CenterContainer/result.text = "you eliminated the wolves.\n well done agent.\n press space to continue"
 	menu = false
 	won = true
 	$CanvasLayer/phone.win(true, k, m)
@@ -64,7 +64,7 @@ func win(k, m):
 	
 func die(k, m):
 	$CanvasLayer/TextureRect/AnimationPlayer.play("speak")
-	$CanvasLayer/TextureRect/CenterContainer/result.text = "The wolves got them - that's a pity. \nSend in the next agent!"
+	$CanvasLayer/TextureRect/CenterContainer/result.text = "The wolves got them - that's a pity. \nSend in the next agent!\n press space to continue"
 	$CanvasLayer/phone.win(false, k, m)
 	menu = false
 	blur()
