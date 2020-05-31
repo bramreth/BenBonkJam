@@ -326,9 +326,19 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+[node name="Label" type="Label" parent="VBoxContainer"]
 margin_right = 288.0
-margin_bottom = 35.0
+margin_bottom = 28.0
+theme = ExtResource( 6 )
+text = "accuracy: 0%"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+margin_top = 32.0
+margin_right = 288.0
+margin_bottom = 67.0
 
 [node name="likely" type="ColorRect" parent="VBoxContainer/HBoxContainer"]
 margin_right = 35.0
@@ -347,9 +357,9 @@ size_flags_horizontal = 3
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 
 [node name="HBoxContainer5" type="HBoxContainer" parent="VBoxContainer"]
-margin_top = 39.0
+margin_top = 71.0
 margin_right = 288.0
-margin_bottom = 74.0
+margin_bottom = 106.0
 
 [node name="TextureRect" type="TextureRect" parent="VBoxContainer/HBoxContainer5"]
 margin_right = 35.0
@@ -365,17 +375,6 @@ margin_right = 288.0
 margin_bottom = 24.0
 size_flags_horizontal = 3
 custom_colors/font_color = Color( 0, 0, 0, 1 )
-
-[node name="Label" type="Label" parent="."]
-margin_left = -168.0
-margin_top = 260.0
-margin_right = -49.9999
-margin_bottom = 288.0
-theme = ExtResource( 6 )
-text = "accuracy: 0%"
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="icon" type="Sprite" parent="."]
 material = SubResource( 5 )

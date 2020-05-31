@@ -8,6 +8,7 @@ func _ready():
 	hide()
 	if Manager.best_level:
 		high_score()
+	$Panel/VBoxContainer/cash.text = "£" + str(Manager.cash)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

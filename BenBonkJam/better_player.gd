@@ -26,10 +26,11 @@ func _input(event):
 		var q = false
 		for item in $body/head/interrog.get_overlapping_bodies():
 			if not item == self:
-				var res = item.interogate()
-				print(res)
-				if res:
-					cam.gather_data(res)
+				if item.has_method("interogate"):
+					var res = item.interogate()
+					print(res)
+					if res:
+						cam.gather_data(res)
 			else:
 				q = true
 		if q and not $body/head/q.emitting: $body/head/q.restart()

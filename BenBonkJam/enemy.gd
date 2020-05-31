@@ -6,7 +6,13 @@ var aggro = false
 onready var atk_area = get_node("body/head/attack_area")
 func _ready():
 	randomize()
-	suspicion = 2 + randf() * 3
+	match int(Manager.difficulty):
+		1000:
+			suspicion = 4 + randf() * 1
+		3:
+			suspicion = 3 + randf() * 2
+		1: 
+			suspicion = 2 + randf() * 3
 	player = false
 	generate_costume(true)
 	if Manager.level == 2: 
