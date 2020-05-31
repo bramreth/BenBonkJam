@@ -6,6 +6,8 @@ var lv = preload("res://level.tscn")
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	hide()
+	if Manager.best_level:
+		high_score()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -65,7 +67,7 @@ func _on_kill_pressed():
 
 
 func _on_easy_pressed():
-	Manager.difficulty = INF
+	Manager.difficulty = 1000
 	get_tree().change_scene_to(lv)
 
 
@@ -81,3 +83,18 @@ func _on_impossible_pressed():
 
 func _on_back_pressed_diff():
 	$howto_player.play_backwards("diff")
+
+func high_score():
+	$star.visible = true
+	$top.visible = true
+	$res.visible = true
+	print(Manager.best_difficulty)
+	match Manager.best_difficulty:
+		1000.0:
+			$res.text = "easy: " + str(Manager.best_level)
+		3.0:
+			$res.text = "normal: " + str(Manager.best_level)
+		1.0:
+			$res.text = "impossible: " + str(Manager.best_level)
+		_:
+			$res.text = "err"

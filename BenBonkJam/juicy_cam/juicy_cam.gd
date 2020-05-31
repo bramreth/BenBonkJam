@@ -16,7 +16,7 @@ var won = false
 var time = 0
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	$CanvasLayer/Control/CenterContainer2/level.text = "level: " + str(Manager.progression)
+	$CanvasLayer/phone.level(Manager.progression)
 	$CanvasLayer/phone.toggle(true)
 
 func add_trauma(trauma_in):

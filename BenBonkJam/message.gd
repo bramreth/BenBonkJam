@@ -36,6 +36,8 @@ func toggle(on):
 	else:
 		$toggle_player.play_backwards("open")
 
+func level(i):
+	$level.text = "level:" + str(i)
 
 func _on_toggle_player_animation_finished(anim_name):
 	if toggle:

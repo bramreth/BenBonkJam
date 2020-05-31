@@ -49,29 +49,6 @@ noise = SubResource( 1 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="Control" type="Control" parent="CanvasLayer"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-theme = ExtResource( 3 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="CenterContainer2" type="CenterContainer" parent="CanvasLayer/Control"]
-margin_right = 350.0
-margin_bottom = 100.0
-rect_min_size = Vector2( 150, 80 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="level" type="Label" parent="CanvasLayer/Control/CenterContainer2"]
-margin_left = 142.0
-margin_top = 36.0
-margin_right = 208.0
-margin_bottom = 64.0
-text = "level: "
-
 [node name="blur" type="ColorRect" parent="CanvasLayer"]
 material = SubResource( 3 )
 anchor_right = 1.0
