@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://better_player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://level.gd" type="Script" id=2]
@@ -8,6 +8,9 @@
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 500, 300 )
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 700, 800 )
 
 [sub_resource type="Environment" id=2]
 background_mode = 4
@@ -27,9 +30,11 @@ polygon = PoolVector2Array( 0, 0, 0, 1800, 3072, 1800, 3072, 0 )
 
 [node name="Polygon2D" type="Polygon2D" parent="floor"]
 color = Color( 0.239216, 0.239216, 0.239216, 1 )
-polygon = PoolVector2Array( 0.00012207, 644, 704, 644, 704, 452, 896, 452, 896, 516, 2176, 516, 2176, 452, 2368, 452, 2368, 644, 3072, 644, 3072, 900, 2368, 900, 2368, 1156, 2496, 1276, 2368, 1412, 2240, 1284, 1984, 1500, 1792, 1500, 1792, 1804, 1216, 1804, 1216, 1500, 1024, 1500, 768, 1284, 640, 1412, 528, 1284, 640, 1156, 640, 900, 0.00012207, 900 )
+polygon = PoolVector2Array( 0.00012207, 644, 704, 644, 704, 452, 896, 452, 896, 516, 2176, 516, 2176, 452, 2368, 452, 2368, 644, 3072, 644, 3072, 900, 2176, 900, 2176, 1348, 2112, 1412, 2048, 1412, 1792, 1412, 1792, 1804, 1216, 1804, 1216, 1500, 1024, 1500, 768, 1284, 640, 1412, 528, 1284, 640, 1156, 640, 900, 0.00012207, 900 )
 
 [node name="village_green" type="Area2D" parent="."]
+position = Vector2( -40, 64 )
+scale = Vector2( 1.2, 1.2 )
 z_index = -1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="village_green"]
@@ -37,7 +42,7 @@ shape = SubResource( 1 )
 
 [node name="Polygon2D" type="Polygon2D" parent="village_green"]
 color = Color( 0.227451, 0.890196, 0.454902, 0.607843 )
-polygon = PoolVector2Array( -496, -300, -496, 300, 496, 300, 496, -300 )
+polygon = PoolVector2Array( -496, -256.147, -496, 255.578, -448.158, 300, 447.585, 300, 496, 255.578, 496, -255.9, 447.653, -300, -448.158, -300 )
 
 [node name="church" type="Area2D" parent="."]
 position = Vector2( 0, -624 )
@@ -88,8 +93,8 @@ polygon = PoolVector2Array( -500, -300, -500, 300, -54.0109, 299.736, -54.4619, 
 polygon = PoolVector2Array( -53.5602, 299.736, -54.2364, 283.454, -480, 280, -480, -280, 480, -280, 480, 280, 193.237, 280.447, 193.913, 300.236, 500, 300, 500, -300, -500, -300, -500, 300 )
 
 [node name="pub" type="Area2D" parent="."]
-position = Vector2( 927, 504 )
-rotation = -0.785397
+position = Vector2( -864, -640 )
+rotation = 3.14159
 scale = Vector2( 0.72, 0.64 )
 z_index = -1
 
@@ -100,43 +105,17 @@ shape = SubResource( 1 )
 color = Color( 1, 0.686275, 0.25098, 1 )
 polygon = PoolVector2Array( -496, -300, -496, 300, 496, 300, 496, -300 )
 
-[node name="walls3" type="StaticBody2D" parent="pub"]
-position = Vector2( 1.03021, 1.07861 )
-rotation = -3.14159
-scale = Vector2( 1.00476, 1.01092 )
-collision_layer = 0
-collision_mask = 0
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="pub/walls3"]
-polygon = PoolVector2Array( -500, -300, -500, 300, -160, 300, -160, 280, -480, 280, -480, -280, 480, -280, 480, 280, 104.222, 283.601, 103.862, 297.68, 500, 300, 500, -300 )
-
-[node name="Polygon2D" type="Polygon2D" parent="pub/walls3/CollisionPolygon2D"]
-polygon = PoolVector2Array( -160, 300, -160, 280, -480, 280, -480, -280, 480, -280, 480, 280, 103.862, 284.004, 103.862, 298.485, 500, 300, 500, -300, -500, -300, -500, 300 )
-
-[node name="clothing" type="Area2D" parent="."]
-position = Vector2( -864, -640 )
-rotation = 3.14159
-scale = Vector2( 0.72, 0.64 )
-z_index = -1
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="clothing"]
-shape = SubResource( 1 )
-
-[node name="Polygon2D" type="Polygon2D" parent="clothing"]
-color = Color( 1, 0.8, 0.8, 1 )
-polygon = PoolVector2Array( -496, -300, -496, 300, 496, 300, 496, -300 )
-
-[node name="walls4" type="StaticBody2D" parent="clothing"]
+[node name="walls4" type="StaticBody2D" parent="pub"]
 position = Vector2( -0.000244141, 0 )
 rotation = -3.14159
 scale = Vector2( 1.00865, 1.01932 )
 collision_layer = 0
 collision_mask = 0
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="clothing/walls4"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="pub/walls4"]
 polygon = PoolVector2Array( -500, -300, -500, 300, 44.437, 300, 44.9574, 280, -480, 280, -480, -280, 480, -280, 480, 280, 306.68, 280.097, 305.9, 299.791, 500, 300, 500, -300 )
 
-[node name="Polygon2D" type="Polygon2D" parent="clothing/walls4/CollisionPolygon2D"]
+[node name="Polygon2D" type="Polygon2D" parent="pub/walls4/CollisionPolygon2D"]
 polygon = PoolVector2Array( 43.6566, 300, 43.9167, 280, -480, 280, -480, -280, 480, -280, 480, 280, 307.981, 280, 304.599, 300, 500, 300, 500, -300, -500, -300, -500, 300 )
 
 [node name="greengrocer" type="Area2D" parent="."]
@@ -148,7 +127,7 @@ z_index = -1
 shape = SubResource( 1 )
 
 [node name="Polygon2D" type="Polygon2D" parent="greengrocer"]
-color = Color( 0.227451, 1, 0.262745, 1 )
+color = Color( 0.803922, 0.517647, 0.945098, 1 )
 polygon = PoolVector2Array( -496, -300, -496, 300, 496, 300, 496, -300 )
 
 [node name="walls5" type="StaticBody2D" parent="greengrocer"]
@@ -164,6 +143,18 @@ polygon = PoolVector2Array( -500, -300, -500, 300, -319.217, 300.376, -319.344, 
 
 [node name="Polygon2D" type="Polygon2D" parent="greengrocer/walls5/CollisionPolygon2D"]
 polygon = PoolVector2Array( -319.388, 300.306, -319.79, 279.913, -480, 280, -480, -280, 480, -280, 480, 280, -54.4559, 275.402, -54.9375, 295.233, 500, 300, 500, -300, -500, -300, -500, 300 )
+
+[node name="building" type="StaticBody2D" parent="."]
+position = Vector2( 1128, 440 )
+scale = Vector2( 0.727747, 0.654784 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="building"]
+position = Vector2( 120.921, 219.92 )
+shape = SubResource( 4 )
+
+[node name="CollisionShape2D2" type="Polygon2D" parent="building"]
+color = Color( 0.219608, 0.168627, 0.0980392, 1 )
+polygon = PoolVector2Array( -582.62, -586.453, -582.62, 1026.29, 824.462, 1026.29, 824.462, -586.453 )
 
 [node name="player" parent="." instance=ExtResource( 1 )]
 outfits = [  ]

@@ -1,0 +1,221 @@
+[gd_scene load_steps=14 format=2]
+
+[ext_resource path="res://assets/font/a-c-m-e-secret-agent/ACMESecretAgentBB_BoldItal.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://theme.tres" type="Theme" id=2]
+[ext_resource path="res://assets/bubble.png" type="Texture" id=3]
+[ext_resource path="res://assets/shade.png" type="Texture" id=4]
+[ext_resource path="res://assets/mipi (1).png" type="Texture" id=5]
+[ext_resource path="res://bobble.gd" type="Script" id=6]
+[ext_resource path="res://assets/wolf.png" type="Texture" id=7]
+[ext_resource path="res://assets/sheep.png" type="Texture" id=8]
+
+[sub_resource type="Animation" id=1]
+resource_name = "bobble_1"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/path = NodePath("bubble2:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4 ),
+"transitions": PoolRealArray( 0.554785, 0.574349, 1 ),
+"update": 0,
+"values": [ 0.0, -15.0, 0.0 ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "bobble_2"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/path = NodePath("bubble2:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4 ),
+"transitions": PoolRealArray( 0.535887, 0.535887, 1 ),
+"update": 0,
+"values": [ 0.0, 15.0, 0.0 ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "bobble_3"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/path = NodePath("bubble2:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4 ),
+"transitions": PoolRealArray( 0.517632, 0.535887, 1 ),
+"update": 0,
+"values": [ Vector2( 0, -88 ), Vector2( 0, -100 ), Vector2( 0, -88 ) ]
+}
+
+[sub_resource type="DynamicFont" id=5]
+size = 92
+outline_size = 2
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=4]
+size = 128
+outline_size = 2
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 1 )
+
+[node name="Control" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 1 )
+
+[node name="Node2D" type="Node2D" parent="."]
+position = Vector2( 840, 208 )
+scale = Vector2( 0.6, 0.6 )
+script = ExtResource( 6 )
+
+[node name="mipi (1)" type="Sprite" parent="Node2D"]
+position = Vector2( 146.667, 706.667 )
+texture = ExtResource( 5 )
+region_rect = Rect2( 100, 200, 1700, 1400 )
+
+[node name="bubble" type="Sprite" parent="Node2D"]
+self_modulate = Color( 0.239216, 0.239216, 0.239216, 1 )
+position = Vector2( -866.667, 1040 )
+scale = Vector2( 4, 4 )
+texture = ExtResource( 3 )
+
+[node name="bubble2" type="Sprite" parent="Node2D/bubble"]
+self_modulate = Color( 0.294118, 0.294118, 0.294118, 1 )
+position = Vector2( 0, -88 )
+scale = Vector2( 0.8, 0.8 )
+texture = ExtResource( 3 )
+offset = Vector2( 0, -40 )
+
+[node name="shade" type="Sprite" parent="Node2D/bubble/bubble2"]
+position = Vector2( 0, -103.333 )
+rotation = 1.57079
+texture = ExtResource( 4 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Node2D/bubble"]
+anims/bobble_1 = SubResource( 1 )
+anims/bobble_2 = SubResource( 2 )
+anims/bobble_3 = SubResource( 3 )
+
+[node name="Polygon2D" type="Polygon2D" parent="Node2D"]
+color = Color( 0.294118, 0.294118, 0.294118, 1 )
+invert_enable = true
+invert_border = 600.0
+polygon = PoolVector2Array( -1293.33, -133.333, -1186.67, -240, 1586.67, -240, 1693.33, -133.333, 1693.33, 933.333, 1586.67, 1040, -1186.67, 1040, -1293.33, 933.333 )
+
+[node name="Label3" type="Label" parent="."]
+margin_left = 1600.0
+margin_top = 304.0
+margin_right = 1800.0
+margin_bottom = 416.0
+rect_min_size = Vector2( 200, 100 )
+custom_fonts/font = SubResource( 5 )
+text = "spare"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="sheep" type="Sprite" parent="."]
+position = Vector2( 1464, 352 )
+scale = Vector2( 0.8, 0.8 )
+texture = ExtResource( 8 )
+
+[node name="Label2" type="Label" parent="."]
+margin_left = 1600.0
+margin_top = 556.8
+margin_right = 1800.0
+margin_bottom = 668.8
+rect_min_size = Vector2( 200, 100 )
+custom_fonts/font = SubResource( 5 )
+text = "kill"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="wolf" type="Sprite" parent="."]
+position = Vector2( 1460.8, 620.8 )
+scale = Vector2( 0.8, 0.8 )
+texture = ExtResource( 7 )
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 240.0
+margin_top = 80.0
+margin_right = -240.0
+margin_bottom = -540.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+margin_right = 1440.0
+margin_bottom = 460.0
+
+[node name="CenterContainer" type="CenterContainer" parent="MarginContainer/VBoxContainer"]
+margin_right = 1440.0
+margin_bottom = 155.0
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/CenterContainer"]
+margin_left = 114.0
+margin_right = 1325.0
+margin_bottom = 155.0
+custom_fonts/font = SubResource( 4 )
+text = "Undercover Thumper"
+
+[node name="Container" type="Container" parent="MarginContainer/VBoxContainer"]
+margin_top = 159.0
+margin_right = 1440.0
+margin_bottom = 460.0
+size_flags_vertical = 3
+
+[node name="MarginContainer2" type="MarginContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 240.0
+margin_top = 840.0
+margin_right = -240.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer2"]
+margin_right = 1440.0
+margin_bottom = 240.0
+
+[node name="Button" type="Button" parent="MarginContainer2/VBoxContainer"]
+margin_right = 1440.0
+margin_bottom = 34.0
+text = "play"
+
+[node name="Button2" type="Button" parent="MarginContainer2/VBoxContainer"]
+margin_top = 38.0
+margin_right = 1440.0
+margin_bottom = 72.0
+text = "options"
+
+[node name="Button3" type="Button" parent="MarginContainer2/VBoxContainer"]
+margin_top = 76.0
+margin_right = 1440.0
+margin_bottom = 110.0
+text = "quit"
+[connection signal="animation_finished" from="Node2D/bubble/AnimationPlayer" to="Node2D" method="_on_AnimationPlayer_animation_finished"]

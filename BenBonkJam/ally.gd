@@ -6,7 +6,7 @@ var aggro = false
 
 func _ready():
 	randomize()
-	suspicion = randf() * 5
+	suspicion = randf() * 4
 	player = false
 	generate_costume(false)
 
@@ -18,6 +18,7 @@ func die():
 	$attack.emitting = false
 	$body.modulate = Color.black
 	cam.add_trauma(0.4)
+	$id.restart()
 	emit_signal("dead", 1)
 
 func _process(delta):

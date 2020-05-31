@@ -1,7 +1,7 @@
 extends Node2D
 
 
-var toggle = false
+var toggle = true
 var accuracy = 0.0
 var likely_color = {}
 var likely_feature = {}
@@ -13,6 +13,11 @@ func _ready():
 	likely_feature["no_shades"] = 0
 	randomize()
 	
+func up_c(c, ct):
+	$ColorRect/s_count.text = str(c)+"/" + str(ct)
+	
+func up_w(w):
+	$ColorRect/w_count.text = "x" + str(w)
 
 func _on_AnimationPlayer_animation_finished(anim_name):
 	var opt = $bubble/AnimationPlayer.get_animation_list()
@@ -54,6 +59,6 @@ func txt(t):
 	for c in likely_color:
 		if likely_color[c] == likely_color.values().max():
 			$VBoxContainer/HBoxContainer/likely.color = c
-			$VBoxContainer/HBoxContainer/Label.text = str(100 * likely_color[c] / tally)
-	$VBoxContainer/HBoxContainer5/label.text = str((100 * likely_feature["shades"]) / (likely_feature["shades"] + likely_feature["no_shades"]))
-	$Label.text = str(100 * accuracy / pop) + "%" + str(pop)
+			$VBoxContainer/HBoxContainer/Label.text = str((float(accuracy) / pop)*100 * likely_color[c] / tally)
+	$VBoxContainer/HBoxContainer5/label.text = str((float(accuracy) / pop)*(100 * likely_feature["shades"]) / (likely_feature["shades"] + likely_feature["no_shades"]))
+	$Label.text = str(100 * accuracy / pop) + "%"

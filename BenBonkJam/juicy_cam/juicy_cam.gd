@@ -17,6 +17,7 @@ var time = 0
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$CanvasLayer/Control/CenterContainer2/level.text = "level: " + str(Manager.progression)
+	$phone.toggle(true)
 
 func add_trauma(trauma_in):
 	trauma = clamp(trauma + trauma_in, 0, 1)
@@ -66,17 +67,17 @@ func _on_CurveTween_curve_tween(sat):
 	$CanvasLayer/blur/CenterContainer/result.modulate.a = sat
 
 func initg(total_w, total_c, p):
-	$CanvasLayer/Control/CenterContainer/VBoxContainer/wolves_remaing.text = "wolves remaing: " + str(total_w)
-	$CanvasLayer/Control/CenterContainer/VBoxContainer/civilian_casualties.text = "civilian casualties: " + str(0) + " / " + str(total_c)
+	$phone.up_c(0, total_c)
+	$phone.up_w(total_w)
 	ac = total_c
 	$phone.pop = p
 	
 	
 func civilian_casualty(c):
-	$CanvasLayer/Control/CenterContainer/VBoxContainer/civilian_casualties.text = "civilian casualties: " + str(c) + " / " + str(ac)
+	$phone.up_c(c, ac)
 	
 func wolf_death(w):
-	$CanvasLayer/Control/CenterContainer/VBoxContainer/wolves_remaing.text = "wolves remaing: " + str(w)
+	$phone.up_w(w)
 
 	
 func gather_data(res):

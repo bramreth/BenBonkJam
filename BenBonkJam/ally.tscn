@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://assets/thought.png" type="Texture" id=1]
 [ext_resource path="res://assets/warn.png" type="Texture" id=2]
 [ext_resource path="res://ally.gd" type="Script" id=3]
 [ext_resource path="res://player.tscn" type="PackedScene" id=4]
+[ext_resource path="res://id.tscn" type="PackedScene" id=5]
 
 [sub_resource type="Gradient" id=1]
 offsets = PoolRealArray( 0.388889, 1 )
@@ -65,3 +66,5 @@ texture = ExtResource( 2 )
 
 [node name="Timer" parent="Node2D" index="1"]
 wait_time = 7.0
+
+[node name="id" parent="." index="9" instance=ExtResource( 5 )]

@@ -23,6 +23,7 @@ func die():
 	$attack.emitting = false
 	$body.modulate = Color.black
 	cam.add_trauma(0.4)
+	$id.restart()
 	emit_signal("dead", 0)
 
 func _process(delta):
