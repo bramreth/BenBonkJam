@@ -138,6 +138,15 @@ amount = 3
 process_material = SubResource( 6 )
 texture = ExtResource( 3 )
 
+[node name="name" parent="Node2D/Panel/VBoxContainer" index="1"]
+rect_scale = Vector2( 1, 1 )
+
+[node name="fact" parent="Node2D/Panel/VBoxContainer" index="3"]
+rect_scale = Vector2( 1, 1 )
+
+[node name="suspicion" parent="Node2D/Panel/VBoxContainer" index="5"]
+rect_scale = Vector2( 1, 1 )
+
 [node name="Timer" parent="Node2D" index="1"]
 wait_time = 8.0
 

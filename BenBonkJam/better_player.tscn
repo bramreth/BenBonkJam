@@ -109,7 +109,7 @@ scale_curve = SubResource( 7 )
 "player",
 ] instance=ExtResource( 1 )]
 script = ExtResource( 2 )
-health = 3
+health = 1
 
 [node name="body" parent="." index="1"]
 self_modulate = Color( 0.0901961, 0.752941, 0.921569, 1 )

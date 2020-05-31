@@ -8,10 +8,10 @@
 [ext_resource path="res://assets/warn.png" type="Texture" id=6]
 [ext_resource path="res://small_font.tres" type="DynamicFont" id=7]
 
-[sub_resource type="CircleShape2D" id=2]
+[sub_resource type="CircleShape2D" id=1]
 radius = 23.9116
 
-[sub_resource type="Animation" id=14]
+[sub_resource type="Animation" id=2]
 resource_name = "alert"
 length = 0.2
 tracks/0/type = "value"
@@ -39,14 +39,14 @@ tracks/1/keys = {
 "values": [ Vector2( 1e-05, 1e-05 ), Vector2( 2, 2 ) ]
 }
 
-[sub_resource type="Gradient" id=9]
+[sub_resource type="Gradient" id=3]
 offsets = PoolRealArray( 0.388889, 1 )
 colors = PoolColorArray( 1, 0.219608, 0.219608, 1, 0.219608, 0.219608, 0.219608, 0 )
 
-[sub_resource type="GradientTexture" id=10]
-gradient = SubResource( 9 )
+[sub_resource type="GradientTexture" id=4]
+gradient = SubResource( 3 )
 
-[sub_resource type="ParticlesMaterial" id=11]
+[sub_resource type="ParticlesMaterial" id=5]
 flag_disable_z = true
 spread = 25.0
 gravity = Vector3( 0, 0, 0 )
@@ -55,23 +55,23 @@ initial_velocity_random = 0.2
 orbit_velocity = 0.0
 orbit_velocity_random = 0.0
 scale = 0.08
-color_ramp = SubResource( 10 )
+color_ramp = SubResource( 4 )
 
-[sub_resource type="Gradient" id=3]
+[sub_resource type="Gradient" id=6]
 offsets = PoolRealArray( 0.614815, 1 )
 colors = PoolColorArray( 1, 0.301961, 0.301961, 1, 1, 0.301961, 0.301961, 0 )
 
-[sub_resource type="GradientTexture" id=4]
-gradient = SubResource( 3 )
+[sub_resource type="GradientTexture" id=7]
+gradient = SubResource( 6 )
 
-[sub_resource type="Curve" id=5]
+[sub_resource type="Curve" id=8]
 max_value = 100.0
 _data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.515723, 100 ), 344.335, 0.0, 0, 0 ]
 
-[sub_resource type="CurveTexture" id=6]
-curve = SubResource( 5 )
+[sub_resource type="CurveTexture" id=9]
+curve = SubResource( 8 )
 
-[sub_resource type="ParticlesMaterial" id=7]
+[sub_resource type="ParticlesMaterial" id=10]
 flag_disable_z = true
 spread = 180.0
 gravity = Vector3( 0, 0, 0 )
@@ -80,12 +80,12 @@ orbit_velocity = 0.0
 orbit_velocity_random = 0.0
 damping = 8000.0
 damping_random = 0.5
-damping_curve = SubResource( 6 )
+damping_curve = SubResource( 9 )
 scale = 0.1
 scale_random = 0.05
-color_ramp = SubResource( 4 )
+color_ramp = SubResource( 7 )
 
-[sub_resource type="OccluderPolygon2D" id=8]
+[sub_resource type="OccluderPolygon2D" id=11]
 polygon = PoolVector2Array( -24, -8, -8, -24, 8, -24, 24, -8, 24, 8, 8, 24, -8, 24, -24, 8, -24, -8, -24, -8 )
 
 [sub_resource type="StyleBoxFlat" id=12]
@@ -147,20 +147,6 @@ tracks/3/keys = {
 "update": 0,
 "values": [ Vector2( 1e-05, 1 ), Vector2( 1e-05, 1 ), Vector2( 1, 1 ) ]
 }
-tracks/4/type = "method"
-tracks/4/path = NodePath("../Timer")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/keys = {
-"times": PoolRealArray( 0.5 ),
-"transitions": PoolRealArray( 1 ),
-"values": [ {
-"args": [ -1 ],
-"method": "start"
-} ]
-}
 
 [node name="player" type="KinematicBody2D" groups=[
 "person",
@@ -170,7 +156,7 @@ health = 5
 outfits = [ Color( 0.0901961, 0.752941, 0.921569, 1 ), Color( 0.227451, 0.890196, 0.454902, 1 ), Color( 1, 0.219608, 0.219608, 1 ), Color( 1, 0.623529, 0.101961, 1 ), Color( 0.443137, 0.345098, 0.886275, 1 ) ]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource( 2 )
+shape = SubResource( 1 )
 
 [node name="body" type="Sprite" parent="."]
 scale = Vector2( 0.25, 0.25 )
@@ -204,7 +190,7 @@ scale = Vector2( 1e-05, 1e-05 )
 texture = ExtResource( 6 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="body/alert"]
-anims/alert = SubResource( 14 )
+anims/alert = SubResource( 2 )
 
 [node name="spurt" type="Particles2D" parent="."]
 emitting = false
@@ -212,7 +198,7 @@ amount = 4
 lifetime = 0.4
 one_shot = true
 explosiveness = 0.9
-process_material = SubResource( 11 )
+process_material = SubResource( 5 )
 texture = ExtResource( 1 )
 
 [node name="Particles2D" type="Particles2D" parent="."]
@@ -223,7 +209,7 @@ lifetime = 2.0
 one_shot = true
 explosiveness = 1.0
 local_coords = false
-process_material = SubResource( 7 )
+process_material = SubResource( 10 )
 texture = ExtResource( 1 )
 
 [node name="Control" type="Control" parent="."]
@@ -235,7 +221,7 @@ __meta__ = {
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="."]
 visible = false
-occluder = SubResource( 8 )
+occluder = SubResource( 11 )
 
 [node name="Node2D" type="Node2D" parent="."]
 z_index = 4

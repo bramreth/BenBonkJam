@@ -33,6 +33,7 @@ func _ready():
 func damage(d, origin=Vector2(0,0)):
 	$spurt.restart()
 	$spurt.look_at(origin)
+	cam.add_trauma(0.1)
 	if dead: return
 	health -= d
 	if health < 0:
@@ -45,7 +46,7 @@ func die():
 	$body.modulate = Color.black
 	if player: cam.add_trauma(1)
 	else: 
-		cam.add_trauma(0.15)
+		cam.add_trauma(0.1)
 		
 		
 
@@ -130,6 +131,7 @@ func interogate():
 	$Node2D/Panel/VBoxContainer/name.text = n
 	$Node2D/Panel/VBoxContainer/fact.text = f
 	$Node2D/Panel/interog_player.play("open")
+	$Node2D/Timer.start()
 	return {"c": body.self_modulate, "s": suspicion, "h": $body/head/shade.visible, "uid": self}
 
 func alert(on):
