@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://assets/font/a-c-m-e-secret-agent/ACMESecretAgentBB_BoldItal.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://theme.tres" type="Theme" id=2]
@@ -8,6 +8,13 @@
 [ext_resource path="res://bobble.gd" type="Script" id=6]
 [ext_resource path="res://assets/wolf.png" type="Texture" id=7]
 [ext_resource path="res://assets/sheep.png" type="Texture" id=8]
+[ext_resource path="res://menu.gd" type="Script" id=9]
+[ext_resource path="res://assets/speech.png" type="Texture" id=10]
+[ext_resource path="res://assets/font/a-c-m-e-secret-agent/ACMESecretAgentBB_BoldItal.otf" type="DynamicFontData" id=11]
+
+[sub_resource type="DynamicFont" id=8]
+size = 64
+font_data = ExtResource( 11 )
 
 [sub_resource type="Animation" id=1]
 resource_name = "bobble_1"
@@ -69,10 +76,39 @@ outline_size = 2
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 1 )
 
+[sub_resource type="Animation" id=7]
+resource_name = "hide"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("MarginContainer3:rect_scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 1, 1e-05 ), Vector2( 1, 1e-05 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("MarginContainer2:rect_scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.2, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1e-05 ), Vector2( 1, 1e-05 ), Vector2( 1, 1 ) ]
+}
+
 [node name="Control" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 theme = ExtResource( 2 )
+script = ExtResource( 9 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -81,6 +117,9 @@ __meta__ = {
 anchor_right = 1.0
 anchor_bottom = 1.0
 color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Node2D" type="Node2D" parent="."]
 position = Vector2( 840, 208 )
@@ -109,6 +148,26 @@ offset = Vector2( 0, -40 )
 position = Vector2( 0, -103.333 )
 rotation = 1.57079
 texture = ExtResource( 4 )
+
+[node name="speech" type="Sprite" parent="Node2D/bubble"]
+position = Vector2( 253.333, -190 )
+rotation = -3.14159
+scale = Vector2( 0.24, -0.24 )
+texture = ExtResource( 10 )
+
+[node name="speech" type="RichTextLabel" parent="Node2D/bubble/speech"]
+margin_left = 680.555
+margin_top = 527.778
+margin_right = 2120.56
+margin_bottom = 754.778
+rect_min_size = Vector2( 1440, 220 )
+rect_scale = Vector2( -1, 1 )
+custom_fonts/normal_font = SubResource( 8 )
+custom_colors/default_color = Color( 0, 0, 0, 1 )
+scroll_active = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Node2D/bubble"]
 anims/bobble_1 = SubResource( 1 )
@@ -188,7 +247,63 @@ margin_right = 1440.0
 margin_bottom = 460.0
 size_flags_vertical = 3
 
+[node name="howto_player" type="AnimationPlayer" parent="."]
+anims/hide = SubResource( 7 )
+
 [node name="MarginContainer2" type="MarginContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 240.0
+margin_top = 840.0
+margin_right = -240.0
+rect_scale = Vector2( 1, 1e-05 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer2"]
+margin_right = 1440.0
+margin_bottom = 240.0
+
+[node name="who" type="Button" parent="MarginContainer2/VBoxContainer"]
+margin_right = 1440.0
+margin_bottom = 34.0
+text = "who am I"
+
+[node name="what is my mission" type="Button" parent="MarginContainer2/VBoxContainer"]
+margin_top = 38.0
+margin_right = 1440.0
+margin_bottom = 72.0
+text = "what is my mission"
+
+[node name="wolf" type="Button" parent="MarginContainer2/VBoxContainer"]
+margin_top = 76.0
+margin_right = 1440.0
+margin_bottom = 110.0
+text = "how will I recognise wolves?"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="identify" type="Button" parent="MarginContainer2/VBoxContainer"]
+margin_top = 114.0
+margin_right = 1440.0
+margin_bottom = 148.0
+text = "how do I get clues"
+
+[node name="kill" type="Button" parent="MarginContainer2/VBoxContainer"]
+margin_top = 152.0
+margin_right = 1440.0
+margin_bottom = 186.0
+text = "how do I kill wolves"
+
+[node name="Button" type="Button" parent="MarginContainer2/VBoxContainer"]
+margin_top = 190.0
+margin_right = 1440.0
+margin_bottom = 224.0
+text = "back"
+
+[node name="MarginContainer3" type="MarginContainer" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 240.0
@@ -198,24 +313,33 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer2"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer3"]
 margin_right = 1440.0
 margin_bottom = 240.0
 
-[node name="Button" type="Button" parent="MarginContainer2/VBoxContainer"]
+[node name="Button2" type="Button" parent="MarginContainer3/VBoxContainer"]
 margin_right = 1440.0
 margin_bottom = 34.0
-text = "play"
+text = "endless"
 
-[node name="Button2" type="Button" parent="MarginContainer2/VBoxContainer"]
+[node name="Button4" type="Button" parent="MarginContainer3/VBoxContainer"]
 margin_top = 38.0
 margin_right = 1440.0
 margin_bottom = 72.0
-text = "options"
+text = "how to play"
 
-[node name="Button3" type="Button" parent="MarginContainer2/VBoxContainer"]
+[node name="Button3" type="Button" parent="MarginContainer3/VBoxContainer"]
 margin_top = 76.0
 margin_right = 1440.0
 margin_bottom = 110.0
 text = "quit"
 [connection signal="animation_finished" from="Node2D/bubble/AnimationPlayer" to="Node2D" method="_on_AnimationPlayer_animation_finished"]
+[connection signal="pressed" from="MarginContainer2/VBoxContainer/who" to="." method="_on_who_pressed"]
+[connection signal="pressed" from="MarginContainer2/VBoxContainer/what is my mission" to="." method="_on_what_is_my_mission_pressed"]
+[connection signal="pressed" from="MarginContainer2/VBoxContainer/wolf" to="." method="_on_wolf_pressed"]
+[connection signal="pressed" from="MarginContainer2/VBoxContainer/identify" to="." method="_on_identify_pressed"]
+[connection signal="pressed" from="MarginContainer2/VBoxContainer/kill" to="." method="_on_kill_pressed"]
+[connection signal="pressed" from="MarginContainer2/VBoxContainer/Button" to="." method="_on_Button_pressed"]
+[connection signal="pressed" from="MarginContainer3/VBoxContainer/Button2" to="." method="_on_Button2_pressed"]
+[connection signal="pressed" from="MarginContainer3/VBoxContainer/Button4" to="." method="_on_Button4_pressed"]
+[connection signal="pressed" from="MarginContainer3/VBoxContainer/Button3" to="." method="_on_Button3_pressed"]

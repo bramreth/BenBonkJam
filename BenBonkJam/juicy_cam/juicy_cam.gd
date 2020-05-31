@@ -43,7 +43,7 @@ func _input(event):
 		
 func lose():
 	$CanvasLayer/TextureRect/AnimationPlayer.play("speak")
-	$CanvasLayer/TextureRect/CenterContainer/result.text = "too many civilian casualties."
+	$CanvasLayer/TextureRect/CenterContainer/result.text = "too many civilian casualties. \n unnaceptable."
 	menu = false
 	$CanvasLayer/phone.win(false)
 	blur()
@@ -58,7 +58,7 @@ func win():
 	
 func die():
 	$CanvasLayer/TextureRect/AnimationPlayer.play("speak")
-	$CanvasLayer/TextureRect/CenterContainer/result.text = "The wolves got them.\n that's a pity."
+	$CanvasLayer/TextureRect/CenterContainer/result.text = "The wolves got them - that's a pity. \nSend in the next agent!"
 	$CanvasLayer/phone.win(false)
 	menu = false
 	blur()
