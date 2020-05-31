@@ -194,7 +194,7 @@ tracks/2/keys = {
 
 [sub_resource type="Animation" id=16]
 resource_name = "win"
-length = 2.0
+length = 2.2
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:position")
 tracks/0/interp = 1
@@ -316,6 +316,30 @@ tracks/9/keys = {
 "args": [  ],
 "method": "tween_m"
 } ]
+}
+tracks/10/type = "value"
+tracks/10/path = NodePath("VBoxContainer2/HBoxContainer4/continue:visible")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/keys = {
+"times": PoolRealArray( 0, 2.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/11/type = "value"
+tracks/11/path = NodePath("VBoxContainer2/HBoxContainer4/menu:visible")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/keys = {
+"times": PoolRealArray( 0, 2.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
 }
 
 [node name="Node2D" type="Node2D"]
@@ -463,9 +487,9 @@ polygon = PoolVector2Array( -184, 96, -184, 288, 120, 288, 120, 96 )
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="."]
 margin_left = -172.651
-margin_top = 104.0
+margin_top = 100.0
 margin_right = 107.349
-margin_bottom = 244.0
+margin_bottom = 240.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -475,8 +499,8 @@ margin_right = 280.0
 
 [node name="Label" type="Label" parent="VBoxContainer2/HBoxContainer"]
 visible = false
-margin_right = 83.0
-margin_bottom = 40.0
+margin_right = 57.0
+margin_bottom = 28.0
 custom_fonts/font = ExtResource( 13 )
 text = "kills: "
 __meta__ = {
@@ -485,9 +509,9 @@ __meta__ = {
 
 [node name="Label2" type="Label" parent="VBoxContainer2/HBoxContainer"]
 visible = false
-margin_left = 87.0
-margin_right = 202.0
-margin_bottom = 40.0
+margin_left = 61.0
+margin_right = 140.0
+margin_bottom = 28.0
 custom_fonts/font = ExtResource( 13 )
 text = "900000"
 __meta__ = {
@@ -501,8 +525,8 @@ margin_bottom = 4.0
 
 [node name="Label" type="Label" parent="VBoxContainer2/HBoxContainer2"]
 visible = false
-margin_right = 195.0
-margin_bottom = 40.0
+margin_right = 134.0
+margin_bottom = 28.0
 custom_fonts/font = ExtResource( 13 )
 text = "sheep bonus: "
 __meta__ = {
@@ -511,9 +535,9 @@ __meta__ = {
 
 [node name="Label2" type="Label" parent="VBoxContainer2/HBoxContainer2"]
 visible = false
-margin_left = 199.0
-margin_right = 244.0
-margin_bottom = 40.0
+margin_left = 138.0
+margin_right = 169.0
+margin_bottom = 28.0
 custom_fonts/font = ExtResource( 13 )
 text = "2.5"
 __meta__ = {
@@ -527,8 +551,8 @@ margin_bottom = 8.0
 
 [node name="Label" type="Label" parent="VBoxContainer2/HBoxContainer3"]
 visible = false
-margin_right = 100.0
-margin_bottom = 40.0
+margin_right = 70.0
+margin_bottom = 28.0
 custom_fonts/font = ExtResource( 13 )
 text = "total: "
 __meta__ = {
@@ -537,11 +561,11 @@ __meta__ = {
 
 [node name="Label2" type="Label" parent="VBoxContainer2/HBoxContainer3"]
 visible = false
-margin_left = 104.0
-margin_right = 149.0
-margin_bottom = 40.0
+margin_left = 74.0
+margin_right = 101.0
+margin_bottom = 28.0
 custom_fonts/font = ExtResource( 13 )
-text = "2.5"
+text = "£0"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -550,11 +574,37 @@ __meta__ = {
 script = ExtResource( 14 )
 curve = SubResource( 17 )
 
+[node name="HBoxContainer4" type="HBoxContainer" parent="VBoxContainer2"]
+margin_top = 12.0
+margin_right = 280.0
+margin_bottom = 140.0
+size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="continue" type="Button" parent="VBoxContainer2/HBoxContainer4"]
+visible = false
+margin_right = 138.0
+margin_bottom = 44.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 13 )
+text = "continue"
+
+[node name="menu" type="Button" parent="VBoxContainer2/HBoxContainer4"]
+visible = false
+margin_left = 142.0
+margin_right = 280.0
+margin_bottom = 44.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 13 )
+text = "menu"
+
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 margin_left = -176.0
-margin_top = 100.0
+margin_top = 300.0
 margin_right = 113.0
-margin_bottom = 260.0
+margin_bottom = 460.0
 rect_min_size = Vector2( 288, 160 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -562,7 +612,7 @@ __meta__ = {
 
 [node name="Label" type="Label" parent="VBoxContainer"]
 margin_right = 289.0
-margin_bottom = 40.0
+margin_bottom = 28.0
 theme = ExtResource( 6 )
 text = "accuracy: 0%"
 __meta__ = {
@@ -570,9 +620,9 @@ __meta__ = {
 }
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
-margin_top = 44.0
+margin_top = 32.0
 margin_right = 289.0
-margin_bottom = 79.0
+margin_bottom = 67.0
 
 [node name="likely" type="ColorRect" parent="VBoxContainer/HBoxContainer"]
 margin_right = 35.0
@@ -591,9 +641,9 @@ size_flags_horizontal = 3
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 
 [node name="HBoxContainer5" type="HBoxContainer" parent="VBoxContainer"]
-margin_top = 83.0
+margin_top = 71.0
 margin_right = 289.0
-margin_bottom = 118.0
+margin_bottom = 106.0
 
 [node name="TextureRect" type="TextureRect" parent="VBoxContainer/HBoxContainer5"]
 margin_right = 35.0
@@ -633,4 +683,6 @@ anims/open = SubResource( 6 )
 anims/win = SubResource( 16 )
 [connection signal="animation_finished" from="bubble/AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
 [connection signal="curve_tween" from="VBoxContainer2/HBoxContainer3/Label2/c" to="." method="_on_c_curve_tween"]
+[connection signal="pressed" from="VBoxContainer2/HBoxContainer4/continue" to="." method="_on_continue_pressed"]
+[connection signal="pressed" from="VBoxContainer2/HBoxContainer4/menu" to="." method="_on_menu_pressed"]
 [connection signal="animation_finished" from="toggle_player" to="." method="_on_toggle_player_animation_finished"]

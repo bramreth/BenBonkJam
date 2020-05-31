@@ -12,6 +12,8 @@
 [ext_resource path="res://assets/speech.png" type="Texture" id=10]
 [ext_resource path="res://assets/font/a-c-m-e-secret-agent/ACMESecretAgentBB_BoldItal.otf" type="DynamicFontData" id=11]
 [ext_resource path="res://assets/star.png" type="Texture" id=12]
+[ext_resource path="res://shop.tscn" type="PackedScene" id=13]
+[ext_resource path="res://bank.tscn" type="PackedScene" id=14]
 
 [sub_resource type="DynamicFont" id=8]
 size = 64
@@ -132,24 +134,6 @@ tracks/1/keys = {
 "update": 0,
 "values": [ Vector2( 1, 1e-05 ), Vector2( 1, 1e-05 ), Vector2( 1, 1 ) ]
 }
-
-[sub_resource type="StyleBoxFlat" id=13]
-bg_color = Color( 0.294118, 0.294118, 0.294118, 1 )
-border_width_left = 4
-border_width_top = 4
-border_width_right = 4
-border_width_bottom = 4
-border_color = Color( 0.239216, 0.239216, 0.239216, 1 )
-corner_radius_top_left = 4
-corner_radius_top_right = 4
-corner_radius_bottom_right = 4
-corner_radius_bottom_left = 4
-
-[sub_resource type="DynamicFont" id=14]
-size = 64
-outline_size = 2
-outline_color = Color( 0, 0, 0, 1 )
-font_data = ExtResource( 11 )
 
 [sub_resource type="Shader" id=10]
 code = "shader_type canvas_item;
@@ -327,44 +311,44 @@ __meta__ = {
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer2"]
 margin_right = 1440.0
-margin_bottom = 296.0
+margin_bottom = 240.0
 
 [node name="who" type="Button" parent="MarginContainer2/VBoxContainer"]
 margin_right = 1440.0
-margin_bottom = 46.0
+margin_bottom = 34.0
 text = "who am I"
 
 [node name="what is my mission" type="Button" parent="MarginContainer2/VBoxContainer"]
-margin_top = 50.0
+margin_top = 38.0
 margin_right = 1440.0
-margin_bottom = 96.0
+margin_bottom = 72.0
 text = "what is my mission"
 
 [node name="wolf" type="Button" parent="MarginContainer2/VBoxContainer"]
-margin_top = 100.0
+margin_top = 76.0
 margin_right = 1440.0
-margin_bottom = 146.0
+margin_bottom = 110.0
 text = "how will I recognise wolves?"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="identify" type="Button" parent="MarginContainer2/VBoxContainer"]
-margin_top = 150.0
+margin_top = 114.0
 margin_right = 1440.0
-margin_bottom = 196.0
+margin_bottom = 148.0
 text = "how do I get clues"
 
 [node name="kill" type="Button" parent="MarginContainer2/VBoxContainer"]
-margin_top = 200.0
+margin_top = 152.0
 margin_right = 1440.0
-margin_bottom = 246.0
+margin_bottom = 186.0
 text = "how do I kill wolves"
 
 [node name="Button" type="Button" parent="MarginContainer2/VBoxContainer"]
-margin_top = 250.0
+margin_top = 190.0
 margin_right = 1440.0
-margin_bottom = 296.0
+margin_bottom = 224.0
 text = "back"
 
 [node name="MarginContainer3" type="MarginContainer" parent="."]
@@ -383,19 +367,25 @@ margin_bottom = 240.0
 
 [node name="Button2" type="Button" parent="MarginContainer3/VBoxContainer"]
 margin_right = 1440.0
-margin_bottom = 46.0
+margin_bottom = 34.0
 text = "endless"
 
 [node name="Button4" type="Button" parent="MarginContainer3/VBoxContainer"]
-margin_top = 50.0
+margin_top = 38.0
 margin_right = 1440.0
-margin_bottom = 96.0
+margin_bottom = 72.0
 text = "how to play"
 
-[node name="Button3" type="Button" parent="MarginContainer3/VBoxContainer"]
-margin_top = 100.0
+[node name="shop" type="Button" parent="MarginContainer3/VBoxContainer"]
+margin_top = 76.0
 margin_right = 1440.0
-margin_bottom = 146.0
+margin_bottom = 110.0
+text = "shop"
+
+[node name="Button3" type="Button" parent="MarginContainer3/VBoxContainer"]
+margin_top = 114.0
+margin_right = 1440.0
+margin_bottom = 148.0
 text = "quit"
 
 [node name="dif" type="MarginContainer" parent="."]
@@ -415,69 +405,35 @@ margin_bottom = 240.0
 
 [node name="Label" type="Label" parent="dif/VBoxContainer"]
 margin_right = 1440.0
-margin_bottom = 40.0
+margin_bottom = 28.0
 text = "Difficulty"
 align = 1
 
 [node name="easy" type="Button" parent="dif/VBoxContainer"]
-margin_top = 44.0
+margin_top = 32.0
 margin_right = 1440.0
-margin_bottom = 90.0
+margin_bottom = 66.0
 text = "easy (only one sheep needs to survie, enemies look guiltier)"
 
 [node name="normal" type="Button" parent="dif/VBoxContainer"]
-margin_top = 94.0
+margin_top = 70.0
 margin_right = 1440.0
-margin_bottom = 140.0
+margin_bottom = 104.0
 text = "normal (no more than 3 sheep may die) [recommended]"
 
 [node name="impossible" type="Button" parent="dif/VBoxContainer"]
-margin_top = 144.0
+margin_top = 108.0
 margin_right = 1440.0
-margin_bottom = 190.0
+margin_bottom = 142.0
 text = "impossible (no more than 1 sheep may die, enemies look less guilty)"
 
 [node name="back" type="Button" parent="dif/VBoxContainer"]
-margin_top = 194.0
+margin_top = 146.0
 margin_right = 1440.0
-margin_bottom = 240.0
+margin_bottom = 180.0
 text = "back"
 
-[node name="Panel" type="Panel" parent="."]
-margin_left = 16.0
-margin_top = 24.0
-margin_right = 316.0
-margin_bottom = 204.0
-custom_styles/panel = SubResource( 13 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 8.0
-margin_top = 8.0
-margin_right = -8.0
-margin_bottom = -8.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Label" type="Label" parent="Panel/VBoxContainer"]
-margin_right = 284.0
-margin_bottom = 78.0
-custom_fonts/font = SubResource( 14 )
-text = "CASH:"
-align = 1
-
-[node name="cash" type="Label" parent="Panel/VBoxContainer"]
-margin_top = 82.0
-margin_right = 284.0
-margin_bottom = 160.0
-custom_fonts/font = SubResource( 14 )
-text = "£1000000"
-align = 1
+[node name="Panel" parent="." instance=ExtResource( 14 )]
 
 [node name="star" type="Sprite" parent="."]
 visible = false
@@ -517,6 +473,9 @@ align = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="shop" parent="." instance=ExtResource( 13 )]
+popup_exclusive = true
 [connection signal="animation_finished" from="Node2D/bubble/AnimationPlayer" to="Node2D" method="_on_AnimationPlayer_animation_finished"]
 [connection signal="pressed" from="MarginContainer2/VBoxContainer/who" to="." method="_on_who_pressed"]
 [connection signal="pressed" from="MarginContainer2/VBoxContainer/what is my mission" to="." method="_on_what_is_my_mission_pressed"]
@@ -526,8 +485,10 @@ __meta__ = {
 [connection signal="pressed" from="MarginContainer2/VBoxContainer/Button" to="." method="_on_Button_pressed"]
 [connection signal="pressed" from="MarginContainer3/VBoxContainer/Button2" to="." method="_on_Button2_pressed"]
 [connection signal="pressed" from="MarginContainer3/VBoxContainer/Button4" to="." method="_on_Button4_pressed"]
+[connection signal="pressed" from="MarginContainer3/VBoxContainer/shop" to="." method="_on_shop_pressed"]
 [connection signal="pressed" from="MarginContainer3/VBoxContainer/Button3" to="." method="_on_Button3_pressed"]
 [connection signal="pressed" from="dif/VBoxContainer/easy" to="." method="_on_easy_pressed"]
 [connection signal="pressed" from="dif/VBoxContainer/normal" to="." method="_on_normal_pressed"]
 [connection signal="pressed" from="dif/VBoxContainer/impossible" to="." method="_on_impossible_pressed"]
 [connection signal="pressed" from="dif/VBoxContainer/back" to="." method="_on_back_pressed_diff"]
+[connection signal="up_manager" from="shop" to="." method="_on_shop_up_manager"]

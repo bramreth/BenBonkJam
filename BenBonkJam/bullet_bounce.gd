@@ -24,7 +24,9 @@ func _on_bullet_body_entered(body):
 func explode():
 	if exploding: return
 	exploding = true
-	cam = get_tree().get_nodes_in_group("cam")[0]
+	cam = get_tree().get_nodes_in_group("cam")
+	if not cam: return
+	cam = cam[0]
 	if cam: cam.add_trauma(0.4)
 	linear_damp = 100
 	$AudioStreamPlayer2D.pitch_scale += (randf()-0.5) / 10

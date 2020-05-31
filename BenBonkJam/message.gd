@@ -1,5 +1,6 @@
 extends Node2D
-
+signal next()
+signal menu()
 var toggle = true
 var accuracy = 0.0
 var likely_color = {}
@@ -14,12 +15,13 @@ func _ready():
 	randomize()
 
 func win(on, k, m):
-	print(m)
 	var tm = 1 + pow(1-m, 2)*2
 	tm = stepify(tm,0.01)
+	print(tm)
 	$VBoxContainer2/HBoxContainer/Label2.text = "£" + str(k)
 	$VBoxContainer2/HBoxContainer2/Label2.text =  str(tm)
-	targ = k*tm
+	targ = ceil(k*tm)
+	Manager.cash += targ
 	if on: $bubble/bubble2/w.emitting = true
 	else: $bubble/bubble2/l.emitting = true
 	
@@ -53,6 +55,8 @@ func level(i):
 	$level.text = "level:" + str(i)
 
 func _on_toggle_player_animation_finished(anim_name):
+	if anim_name == "win":
+		$VBoxContainer2/HBoxContainer4/continue.grab_focus()
 	if toggle:
 		var opt = $bubble/AnimationPlayer.get_animation_list()
 		$bubble/AnimationPlayer.play(opt[randi()%opt.size()])
@@ -90,3 +94,11 @@ func add_cash():
 
 func _on_c_curve_tween(sat):
 	$VBoxContainer2/HBoxContainer3/Label2.text =  "£" + str(ceil(sat))
+
+
+func _on_continue_pressed():
+	emit_signal("next")
+
+
+func _on_menu_pressed():
+	emit_signal("menu")

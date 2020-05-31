@@ -5,6 +5,8 @@ var ac = 0
 export (OpenSimplexNoise) var noise
 export(float, 0, 1) var trauma = 0.0
 
+
+
 export var max_x = 150
 export var max_y = 150
 export var max_r = 25
@@ -39,7 +41,6 @@ func _input(event):
 	if not menu: return
 	if Input.get_action_strength("ui_accept"): 
 		if proc: 
-			get_tree().reload_current_scene()
 			return
 		proc = true
 		Manager.next_level(won)
@@ -93,3 +94,12 @@ func wolf_death(w):
 	
 func gather_data(res):
 	$CanvasLayer/phone.txt(res)
+
+
+func _on_phone_menu():
+	var menu_scene = load("res://menu.tscn")
+	get_tree().change_scene_to(menu_scene)
+
+
+func _on_phone_next():
+	get_tree().reload_current_scene()

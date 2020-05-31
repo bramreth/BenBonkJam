@@ -3,6 +3,8 @@ extends "res://player.gd"
 var bullet = preload("res://bullet_bounce.tscn")
 var can_shoot = true
 
+func _ready():
+	SPEED = SPEED + ((Manager.speed - 1) * 125)
 		
 func shoot():
 	can_shoot = false

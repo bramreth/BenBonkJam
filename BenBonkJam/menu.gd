@@ -8,13 +8,14 @@ func _ready():
 	hide()
 	if Manager.best_level:
 		high_score()
-	$Panel/VBoxContainer/cash.text = "£" + str(Manager.cash)
+	up_cash()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass
-
+func up_cash():
+	$Panel/VBoxContainer/cash.text = "£" + str(Manager.cash)
 
 func _on_Button2_pressed():
 	$howto_player.play("diff")
@@ -99,3 +100,11 @@ func high_score():
 			$res.text = "impossible: " + str(Manager.best_level)
 		_:
 			$res.text = "err"
+
+
+func _on_shop_pressed():
+	$shop.popup()
+
+
+func _on_shop_up_manager():
+	up_cash()

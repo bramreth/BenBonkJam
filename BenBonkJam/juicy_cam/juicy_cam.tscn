@@ -87,10 +87,10 @@ __meta__ = {
 
 [node name="result" type="Label" parent="CanvasLayer/TextureRect/CenterContainer"]
 modulate = Color( 1, 1, 1, 0 )
-margin_left = 384.0
-margin_top = 40.0
-margin_right = 515.0
-margin_bottom = 80.0
+margin_left = 405.0
+margin_top = 46.0
+margin_right = 495.0
+margin_bottom = 74.0
 text = "YOU LOSE"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/TextureRect"]
@@ -100,3 +100,5 @@ anims/speak = SubResource( 5 )
 position = Vector2( 2304, 744 )
 scale = Vector2( 0.85, 0.85 )
 [connection signal="curve_tween" from="CanvasLayer/blur/CurveTween" to="." method="_on_CurveTween_curve_tween"]
+[connection signal="menu" from="CanvasLayer/phone" to="." method="_on_phone_menu"]
+[connection signal="next" from="CanvasLayer/phone" to="." method="_on_phone_next"]

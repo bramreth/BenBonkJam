@@ -1,0 +1,145 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://shop.gd" type="Script" id=1]
+[ext_resource path="res://assets/font/a-c-m-e-secret-agent/ACMESecretAgentBB_BoldItal.otf" type="DynamicFontData" id=2]
+
+[sub_resource type="DynamicFont" id=1]
+size = 72
+outline_size = 2
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 64
+outline_size = 2
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 2 )
+
+[sub_resource type="StyleBoxFlat" id=3]
+bg_color = Color( 0.294118, 0.294118, 0.294118, 1 )
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color( 0.239216, 0.239216, 0.239216, 1 )
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="DynamicFont" id=4]
+size = 64
+outline_size = 2
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 2 )
+
+[node name="WindowDialog" type="WindowDialog"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 8.0
+margin_top = 8.0
+margin_right = -8.0
+margin_bottom = -8.0
+mouse_filter = 2
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 200.0
+margin_top = 100.0
+margin_right = -200.0
+margin_bottom = -100.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+margin_right = 1504.0
+margin_bottom = 88.0
+custom_fonts/font = SubResource( 1 )
+text = "the shop"
+align = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+margin_top = 92.0
+margin_right = 1504.0
+margin_bottom = 476.0
+size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="speed" type="VBoxContainer" parent="VBoxContainer/HBoxContainer"]
+margin_right = 1504.0
+margin_bottom = 384.0
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer/speed"]
+margin_right = 1504.0
+margin_bottom = 14.0
+text = "speed 1"
+align = 1
+
+[node name="cost" type="Label" parent="VBoxContainer/HBoxContainer/speed"]
+margin_top = 18.0
+margin_right = 1504.0
+margin_bottom = 32.0
+text = "cost: £50"
+align = 1
+
+[node name="upg" type="Button" parent="VBoxContainer/HBoxContainer/speed"]
+margin_top = 36.0
+margin_right = 1504.0
+margin_bottom = 384.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "upgrade"
+
+[node name="back" type="Button" parent="VBoxContainer"]
+margin_top = 780.0
+margin_right = 1504.0
+margin_bottom = 864.0
+size_flags_vertical = 10
+custom_fonts/font = SubResource( 2 )
+text = "back"
+
+[node name="Panel" type="Panel" parent="."]
+margin_left = 8.0
+margin_right = 308.0
+margin_bottom = 180.0
+custom_styles/panel = SubResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 8.0
+margin_top = 8.0
+margin_right = -8.0
+margin_bottom = -8.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Panel/VBoxContainer"]
+margin_right = 284.0
+margin_bottom = 78.0
+custom_fonts/font = SubResource( 4 )
+text = "CASH:"
+align = 1
+
+[node name="cash" type="Label" parent="Panel/VBoxContainer"]
+margin_top = 82.0
+margin_right = 284.0
+margin_bottom = 160.0
+custom_fonts/font = SubResource( 4 )
+text = "£1000000"
+align = 1
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/speed/upg" to="." method="_on_upg_pressed"]
+[connection signal="pressed" from="VBoxContainer/back" to="." method="_on_back_pressed"]

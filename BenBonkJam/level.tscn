@@ -157,6 +157,7 @@ color = Color( 0.219608, 0.168627, 0.0980392, 1 )
 polygon = PoolVector2Array( -582.62, -586.453, -582.62, 1026.29, 824.462, 1026.29, 824.462, -586.453 )
 
 [node name="player" parent="." instance=ExtResource( 1 )]
+SPEED = 600
 outfits = [  ]
 
 [node name="StaticBody2D" parent="." instance=ExtResource( 3 )]
