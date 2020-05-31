@@ -327,44 +327,44 @@ __meta__ = {
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer2"]
 margin_right = 1440.0
-margin_bottom = 240.0
+margin_bottom = 296.0
 
 [node name="who" type="Button" parent="MarginContainer2/VBoxContainer"]
 margin_right = 1440.0
-margin_bottom = 34.0
+margin_bottom = 46.0
 text = "who am I"
 
 [node name="what is my mission" type="Button" parent="MarginContainer2/VBoxContainer"]
-margin_top = 38.0
+margin_top = 50.0
 margin_right = 1440.0
-margin_bottom = 72.0
+margin_bottom = 96.0
 text = "what is my mission"
 
 [node name="wolf" type="Button" parent="MarginContainer2/VBoxContainer"]
-margin_top = 76.0
+margin_top = 100.0
 margin_right = 1440.0
-margin_bottom = 110.0
+margin_bottom = 146.0
 text = "how will I recognise wolves?"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="identify" type="Button" parent="MarginContainer2/VBoxContainer"]
-margin_top = 114.0
+margin_top = 150.0
 margin_right = 1440.0
-margin_bottom = 148.0
+margin_bottom = 196.0
 text = "how do I get clues"
 
 [node name="kill" type="Button" parent="MarginContainer2/VBoxContainer"]
-margin_top = 152.0
+margin_top = 200.0
 margin_right = 1440.0
-margin_bottom = 186.0
+margin_bottom = 246.0
 text = "how do I kill wolves"
 
 [node name="Button" type="Button" parent="MarginContainer2/VBoxContainer"]
-margin_top = 190.0
+margin_top = 250.0
 margin_right = 1440.0
-margin_bottom = 224.0
+margin_bottom = 296.0
 text = "back"
 
 [node name="MarginContainer3" type="MarginContainer" parent="."]
@@ -383,19 +383,19 @@ margin_bottom = 240.0
 
 [node name="Button2" type="Button" parent="MarginContainer3/VBoxContainer"]
 margin_right = 1440.0
-margin_bottom = 34.0
+margin_bottom = 46.0
 text = "endless"
 
 [node name="Button4" type="Button" parent="MarginContainer3/VBoxContainer"]
-margin_top = 38.0
+margin_top = 50.0
 margin_right = 1440.0
-margin_bottom = 72.0
+margin_bottom = 96.0
 text = "how to play"
 
 [node name="Button3" type="Button" parent="MarginContainer3/VBoxContainer"]
-margin_top = 76.0
+margin_top = 100.0
 margin_right = 1440.0
-margin_bottom = 110.0
+margin_bottom = 146.0
 text = "quit"
 
 [node name="dif" type="MarginContainer" parent="."]
@@ -415,32 +415,32 @@ margin_bottom = 240.0
 
 [node name="Label" type="Label" parent="dif/VBoxContainer"]
 margin_right = 1440.0
-margin_bottom = 28.0
+margin_bottom = 40.0
 text = "Difficulty"
 align = 1
 
 [node name="easy" type="Button" parent="dif/VBoxContainer"]
-margin_top = 32.0
+margin_top = 44.0
 margin_right = 1440.0
-margin_bottom = 66.0
+margin_bottom = 90.0
 text = "easy (only one sheep needs to survie, enemies look guiltier)"
 
 [node name="normal" type="Button" parent="dif/VBoxContainer"]
-margin_top = 70.0
+margin_top = 94.0
 margin_right = 1440.0
-margin_bottom = 104.0
+margin_bottom = 140.0
 text = "normal (no more than 3 sheep may die) [recommended]"
 
 [node name="impossible" type="Button" parent="dif/VBoxContainer"]
-margin_top = 108.0
+margin_top = 144.0
 margin_right = 1440.0
-margin_bottom = 142.0
+margin_bottom = 190.0
 text = "impossible (no more than 1 sheep may die, enemies look less guilty)"
 
 [node name="back" type="Button" parent="dif/VBoxContainer"]
-margin_top = 146.0
+margin_top = 194.0
 margin_right = 1440.0
-margin_bottom = 180.0
+margin_bottom = 240.0
 text = "back"
 
 [node name="Panel" type="Panel" parent="."]

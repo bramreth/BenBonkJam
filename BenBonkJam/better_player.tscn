@@ -178,6 +178,25 @@ explosiveness = 0.8
 local_coords = false
 process_material = SubResource( 8 )
 texture = ExtResource( 4 )
+
+[node name="name" parent="Node2D/Panel/VBoxContainer" index="1"]
+margin_bottom = 64.0
+
+[node name="fact2" parent="Node2D/Panel/VBoxContainer" index="2"]
+margin_top = 68.0
+margin_bottom = 88.0
+
+[node name="fact" parent="Node2D/Panel/VBoxContainer" index="3"]
+margin_top = 92.0
+margin_bottom = 132.0
+
+[node name="suspicion2" parent="Node2D/Panel/VBoxContainer" index="4"]
+margin_top = 136.0
+margin_bottom = 156.0
+
+[node name="suspicion" parent="Node2D/Panel/VBoxContainer" index="5"]
+margin_top = 160.0
+margin_bottom = 200.0
 [connection signal="body_entered" from="body/head/interrog" to="." method="_on_interrog_body_entered"]
 [connection signal="body_exited" from="body/head/interrog" to="." method="_on_interrog_body_exited"]
 [connection signal="animation_finished" from="body/head/gun/AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]

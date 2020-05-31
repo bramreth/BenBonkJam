@@ -3,6 +3,7 @@ extends Node2D
 var cam
 var people
 var wolves = 0
+var max_w = 0
 var casualties = 0
 export var acceptable_casualties = 3
 
@@ -31,6 +32,7 @@ func setup_wave():
 		s.setup(list)
 		s.connect("death", self, "parse_death")
 	wolves = num_enemies * len(spawners)
+	max_w = wolves
 	print(num_enemies + num_allies)
 	Manager.acceptable = min(num_allies* len(spawners), Manager.difficulty)
 	cam.initg(num_enemies * len(spawners), Manager.acceptable, (num_enemies + num_allies)*get_tree().get_nodes_in_group("spawner").size())
@@ -48,11 +50,20 @@ func parse_death(type):
 			print("BIG ERROR in parse death")
 	if wolves <= 0:
 		print("YOU WIN")
-		cam.win()
+		if Manager.acceptable:
+			cam.win(max_w - wolves, float(casualties) / Manager.acceptable)
+		else:
+			cam.win(max_w - wolves, 1)
 	if casualties >= Manager.acceptable and Manager.acceptable:
 		print("YOU LOSE")
-		cam.lose()
+		if Manager.acceptable:
+			cam.lose(max_w - wolves, float(casualties) / Manager.acceptable)
+		else:
+			cam.lose(max_w - wolves, 1)
 
 
 func _on_player_dead(type):
-	cam.die()
+	if Manager.acceptable:
+		cam.die(max_w - wolves, float(casualties) / Manager.acceptable)
+	else:
+		cam.die(max_w - wolves, 1)

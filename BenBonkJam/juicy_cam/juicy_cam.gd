@@ -10,7 +10,7 @@ export var max_y = 150
 export var max_r = 25
 
 export var time_scale = 150
-
+var proc = false
 export(float, 0, 1) var decay = 0.6
 var won = false
 var time = 0
@@ -38,28 +38,33 @@ func _input(event):
 #		$CanvasLayer/phone.toggle(not $CanvasLayer/phone.toggle)
 	if not menu: return
 	if Input.get_action_strength("ui_accept"): 
+		if proc: 
+			get_tree().reload_current_scene()
+			return
+		proc = true
 		Manager.next_level(won)
-		get_tree().reload_current_scene()
+		$CanvasLayer/phone.add_cash()
+#		get_tree().reload_current_scene()
 		
-func lose():
+func lose(k, m):
 	$CanvasLayer/TextureRect/AnimationPlayer.play("speak")
 	$CanvasLayer/TextureRect/CenterContainer/result.text = "too many civilian casualties. \n unnaceptable."
 	menu = false
-	$CanvasLayer/phone.win(false)
+	$CanvasLayer/phone.win(false, k, m)
 	blur()
 	
-func win():
+func win(k, m):
 	$CanvasLayer/TextureRect/AnimationPlayer.play("speak")
 	$CanvasLayer/TextureRect/CenterContainer/result.text = "you eliminated the wolves.\n well done agent."
 	menu = false
 	won = true
-	$CanvasLayer/phone.win(true)
+	$CanvasLayer/phone.win(true, k, m)
 	blur()
 	
-func die():
+func die(k, m):
 	$CanvasLayer/TextureRect/AnimationPlayer.play("speak")
 	$CanvasLayer/TextureRect/CenterContainer/result.text = "The wolves got them - that's a pity. \nSend in the next agent!"
-	$CanvasLayer/phone.win(false)
+	$CanvasLayer/phone.win(false, k, m)
 	menu = false
 	blur()
 	

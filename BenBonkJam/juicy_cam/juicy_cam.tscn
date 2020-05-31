@@ -87,10 +87,10 @@ __meta__ = {
 
 [node name="result" type="Label" parent="CanvasLayer/TextureRect/CenterContainer"]
 modulate = Color( 1, 1, 1, 0 )
-margin_left = 405.0
-margin_top = 46.0
-margin_right = 495.0
-margin_bottom = 74.0
+margin_left = 384.0
+margin_top = 40.0
+margin_right = 515.0
+margin_bottom = 80.0
 text = "YOU LOSE"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/TextureRect"]
