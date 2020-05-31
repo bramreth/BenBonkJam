@@ -32,7 +32,8 @@ func setup_wave():
 		s.connect("death", self, "parse_death")
 	wolves = num_enemies * len(spawners)
 	print(num_enemies + num_allies)
-	cam.initg(num_enemies * len(spawners), acceptable_casualties, (num_enemies + num_allies)*get_tree().get_nodes_in_group("spawner").size())
+	Manager.acceptable = min(num_allies* len(spawners), Manager.difficulty)
+	cam.initg(num_enemies * len(spawners), Manager.acceptable, (num_enemies + num_allies)*get_tree().get_nodes_in_group("spawner").size())
 	# we need to setup the enemy pattern here
 
 func parse_death(type):
@@ -48,7 +49,7 @@ func parse_death(type):
 	if wolves <= 0:
 		print("YOU WIN")
 		cam.win()
-	if casualties >= acceptable_casualties:
+	if casualties >= Manager.acceptable and Manager.acceptable:
 		print("YOU LOSE")
 		cam.lose()
 

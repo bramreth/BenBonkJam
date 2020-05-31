@@ -53,7 +53,7 @@ z_index = -1
 shape = SubResource( 1 )
 
 [node name="Polygon2D" type="Polygon2D" parent="church"]
-color = Color( 0.0784314, 0.0784314, 0.0784314, 1 )
+color = Color( 0.04, 0.04, 0.04, 1 )
 polygon = PoolVector2Array( -496, -300, -496, 300, 496, 300, 496, -300 )
 
 [node name="walls" type="StaticBody2D" parent="church"]
@@ -76,7 +76,7 @@ z_index = -1
 shape = SubResource( 1 )
 
 [node name="Polygon2D" type="Polygon2D" parent="cafe"]
-color = Color( 0.494118, 1, 0.960784, 1 )
+color = Color( 0.196, 0.4, 0.383, 1 )
 polygon = PoolVector2Array( -496, -300, -496, 300, 496, 300, 496, -300 )
 
 [node name="walls2" type="StaticBody2D" parent="cafe"]
@@ -102,7 +102,7 @@ z_index = -1
 shape = SubResource( 1 )
 
 [node name="Polygon2D" type="Polygon2D" parent="pub"]
-color = Color( 1, 0.686275, 0.25098, 1 )
+color = Color( 0.5, 0.341667, 0.12, 1 )
 polygon = PoolVector2Array( -496, -300, -496, 300, 496, 300, 496, -300 )
 
 [node name="walls4" type="StaticBody2D" parent="pub"]
@@ -127,7 +127,7 @@ z_index = -1
 shape = SubResource( 1 )
 
 [node name="Polygon2D" type="Polygon2D" parent="greengrocer"]
-color = Color( 0.803922, 0.517647, 0.945098, 1 )
+color = Color( 0.408, 0.264, 0.48, 1 )
 polygon = PoolVector2Array( -496, -300, -496, 300, 496, 300, 496, -300 )
 
 [node name="walls5" type="StaticBody2D" parent="greengrocer"]

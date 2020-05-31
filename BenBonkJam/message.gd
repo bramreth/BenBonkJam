@@ -56,7 +56,7 @@ func txt(t):
 	else:
 		likely_feature["no_shades"] += pow(t["s"], 2)
 	$Label.text = str(100 * accuracy / pop) + "%" + str(pop)
-	if len(uid) < 3: return
+#	if len(uid) < 3: return
 	var tally = 0
 	for c in likely_color:
 		tally += likely_color[c]
@@ -65,6 +65,6 @@ func txt(t):
 	for c in likely_color:
 		if likely_color[c] == likely_color.values().max():
 			$VBoxContainer/HBoxContainer/likely.color = c
-			$VBoxContainer/HBoxContainer/Label.text = str((float(accuracy) / pop)*100 * likely_color[c] / tally)
-	$VBoxContainer/HBoxContainer5/label.text = str((float(accuracy) / pop)*(100 * likely_feature["shades"]) / (likely_feature["shades"] + likely_feature["no_shades"]))
+			$VBoxContainer/HBoxContainer/Label.text = str((float(accuracy) / pop)*100 * likely_color[c] / tally).substr(0,2) + "%"
+	$VBoxContainer/HBoxContainer5/label.text = str((float(accuracy) / pop)*(100 * likely_feature["shades"]) / (likely_feature["shades"] + likely_feature["no_shades"])).substr(0,2) + "%"
 	$Label.text = str(100 * accuracy / pop) + "%"

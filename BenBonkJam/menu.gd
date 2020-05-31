@@ -14,7 +14,8 @@ func _ready():
 
 
 func _on_Button2_pressed():
-	get_tree().change_scene_to(lv)
+	$howto_player.play("diff")
+	
 
 
 func _on_Button3_pressed():
@@ -61,3 +62,22 @@ func _on_wolf_pressed():
 func _on_kill_pressed():
 	var txt = "we have armed you with a 'killalot' grenade launcher - l click to shoot. at close range it will not explode for precision kills."
 	speak(txt)
+
+
+func _on_easy_pressed():
+	Manager.difficulty = INF
+	get_tree().change_scene_to(lv)
+
+
+func _on_normal_pressed():
+	Manager.difficulty = 3
+	get_tree().change_scene_to(lv)
+
+
+func _on_impossible_pressed():
+	Manager.difficulty = 1
+	get_tree().change_scene_to(lv)
+
+
+func _on_back_pressed_diff():
+	$howto_player.play_backwards("diff")

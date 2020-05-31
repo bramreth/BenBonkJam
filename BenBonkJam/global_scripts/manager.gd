@@ -5,6 +5,9 @@ var enemy_color
 var level = 0
 var progression = 1
 
+var difficulty = 1
+var acceptable = 3
+
 func _ready():
 	randomize()
 	level = randi() % 3
