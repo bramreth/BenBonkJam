@@ -602,9 +602,9 @@ text = "menu"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 margin_left = -176.0
-margin_top = 300.0
+margin_top = 100.001
 margin_right = 113.0
-margin_bottom = 460.0
+margin_bottom = 260.002
 rect_min_size = Vector2( 288, 160 )
 __meta__ = {
 "_edit_use_anchors_": false
