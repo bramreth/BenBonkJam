@@ -12,12 +12,18 @@ func _ready():
 	likely_feature["shades"] = 0
 	likely_feature["no_shades"] = 0
 	randomize()
+
+func win(on):
+	if on: $bubble/bubble2/w.emitting = true
+	else: $bubble/bubble2/l.emitting = true
 	
-func up_c(c, ct):
+func up_c(c, ct, on=true):
 	$ColorRect/s_count.text = str(c)+"/" + str(ct)
+	if on: $bubble/bubble2/bad.restart()
 	
-func up_w(w):
+func up_w(w, on=true):
 	$ColorRect/w_count.text = "x" + str(w)
+	if on: $bubble/bubble2/good.restart()
 
 func _on_AnimationPlayer_animation_finished(anim_name):
 	var opt = $bubble/AnimationPlayer.get_animation_list()

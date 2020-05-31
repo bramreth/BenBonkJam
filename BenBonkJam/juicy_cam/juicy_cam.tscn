@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://juicy_cam/juicy_cam.gd" type="Script" id=1]
 [ext_resource path="res://CurveTween/CurveTween.gd" type="Script" id=2]
 [ext_resource path="res://theme.tres" type="Theme" id=3]
 [ext_resource path="res://message.tscn" type="PackedScene" id=4]
+[ext_resource path="res://assets/speech.png" type="Texture" id=5]
 
 [sub_resource type="OpenSimplexNoise" id=1]
 
@@ -21,6 +22,22 @@ shader_param/str = 0.0
 
 [sub_resource type="Curve" id=4]
 _data = [ Vector2( 0, 0 ), 0.0, 1.0, 0, 1, Vector2( 1, 1 ), -0.900901, 0.0, 0, 0 ]
+
+[sub_resource type="Animation" id=5]
+resource_name = "speak"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rect_scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 0.5, 1 ),
+"update": 0,
+"values": [ Vector2( 1e-05, 1 ), Vector2( 1, 1 ) ]
+}
 
 [node name="Camera2D" type="Camera2D" groups=[
 "cam",
@@ -68,21 +85,41 @@ __meta__ = {
 script = ExtResource( 2 )
 curve = SubResource( 4 )
 
-[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer/blur"]
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+rect_scale = Vector2( 1e-05, 1 )
+rect_pivot_offset = Vector2( 1920, 0 )
+texture = ExtResource( 5 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer/TextureRect"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 456.0
+margin_top = 904.0
+margin_right = -564.0
+margin_bottom = -56.0
 theme = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="result" type="Label" parent="CanvasLayer/blur/CenterContainer"]
+[node name="result" type="Label" parent="CanvasLayer/TextureRect/CenterContainer"]
 modulate = Color( 1, 1, 1, 0 )
-margin_left = 915.0
-margin_top = 526.0
-margin_right = 1005.0
-margin_bottom = 554.0
+margin_left = 405.0
+margin_top = 46.0
+margin_right = 495.0
+margin_bottom = 74.0
 text = "YOU LOSE"
 
-[node name="phone" parent="." instance=ExtResource( 4 )]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/TextureRect"]
+anims/speak = SubResource( 5 )
+
+[node name="phone" parent="CanvasLayer" instance=ExtResource( 4 )]
+position = Vector2( 2304, 744 )
+scale = Vector2( 0.85, 0.85 )
 [connection signal="curve_tween" from="CanvasLayer/blur/CurveTween" to="." method="_on_CurveTween_curve_tween"]

@@ -17,7 +17,7 @@ var time = 0
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$CanvasLayer/Control/CenterContainer2/level.text = "level: " + str(Manager.progression)
-	$phone.toggle(true)
+	$CanvasLayer/phone.toggle(true)
 
 func add_trauma(trauma_in):
 	trauma = clamp(trauma + trauma_in, 0, 1)
@@ -34,26 +34,32 @@ func _process(delta):
 	if trauma > 0: trauma = clamp(trauma - (delta * decay), 0, 1)
 
 func _input(event):
-	if Input.get_action_strength("tab"):
-		$phone.toggle(not $phone.toggle)
+#	if Input.get_action_strength("tab"):
+#		$CanvasLayer/phone.toggle(not $CanvasLayer/phone.toggle)
 	if not menu: return
 	if Input.get_action_strength("ui_accept"): 
 		Manager.next_level(won)
 		get_tree().reload_current_scene()
 		
 func lose():
-	$CanvasLayer/blur/CenterContainer/result.text = "too many civilian casualties."
+	$CanvasLayer/TextureRect/AnimationPlayer.play("speak")
+	$CanvasLayer/TextureRect/CenterContainer/result.text = "too many civilian casualties."
 	menu = false
+	$CanvasLayer/phone.win(false)
 	blur()
 	
 func win():
-	$CanvasLayer/blur/CenterContainer/result.text = "you eliminated the wolves.\n well done agent."
+	$CanvasLayer/TextureRect/AnimationPlayer.play("speak")
+	$CanvasLayer/TextureRect/CenterContainer/result.text = "you eliminated the wolves.\n well done agent."
 	menu = false
 	won = true
+	$CanvasLayer/phone.win(true)
 	blur()
 	
 func die():
-	$CanvasLayer/blur/CenterContainer/result.text = "The wolves got them.\n that's a pity."
+	$CanvasLayer/TextureRect/AnimationPlayer.play("speak")
+	$CanvasLayer/TextureRect/CenterContainer/result.text = "The wolves got them.\n that's a pity."
+	$CanvasLayer/phone.win(false)
 	menu = false
 	blur()
 	
@@ -64,21 +70,21 @@ func blur():
 
 func _on_CurveTween_curve_tween(sat):
 	$CanvasLayer/blur.get_material().set_shader_param("str", sat)
-	$CanvasLayer/blur/CenterContainer/result.modulate.a = sat
+	$CanvasLayer/TextureRect/CenterContainer/result.modulate.a = sat
 
 func initg(total_w, total_c, p):
-	$phone.up_c(0, total_c)
-	$phone.up_w(total_w)
+	$CanvasLayer/phone.up_c(0, total_c, false)
+	$CanvasLayer/phone.up_w(total_w, false)
 	ac = total_c
-	$phone.pop = p
+	$CanvasLayer/phone.pop = p
 	
 	
 func civilian_casualty(c):
-	$phone.up_c(c, ac)
+	$CanvasLayer/phone.up_c(c, ac)
 	
 func wolf_death(w):
-	$phone.up_w(w)
+	$CanvasLayer/phone.up_w(w)
 
 	
 func gather_data(res):
-	$phone.txt(res)
+	$CanvasLayer/phone.txt(res)
