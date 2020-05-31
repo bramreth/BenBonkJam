@@ -1,6 +1,7 @@
 extends Node2D
 signal next()
 signal menu()
+signal shop()
 var toggle = true
 var accuracy = 0.0
 var likely_color = {}
@@ -18,7 +19,11 @@ func win(on, k, m):
 	var tm = 1 + pow(1-m, 2)*2
 	tm = stepify(tm,0.01)
 	print(tm)
-	$VBoxContainer2/HBoxContainer/Label2.text = "£" + str(k)
+	if Manager.difficulty == 1:
+		$VBoxContainer2/HBoxContainer/Label2.text = "£" + str(k)  + " x2 IMPOSSIBLE"
+		k = k * 2
+	else:
+		$VBoxContainer2/HBoxContainer/Label2.text = "£" + str(k) 
 	$VBoxContainer2/HBoxContainer2/Label2.text =  str(tm)
 	targ = ceil(k*tm)
 	Manager.cash += targ
@@ -102,3 +107,7 @@ func _on_continue_pressed():
 
 func _on_menu_pressed():
 	emit_signal("menu")
+
+
+func _on_shop_pressed():
+	emit_signal("shop")

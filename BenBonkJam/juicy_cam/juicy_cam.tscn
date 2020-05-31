@@ -1,10 +1,11 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://juicy_cam/juicy_cam.gd" type="Script" id=1]
 [ext_resource path="res://CurveTween/CurveTween.gd" type="Script" id=2]
 [ext_resource path="res://theme.tres" type="Theme" id=3]
 [ext_resource path="res://message.tscn" type="PackedScene" id=4]
 [ext_resource path="res://assets/speech.png" type="Texture" id=5]
+[ext_resource path="res://shop.tscn" type="PackedScene" id=6]
 
 [sub_resource type="OpenSimplexNoise" id=1]
 
@@ -96,9 +97,15 @@ text = "YOU LOSE"
 [node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/TextureRect"]
 anims/speak = SubResource( 5 )
 
+[node name="WindowDialog" parent="CanvasLayer" instance=ExtResource( 6 )]
+margin_right = 56.0
+margin_bottom = 9.0
+
 [node name="phone" parent="CanvasLayer" instance=ExtResource( 4 )]
 position = Vector2( 2304, 744 )
 scale = Vector2( 0.85, 0.85 )
 [connection signal="curve_tween" from="CanvasLayer/blur/CurveTween" to="." method="_on_CurveTween_curve_tween"]
+[connection signal="close" from="CanvasLayer/WindowDialog" to="." method="_on_WindowDialog_close"]
 [connection signal="menu" from="CanvasLayer/phone" to="." method="_on_phone_menu"]
 [connection signal="next" from="CanvasLayer/phone" to="." method="_on_phone_next"]
+[connection signal="shop" from="CanvasLayer/phone" to="." method="_on_phone_shop"]

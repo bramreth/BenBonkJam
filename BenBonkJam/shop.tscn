@@ -141,5 +141,6 @@ margin_bottom = 160.0
 custom_fonts/font = SubResource( 4 )
 text = "£1000000"
 align = 1
+[connection signal="about_to_show" from="." to="." method="_on_WindowDialog_about_to_show"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/speed/upg" to="." method="_on_upg_pressed"]
 [connection signal="pressed" from="VBoxContainer/back" to="." method="_on_back_pressed"]

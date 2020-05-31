@@ -413,7 +413,7 @@ align = 1
 margin_top = 32.0
 margin_right = 1440.0
 margin_bottom = 66.0
-text = "easy (only one sheep needs to survie, enemies look guiltier)"
+text = "easy (only one sheep needs to survie, wolves look guiltier)"
 
 [node name="normal" type="Button" parent="dif/VBoxContainer"]
 margin_top = 70.0
@@ -425,7 +425,7 @@ text = "normal (no more than 3 sheep may die) [recommended]"
 margin_top = 108.0
 margin_right = 1440.0
 margin_bottom = 142.0
-text = "impossible (no more than 1 sheep may die, enemies look less guilty)"
+text = "impossible (no more than 1 sheep may die, wolves look less guilty)"
 
 [node name="back" type="Button" parent="dif/VBoxContainer"]
 margin_top = 146.0

@@ -103,3 +103,12 @@ func _on_phone_menu():
 
 func _on_phone_next():
 	get_tree().reload_current_scene()
+
+
+func _on_phone_shop():
+	$CanvasLayer/WindowDialog.popup()
+	$CanvasLayer/phone.visible = false
+
+
+func _on_WindowDialog_close():
+	$CanvasLayer/phone.visible = true

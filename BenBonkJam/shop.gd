@@ -1,5 +1,6 @@
 extends WindowDialog
 signal up_manager()
+signal close()
 var speed_price = pow(5, Manager.speed)
 
 func _ready():
@@ -18,6 +19,7 @@ func sanity():
 
 
 func _on_back_pressed():
+	emit_signal("close")
 	hide()
 	sanity()
 
@@ -26,4 +28,8 @@ func _on_upg_pressed():
 	Manager.cash -= speed_price
 	Manager.speed = Manager.speed + 1
 	Manager.save()
+	sanity()
+
+
+func _on_WindowDialog_about_to_show():
 	sanity()

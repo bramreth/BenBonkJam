@@ -341,6 +341,18 @@ tracks/11/keys = {
 "update": 1,
 "values": [ false, true ]
 }
+tracks/12/type = "value"
+tracks/12/path = NodePath("VBoxContainer2/HBoxContainer4/shop:visible")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/keys = {
+"times": PoolRealArray( 0, 2.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
 
 [node name="Node2D" type="Node2D"]
 position = Vector2( 1765, 815 )
@@ -585,15 +597,24 @@ __meta__ = {
 
 [node name="continue" type="Button" parent="VBoxContainer2/HBoxContainer4"]
 visible = false
-margin_right = 138.0
+margin_right = 104.0
 margin_bottom = 44.0
 size_flags_horizontal = 3
 custom_fonts/font = ExtResource( 13 )
 text = "continue"
 
+[node name="shop" type="Button" parent="VBoxContainer2/HBoxContainer4"]
+visible = false
+margin_left = 108.0
+margin_right = 192.0
+margin_bottom = 44.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 13 )
+text = "shop"
+
 [node name="menu" type="Button" parent="VBoxContainer2/HBoxContainer4"]
 visible = false
-margin_left = 142.0
+margin_left = 196.0
 margin_right = 280.0
 margin_bottom = 44.0
 size_flags_horizontal = 3
@@ -602,9 +623,9 @@ text = "menu"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 margin_left = -176.0
-margin_top = 100.001
+margin_top = 113.74
 margin_right = 113.0
-margin_bottom = 260.002
+margin_bottom = 273.74
 rect_min_size = Vector2( 288, 160 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -684,5 +705,6 @@ anims/win = SubResource( 16 )
 [connection signal="animation_finished" from="bubble/AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
 [connection signal="curve_tween" from="VBoxContainer2/HBoxContainer3/Label2/c" to="." method="_on_c_curve_tween"]
 [connection signal="pressed" from="VBoxContainer2/HBoxContainer4/continue" to="." method="_on_continue_pressed"]
+[connection signal="pressed" from="VBoxContainer2/HBoxContainer4/shop" to="." method="_on_shop_pressed"]
 [connection signal="pressed" from="VBoxContainer2/HBoxContainer4/menu" to="." method="_on_menu_pressed"]
 [connection signal="animation_finished" from="toggle_player" to="." method="_on_toggle_player_animation_finished"]
