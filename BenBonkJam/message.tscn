@@ -462,16 +462,16 @@ text = "menu"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 margin_left = -176.0
-margin_top = 110.06
-margin_right = 113.0
-margin_bottom = 270.06
+margin_top = 105.499
+margin_right = 124.0
+margin_bottom = 285.499
 rect_min_size = Vector2( 288, 160 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Label" type="Label" parent="VBoxContainer"]
-margin_right = 289.0
+margin_right = 300.0
 margin_bottom = 28.0
 theme = ExtResource( 6 )
 text = "accuracy: 0%"
@@ -481,19 +481,19 @@ __meta__ = {
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
 margin_top = 32.0
-margin_right = 289.0
-margin_bottom = 160.0
+margin_right = 300.0
+margin_bottom = 180.0
 size_flags_vertical = 3
 
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer"]
-margin_right = 88.0
-margin_bottom = 128.0
+margin_right = 92.0
+margin_bottom = 148.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="likely" type="ColorRect" parent="VBoxContainer/HBoxContainer/VBoxContainer"]
-margin_right = 88.0
-margin_bottom = 62.0
+margin_right = 92.0
+margin_bottom = 72.0
 rect_min_size = Vector2( 35, 35 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -502,9 +502,9 @@ __meta__ = {
 }
 
 [node name="Label" type="Label" parent="VBoxContainer/HBoxContainer/VBoxContainer"]
-margin_top = 77.0
-margin_right = 88.0
-margin_bottom = 117.0
+margin_top = 92.0
+margin_right = 92.0
+margin_bottom = 132.0
 size_flags_horizontal = 3
 size_flags_vertical = 6
 custom_fonts/font = ExtResource( 17 )
@@ -512,21 +512,21 @@ custom_colors/font_color = Color( 0, 0, 0, 1 )
 align = 1
 
 [node name="VSeparator" type="VSeparator" parent="VBoxContainer/HBoxContainer"]
-margin_left = 92.0
-margin_right = 96.0
-margin_bottom = 128.0
+margin_left = 96.0
+margin_right = 100.0
+margin_bottom = 148.0
 size_flags_horizontal = 5
 
 [node name="HBoxContainer5" type="VBoxContainer" parent="VBoxContainer/HBoxContainer"]
-margin_left = 100.0
-margin_right = 188.0
-margin_bottom = 128.0
+margin_left = 104.0
+margin_right = 196.0
+margin_bottom = 148.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="TextureRect" type="TextureRect" parent="VBoxContainer/HBoxContainer/HBoxContainer5"]
-margin_right = 88.0
-margin_bottom = 62.0
+margin_right = 92.0
+margin_bottom = 72.0
 rect_min_size = Vector2( 35, 35 )
 rect_pivot_offset = Vector2( 44, 36 )
 size_flags_horizontal = 3
@@ -535,9 +535,9 @@ texture = SubResource( 18 )
 expand = true
 
 [node name="label" type="Label" parent="VBoxContainer/HBoxContainer/HBoxContainer5"]
-margin_top = 77.0
-margin_right = 88.0
-margin_bottom = 117.0
+margin_top = 92.0
+margin_right = 92.0
+margin_bottom = 132.0
 size_flags_horizontal = 3
 size_flags_vertical = 6
 custom_fonts/font = ExtResource( 17 )
@@ -545,21 +545,21 @@ custom_colors/font_color = Color( 0, 0, 0, 1 )
 align = 1
 
 [node name="VSeparator2" type="VSeparator" parent="VBoxContainer/HBoxContainer"]
-margin_left = 192.0
-margin_right = 196.0
-margin_bottom = 128.0
+margin_left = 200.0
+margin_right = 204.0
+margin_bottom = 148.0
 size_flags_horizontal = 5
 
 [node name="HBoxContainer6" type="VBoxContainer" parent="VBoxContainer/HBoxContainer"]
-margin_left = 200.0
-margin_right = 289.0
-margin_bottom = 128.0
+margin_left = 208.0
+margin_right = 300.0
+margin_bottom = 148.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="TextureRect" type="TextureRect" parent="VBoxContainer/HBoxContainer/HBoxContainer6"]
-margin_right = 89.0
-margin_bottom = 62.0
+margin_right = 92.0
+margin_bottom = 72.0
 rect_min_size = Vector2( 35, 35 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -567,9 +567,9 @@ texture = SubResource( 14 )
 expand = true
 
 [node name="cof" type="Label" parent="VBoxContainer/HBoxContainer/HBoxContainer6"]
-margin_top = 77.0
-margin_right = 89.0
-margin_bottom = 117.0
+margin_top = 92.0
+margin_right = 92.0
+margin_bottom = 132.0
 size_flags_horizontal = 3
 size_flags_vertical = 6
 custom_fonts/font = ExtResource( 17 )
