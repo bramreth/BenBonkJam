@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://better_player.gd" type="Script" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://assets/thought.png" type="Texture" id=4]
 [ext_resource path="res://audio/thump (5).wav" type="AudioStream" id=5]
 [ext_resource path="res://audio/thump (2).wav" type="AudioStream" id=6]
+[ext_resource path="res://assets/crown.png" type="Texture" id=7]
 
 [sub_resource type="Animation" id=9]
 resource_name = "trill"
@@ -245,6 +246,13 @@ polygon = PoolVector2Array( 0, 0, -1365.33, 682.667, -1706.67, 0, -1365.33, -682
 [node name="hat" parent="body/head" index="5"]
 visible = true
 position = Vector2( 28, 0.000853333 )
+
+[node name="crown" type="Sprite" parent="body/head/hat" index="0"]
+visible = false
+position = Vector2( 2.41333, 6.6357 )
+rotation = -0.0299284
+scale = Vector2( 1.2, 1.2 )
+texture = ExtResource( 7 )
 
 [node name="q" type="Particles2D" parent="body/head" index="6"]
 position = Vector2( 170.667, 0 )

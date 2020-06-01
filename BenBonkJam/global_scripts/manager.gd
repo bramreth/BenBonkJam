@@ -17,6 +17,8 @@ var c_equip = false
 var f_unlock = false
 var f_equip = false
 
+var crown = false
+
 var b_unlock = false
 var b_equip = false
 
@@ -52,7 +54,7 @@ func next_level(won):
 
 func save():
 	var save_dict = {"level": best_level, "diff": difficulty, "cash": cash, "speed": speed,
-	 "bu": b_unlock, "be": b_equip, "cu": c_unlock, "ce": c_equip, "fu": f_unlock, "fe": f_equip , "vol": sound_vol, "mute": mute}
+	 "bu": b_unlock, "be": b_equip, "cu": c_unlock, "ce": c_equip, "fu": f_unlock, "fe": f_equip , "vol": sound_vol, "mute": mute, "crown": crown}
 	var save_game = File.new()
 	save_game.open("user://savegame.save", File.WRITE)
 	save_game.store_line(to_json(save_dict))
@@ -94,4 +96,6 @@ func load_game():
 				sound_vol = current_line["vol"]
 			if current_line.has("mute"):
 				mute = current_line["mute"]
+			if current_line.has("crown"):
+				crown = current_line["crown"]
 	save_game.close()

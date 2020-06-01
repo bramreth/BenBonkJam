@@ -8,6 +8,7 @@ func _ready():
 	$body/head/Node2D/briefcase.visible = Manager.b_equip
 	$body/head/Node2D/bouquet.visible = Manager.f_equip
 	$body/head/Node2D/coffee.visible = Manager.c_equip
+	$body/head/hat/crown.visible = Manager.crown
 		
 func shoot():
 	can_shoot = false
