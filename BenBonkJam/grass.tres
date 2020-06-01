@@ -1,0 +1,13 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=2]
+
+[sub_resource type="Shader" id=2]
+code = "shader_type canvas_item;
+
+void vertex(){
+	VERTEX.x += (sin(3f*TIME + (1f-(VERTEX.x))*2f)*0.75f) * distance(VERTEX, vec2(0f))/500f;
+	VERTEX.y += (sin(3f*TIME + (1f-(VERTEX.x))*2f)*0.75f) * distance(VERTEX, vec2(0f))/500f;
+//	VERTEX.x += cos(3f*TIME + (1f-(VERTEX.y))*2f)*0.5f;
+}"
+
+[resource]
+shader = SubResource( 2 )

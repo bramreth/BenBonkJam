@@ -15,12 +15,11 @@
 [ext_resource path="res://shop.tscn" type="PackedScene" id=13]
 [ext_resource path="res://bank.tscn" type="PackedScene" id=14]
 
-[sub_resource type="DynamicFont" id=8]
+[sub_resource type="DynamicFont" id=1]
 size = 64
 font_data = ExtResource( 11 )
 
-[sub_resource type="Animation" id=1]
-resource_name = "bobble_1"
+[sub_resource type="Animation" id=2]
 length = 0.4
 tracks/0/type = "value"
 tracks/0/path = NodePath("bubble2:rotation_degrees")
@@ -35,8 +34,7 @@ tracks/0/keys = {
 "values": [ 0.0, -15.0, 0.0 ]
 }
 
-[sub_resource type="Animation" id=2]
-resource_name = "bobble_2"
+[sub_resource type="Animation" id=3]
 length = 0.4
 tracks/0/type = "value"
 tracks/0/path = NodePath("bubble2:rotation_degrees")
@@ -51,8 +49,7 @@ tracks/0/keys = {
 "values": [ 0.0, 15.0, 0.0 ]
 }
 
-[sub_resource type="Animation" id=3]
-resource_name = "bobble_3"
+[sub_resource type="Animation" id=4]
 length = 0.4
 tracks/0/type = "value"
 tracks/0/path = NodePath("bubble2:position")
@@ -73,13 +70,13 @@ outline_size = 2
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 1 )
 
-[sub_resource type="DynamicFont" id=4]
-size = 128
+[sub_resource type="DynamicFont" id=6]
+size = 104
 outline_size = 2
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 1 )
 
-[sub_resource type="Animation" id=9]
+[sub_resource type="Animation" id=7]
 resource_name = "diff"
 length = 0.3
 tracks/0/type = "value"
@@ -107,8 +104,7 @@ tracks/1/keys = {
 "values": [ Vector2( 1, 1 ), Vector2( 1, 1e-05 ), Vector2( 1, 1e-05 ) ]
 }
 
-[sub_resource type="Animation" id=7]
-resource_name = "hide"
+[sub_resource type="Animation" id=8]
 length = 0.5
 tracks/0/type = "value"
 tracks/0/path = NodePath("MarginContainer3:rect_scale")
@@ -135,17 +131,17 @@ tracks/1/keys = {
 "values": [ Vector2( 1, 1e-05 ), Vector2( 1, 1e-05 ), Vector2( 1, 1 ) ]
 }
 
-[sub_resource type="Shader" id=10]
+[sub_resource type="Shader" id=9]
 code = "shader_type canvas_item;
 
 void vertex(){
 	VERTEX *= (1.1f + 0.1 * sin(TIME));
 }"
 
-[sub_resource type="ShaderMaterial" id=11]
-shader = SubResource( 10 )
+[sub_resource type="ShaderMaterial" id=10]
+shader = SubResource( 9 )
 
-[sub_resource type="DynamicFont" id=12]
+[sub_resource type="DynamicFont" id=11]
 size = 64
 outline_size = 2
 outline_color = Color( 0, 0, 0, 1 )
@@ -209,7 +205,7 @@ margin_right = 2120.56
 margin_bottom = 754.778
 rect_min_size = Vector2( 1440, 220 )
 rect_scale = Vector2( -1, 1 )
-custom_fonts/normal_font = SubResource( 8 )
+custom_fonts/normal_font = SubResource( 1 )
 custom_colors/default_color = Color( 0, 0, 0, 1 )
 scroll_active = false
 __meta__ = {
@@ -217,9 +213,9 @@ __meta__ = {
 }
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Node2D/bubble"]
-anims/bobble_1 = SubResource( 1 )
-anims/bobble_2 = SubResource( 2 )
-anims/bobble_3 = SubResource( 3 )
+anims/bobble_1 = SubResource( 2 )
+anims/bobble_2 = SubResource( 3 )
+anims/bobble_3 = SubResource( 4 )
 
 [node name="Polygon2D" type="Polygon2D" parent="Node2D"]
 color = Color( 0.294118, 0.294118, 0.294118, 1 )
@@ -278,25 +274,25 @@ margin_bottom = 460.0
 
 [node name="CenterContainer" type="CenterContainer" parent="MarginContainer/VBoxContainer"]
 margin_right = 1440.0
-margin_bottom = 155.0
+margin_bottom = 126.0
 size_flags_horizontal = 3
 
 [node name="Label" type="Label" parent="MarginContainer/VBoxContainer/CenterContainer"]
-margin_left = 114.0
-margin_right = 1325.0
-margin_bottom = 155.0
-custom_fonts/font = SubResource( 4 )
-text = "Undercover Thumper"
+margin_left = 97.0
+margin_right = 1343.0
+margin_bottom = 126.0
+custom_fonts/font = SubResource( 6 )
+text = "Impersonator detonator"
 
 [node name="Container" type="Container" parent="MarginContainer/VBoxContainer"]
-margin_top = 159.0
+margin_top = 130.0
 margin_right = 1440.0
 margin_bottom = 460.0
 size_flags_vertical = 3
 
 [node name="howto_player" type="AnimationPlayer" parent="."]
-anims/diff = SubResource( 9 )
-anims/hide = SubResource( 7 )
+anims/diff = SubResource( 7 )
+anims/hide = SubResource( 8 )
 
 [node name="MarginContainer2" type="MarginContainer" parent="."]
 anchor_right = 1.0
@@ -438,7 +434,7 @@ text = "back"
 [node name="star" type="Sprite" parent="."]
 visible = false
 self_modulate = Color( 1, 0.94902, 0, 1 )
-material = SubResource( 11 )
+material = SubResource( 10 )
 position = Vector2( 1760, 120 )
 rotation = 0.523598
 scale = Vector2( 2.25, 2.25 )
@@ -452,7 +448,7 @@ margin_top = -5.34058e-05
 margin_right = 1962.0
 margin_bottom = 78.0
 rect_rotation = 30.0
-custom_fonts/font = SubResource( 12 )
+custom_fonts/font = SubResource( 11 )
 text = "TOP LEVEL"
 align = 1
 __meta__ = {
@@ -467,7 +463,7 @@ margin_top = -80.0001
 margin_right = 2184.0
 margin_bottom = -2.00003
 rect_rotation = 30.0
-custom_fonts/font = SubResource( 12 )
+custom_fonts/font = SubResource( 11 )
 text = "EASY: 5"
 align = 1
 __meta__ = {

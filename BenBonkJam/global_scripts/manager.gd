@@ -16,7 +16,7 @@ var speed = 1
 func _ready():
 	load_game()
 	randomize()
-	level = randi() % 3
+	level = randi() % 4
 	
 func update_outfits(o):
 	if not outfits and o: 
@@ -28,7 +28,7 @@ func next_level(won):
 		best_level = level
 		best_difficulty = difficulty
 	save()
-	level = randi() % 3
+	level = randi() % 4
 	enemy_color = outfits[randi() % len(outfits)]
 	if won:
 		progression += 1

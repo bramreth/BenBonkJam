@@ -13,12 +13,14 @@ var targ = 0
 func _ready():
 	likely_feature["shades"] = 0
 	likely_feature["no_shades"] = 0
+	likely_feature["coffee"] = 0
+	likely_feature["no_coffee"] = 0
 	randomize()
 
 func win(on, k, m):
 	var tm = 1 + pow(1-m, 2)*2
 	tm = stepify(tm,0.01)
-	print(tm)
+#	print(tm)
 	if Manager.difficulty == 1:
 		$VBoxContainer2/HBoxContainer/Label2.text = "£" + str(k)  + " x2 IMPOSSIBLE"
 		k = k * 2
@@ -73,12 +75,16 @@ func txt(t):
 	for c in Manager.outfits:
 		if not likely_color.has(c):
 			likely_color[c] = 0
-	print(likely_color)
+#	print(likely_color)
 	likely_color[t["c"]] += pow(t["s"], 2)
 	if t["h"]:
 		likely_feature["shades"] += pow(t["s"], 2)
 	else:
 		likely_feature["no_shades"] += pow(t["s"], 2)
+	if t["cof"]:
+		likely_feature["coffee"] += pow(t["s"], 2)
+	else:
+		likely_feature["no_coffee"] += pow(t["s"], 2)
 	$VBoxContainer/Label.text = "accuracy: " + str(100 * accuracy / pop) + "%" + str(pop)
 #	if len(uid) < 3: return
 	var tally = 0
@@ -91,6 +97,7 @@ func txt(t):
 			$VBoxContainer/HBoxContainer/likely.color = c
 			$VBoxContainer/HBoxContainer/Label.text = str((float(accuracy) / pop)*100 * likely_color[c] / tally).substr(0,2) + "%"
 	$VBoxContainer/HBoxContainer5/label.text = str((float(accuracy) / pop)*(100 * likely_feature["shades"]) / (likely_feature["shades"] + likely_feature["no_shades"])).substr(0,2) + "%"
+	$VBoxContainer/HBoxContainer6/cof.text = str((float(accuracy) / pop)*(100 * likely_feature["coffee"]) / (likely_feature["coffee"] + likely_feature["no_coffee"])).substr(0,2) + "%"
 	$VBoxContainer/Label.text = "accuracy: " + str(100 * accuracy / pop) + "%"
 	
 	

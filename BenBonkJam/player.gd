@@ -100,6 +100,45 @@ func generate_costume(is_enemy):
 	else:
 		$body/head/shade.visible = randi() % 2 == 0
 		
+	if Manager.level == 3:
+		#enemies wear hat
+		if is_enemy: $body/head/Node2D/coffee.visible = true
+	else:
+		$body/head/Node2D/coffee.visible = randi() % 2 == 0
+#	print("MANAGER LV ", Manager.level)
+#	match Manager.level:
+#		4:
+#			if is_enemy: $body/head/Node2D/bouquet.visible = true
+#			else:
+#				match randi() % 5:
+#					1:
+#						$body/head/Node2D/briefcase.visible = true
+#					2: 
+#						$body/head/Node2D/coffee.visible = true
+#					_:
+#						pass
+#		5:
+#			if is_enemy: $body/head/Node2D/briefcase.visible = true
+#			else:
+#					match randi() % 5:
+#						0:
+#							$body/head/Node2D/bouquet.visible = true
+#						2: 
+#							$body/head/Node2D/coffee.visible = true
+#						_:
+#							pass
+#		6:
+#			if is_enemy: $body/head/Node2D/coffee.visible = true
+#			else:
+#				match randi() % 5:
+#					0:
+#						$body/head/Node2D/bouquet.visible = true
+#					1:
+#						$body/head/Node2D/briefcase.visible = true
+#					_:
+#						pass
+	
+	
 	if Manager.level == 1:
 		#enemies are one color
 		if Manager.enemy_color in costumes: costumes.erase(Manager.enemy_color)
@@ -132,7 +171,8 @@ func interogate():
 	$Node2D/Panel/VBoxContainer/fact.text = f
 	$Node2D/Panel/interog_player.play("open")
 	$Node2D/Timer.start()
-	return {"c": body.self_modulate, "s": suspicion, "h": $body/head/shade.visible, "uid": self}
+	$bod
+	return {"c": body.self_modulate, "s": suspicion, "h": $body/head/shade.visible, "cof": $body/head/Node2D/coffee.visible, "uid": self}
 
 func alert(on):
 	if dead: return

@@ -36,13 +36,13 @@ func _process(delta):
 	handle_inputs()
 
 func handle_inputs():
-	if global_position.x < -1040:
+	if global_position.x < -980:
 		direction.x = 0.3
-	elif global_position.x > 1040:
+	elif global_position.x > 980:
 		direction.x = -0.3
-	if global_position.y < -700:
+	if global_position.y < -600:
 		direction.y = 0.3
-	elif global_position.y > 896:
+	elif global_position.y > 600:
 		direction.y = -0.3
 
 func out_of_sight(b):

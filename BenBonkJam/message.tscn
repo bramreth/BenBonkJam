@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=2]
+[gd_scene load_steps=34 format=2]
 
 [ext_resource path="res://assets/bubble.png" type="Texture" id=1]
 [ext_resource path="res://assets/mipi (1).png" type="Texture" id=2]
@@ -14,20 +14,21 @@
 [ext_resource path="res://assets/phone.png" type="Texture" id=12]
 [ext_resource path="res://normal_font.tres" type="DynamicFont" id=13]
 [ext_resource path="res://CurveTween/CurveTween.gd" type="Script" id=14]
+[ext_resource path="res://assets/coffee.png" type="Texture" id=15]
 
-[sub_resource type="DynamicFont" id=7]
+[sub_resource type="DynamicFont" id=1]
 size = 32
 outline_size = 2
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 7 )
 
-[sub_resource type="Curve" id=8]
+[sub_resource type="Curve" id=2]
 _data = [ Vector2( 0, 0 ), 0.0, 0.0, 0, 0, Vector2( 0.113208, 1 ), 13.6081, 13.6081, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
 
-[sub_resource type="CurveTexture" id=9]
-curve = SubResource( 8 )
+[sub_resource type="CurveTexture" id=3]
+curve = SubResource( 2 )
 
-[sub_resource type="ParticlesMaterial" id=10]
+[sub_resource type="ParticlesMaterial" id=4]
 flag_disable_z = true
 direction = Vector3( 1, -1, 0 )
 spread = 20.0
@@ -37,10 +38,10 @@ orbit_velocity = 0.0
 orbit_velocity_random = 0.0
 damping = 400.0
 scale = 0.1
-scale_curve = SubResource( 9 )
+scale_curve = SubResource( 3 )
 color = Color( 0.196078, 1, 0.494118, 1 )
 
-[sub_resource type="ParticlesMaterial" id=11]
+[sub_resource type="ParticlesMaterial" id=5]
 flag_disable_z = true
 direction = Vector3( 1, -1, 0 )
 spread = 20.0
@@ -50,16 +51,16 @@ orbit_velocity = 0.0
 orbit_velocity_random = 0.0
 damping = 400.0
 scale = 0.1
-scale_curve = SubResource( 9 )
+scale_curve = SubResource( 3 )
 color = Color( 1, 0.219608, 0.219608, 1 )
 
-[sub_resource type="Curve" id=12]
+[sub_resource type="Curve" id=6]
 _data = [ Vector2( 0, 0 ), 0.0, 0.0, 0, 0, Vector2( 0.0786164, 1 ), 13.0709, 13.0709, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
 
-[sub_resource type="CurveTexture" id=13]
-curve = SubResource( 12 )
+[sub_resource type="CurveTexture" id=7]
+curve = SubResource( 6 )
 
-[sub_resource type="ParticlesMaterial" id=14]
+[sub_resource type="ParticlesMaterial" id=8]
 flag_disable_z = true
 direction = Vector3( -1, -1, 0 )
 spread = 20.0
@@ -69,10 +70,10 @@ orbit_velocity = 0.0
 orbit_velocity_random = 0.0
 damping = 2500.0
 scale = 0.1
-scale_curve = SubResource( 13 )
+scale_curve = SubResource( 7 )
 color = Color( 1, 0.219608, 0.219608, 1 )
 
-[sub_resource type="ParticlesMaterial" id=15]
+[sub_resource type="ParticlesMaterial" id=9]
 flag_disable_z = true
 direction = Vector3( -1, -1, 0 )
 spread = 20.0
@@ -82,11 +83,10 @@ orbit_velocity = 0.0
 orbit_velocity_random = 0.0
 damping = 2500.0
 scale = 0.1
-scale_curve = SubResource( 13 )
+scale_curve = SubResource( 7 )
 color = Color( 0.196078, 1, 0.494118, 1 )
 
-[sub_resource type="Animation" id=1]
-resource_name = "bobble_1"
+[sub_resource type="Animation" id=10]
 length = 0.4
 tracks/0/type = "value"
 tracks/0/path = NodePath("bubble2:rotation_degrees")
@@ -101,8 +101,7 @@ tracks/0/keys = {
 "values": [ 0.0, -15.0, 0.0 ]
 }
 
-[sub_resource type="Animation" id=2]
-resource_name = "bobble_2"
+[sub_resource type="Animation" id=11]
 length = 0.4
 tracks/0/type = "value"
 tracks/0/path = NodePath("bubble2:rotation_degrees")
@@ -117,8 +116,7 @@ tracks/0/keys = {
 "values": [ 0.0, 15.0, 0.0 ]
 }
 
-[sub_resource type="Animation" id=3]
-resource_name = "bobble_3"
+[sub_resource type="Animation" id=12]
 length = 0.4
 tracks/0/type = "value"
 tracks/0/path = NodePath("bubble2:position")
@@ -133,10 +131,15 @@ tracks/0/keys = {
 "values": [ Vector2( 0, -88 ), Vector2( 0, -100 ), Vector2( 0, -88 ) ]
 }
 
-[sub_resource type="Curve" id=17]
+[sub_resource type="Curve" id=13]
 _data = [ Vector2( 0, 0 ), 0.0, 1.0, 0, 1, Vector2( 1, 1 ), 1.0, 0.0, 1, 0 ]
 
-[sub_resource type="Shader" id=4]
+[sub_resource type="AtlasTexture" id=14]
+flags = 4
+atlas = ExtResource( 15 )
+region = Rect2( 40, 40, 120, 120 )
+
+[sub_resource type="Shader" id=15]
 code = "shader_type canvas_item;
 
 uniform float intensity: hint_range(0f,1f);
@@ -148,12 +151,11 @@ void fragment(){
 	
 }"
 
-[sub_resource type="ShaderMaterial" id=5]
-shader = SubResource( 4 )
-shader_param/intensity = 0.0
+[sub_resource type="ShaderMaterial" id=16]
+shader = SubResource( 15 )
+shader_param/intensity = 1.0
 
-[sub_resource type="Animation" id=6]
-resource_name = "open"
+[sub_resource type="Animation" id=17]
 length = 0.7
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:position")
@@ -192,8 +194,7 @@ tracks/2/keys = {
 "values": [ 1.0, 1.0, 0.0 ]
 }
 
-[sub_resource type="Animation" id=16]
-resource_name = "win"
+[sub_resource type="Animation" id=18]
 length = 2.2
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:position")
@@ -292,7 +293,7 @@ tracks/7/keys = {
 "values": [ false, true ]
 }
 tracks/8/type = "value"
-tracks/8/path = NodePath("VBoxContainer2/HBoxContainer3/Label2:visible")
+tracks/8/path = NodePath("VBoxContainer2/HBoxContainer3/Label:visible")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/imported = false
@@ -353,6 +354,18 @@ tracks/12/keys = {
 "update": 1,
 "values": [ false, true ]
 }
+tracks/13/type = "value"
+tracks/13/path = NodePath("VBoxContainer2/HBoxContainer3/Label2:visible")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/keys = {
+"times": PoolRealArray( 0, 2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
 
 [node name="Node2D" type="Node2D"]
 position = Vector2( 1765, 815 )
@@ -388,7 +401,7 @@ margin_top = 15.4
 margin_right = 144.118
 margin_bottom = 75.4
 rect_min_size = Vector2( 60, 60 )
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = SubResource( 1 )
 text = "x33"
 align = 1
 valign = 1
@@ -407,7 +420,7 @@ margin_top = 15.4
 margin_right = 317.118
 margin_bottom = 75.4
 rect_min_size = Vector2( 60, 60 )
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = SubResource( 1 )
 text = "0/3"
 align = 1
 valign = 1
@@ -439,7 +452,7 @@ amount = 1
 lifetime = 3.0
 one_shot = true
 local_coords = false
-process_material = SubResource( 10 )
+process_material = SubResource( 4 )
 texture = ExtResource( 10 )
 
 [node name="bad" type="Particles2D" parent="bubble/bubble2"]
@@ -448,7 +461,7 @@ amount = 1
 lifetime = 3.0
 one_shot = true
 local_coords = false
-process_material = SubResource( 11 )
+process_material = SubResource( 5 )
 texture = ExtResource( 11 )
 
 [node name="l" type="Particles2D" parent="bubble/bubble2"]
@@ -457,7 +470,7 @@ rotation = 1.57079
 emitting = false
 amount = 3
 local_coords = false
-process_material = SubResource( 14 )
+process_material = SubResource( 8 )
 texture = ExtResource( 11 )
 
 [node name="w" type="Particles2D" parent="bubble/bubble2"]
@@ -466,13 +479,13 @@ rotation = 1.57079
 emitting = false
 amount = 3
 local_coords = false
-process_material = SubResource( 15 )
+process_material = SubResource( 9 )
 texture = ExtResource( 10 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="bubble"]
-anims/bobble_1 = SubResource( 1 )
-anims/bobble_2 = SubResource( 2 )
-anims/bobble_3 = SubResource( 3 )
+anims/bobble_1 = SubResource( 10 )
+anims/bobble_2 = SubResource( 11 )
+anims/bobble_3 = SubResource( 12 )
 
 [node name="level" type="Label" parent="."]
 margin_left = -12.0
@@ -480,7 +493,7 @@ margin_top = 52.9999
 margin_right = 130.0
 margin_bottom = 96.9999
 rect_min_size = Vector2( 60, 44 )
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = SubResource( 1 )
 text = "level: 10"
 align = 1
 valign = 1
@@ -573,8 +586,7 @@ __meta__ = {
 
 [node name="Label2" type="Label" parent="VBoxContainer2/HBoxContainer3"]
 visible = false
-margin_left = 74.0
-margin_right = 101.0
+margin_right = 27.0
 margin_bottom = 28.0
 custom_fonts/font = ExtResource( 13 )
 text = "£0"
@@ -584,7 +596,7 @@ __meta__ = {
 
 [node name="c" type="Tween" parent="VBoxContainer2/HBoxContainer3/Label2"]
 script = ExtResource( 14 )
-curve = SubResource( 17 )
+curve = SubResource( 13 )
 
 [node name="HBoxContainer4" type="HBoxContainer" parent="VBoxContainer2"]
 margin_top = 12.0
@@ -623,9 +635,9 @@ text = "menu"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 margin_left = -176.0
-margin_top = 113.74
+margin_top = 100.0
 margin_right = 113.0
-margin_bottom = 273.74
+margin_bottom = 260.0
 rect_min_size = Vector2( 288, 160 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -681,8 +693,28 @@ margin_bottom = 24.0
 size_flags_horizontal = 3
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 
+[node name="HBoxContainer6" type="HBoxContainer" parent="VBoxContainer"]
+margin_top = 110.0
+margin_right = 289.0
+margin_bottom = 145.0
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/HBoxContainer6"]
+margin_right = 35.0
+margin_bottom = 35.0
+rect_min_size = Vector2( 35, 35 )
+texture = SubResource( 14 )
+expand = true
+
+[node name="cof" type="Label" parent="VBoxContainer/HBoxContainer6"]
+margin_left = 39.0
+margin_top = 10.0
+margin_right = 289.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+
 [node name="icon" type="Sprite" parent="."]
-material = SubResource( 5 )
+material = SubResource( 16 )
 position = Vector2( -28, 29 )
 scale = Vector2( 2.611, 4 )
 texture = ExtResource( 5 )
@@ -700,8 +732,8 @@ scale = Vector2( 1, 0.8 )
 texture = ExtResource( 12 )
 
 [node name="toggle_player" type="AnimationPlayer" parent="."]
-anims/open = SubResource( 6 )
-anims/win = SubResource( 16 )
+anims/open = SubResource( 17 )
+anims/win = SubResource( 18 )
 [connection signal="animation_finished" from="bubble/AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
 [connection signal="curve_tween" from="VBoxContainer2/HBoxContainer3/Label2/c" to="." method="_on_c_curve_tween"]
 [connection signal="pressed" from="VBoxContainer2/HBoxContainer4/continue" to="." method="_on_continue_pressed"]

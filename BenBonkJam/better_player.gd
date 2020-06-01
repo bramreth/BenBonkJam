@@ -30,7 +30,7 @@ func _input(event):
 			if not item == self:
 				if item.has_method("interogate"):
 					var res = item.interogate()
-					print(res)
+#					print(res)
 					if res:
 						cam.gather_data(res)
 			else:
