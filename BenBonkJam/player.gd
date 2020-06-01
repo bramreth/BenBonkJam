@@ -34,6 +34,7 @@ func _ready():
 	Manager.update_outfits(outfits)
 	cam = get_tree().get_nodes_in_group("cam")[0]
 	nav = get_tree().get_nodes_in_group("nav")[0]
+#	$step/step_player.play("step")
 	
 func get_dest():
 	if not nav: return
@@ -93,6 +94,9 @@ func _physics_process(delta):
 			
 func rand_p():
 	$inter.pitch_scale = 0.5 + randf()
+	
+func rand_step():
+	$step.pitch_scale = 0.75 + (randf()/2)
 
 func _input(InputEvent):
 	handle_inputs()
@@ -200,7 +204,6 @@ func interogate():
 	$Node2D/Panel/VBoxContainer/fact.text = f
 	$Node2D/Panel/interog_player.play("open")
 	$Node2D/Timer.start()
-	$bod
 	return {"c": body.self_modulate, "s": suspicion, "h": $body/head/shade.visible, "cof": $body/head/Node2D/coffee.visible, "uid": self}
 
 func alert(on):
@@ -212,3 +215,8 @@ func alert(on):
 
 func _on_Timer_timeout():
 	$Node2D/Panel/interog_player.play_backwards("open")
+
+
+func _on_step_player_animation_finished(anim_name):
+	if dead: return
+	$step/step_player.play("step")

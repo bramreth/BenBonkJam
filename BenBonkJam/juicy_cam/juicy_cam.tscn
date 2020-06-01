@@ -9,7 +9,7 @@
 [ext_resource path="res://wipe.tres" type="Material" id=7]
 [ext_resource path="res://assets/font/a-c-m-e-secret-agent/ACMESecretAgentBB_BoldItal.otf" type="DynamicFontData" id=8]
 [ext_resource path="res://assets/board.png" type="Texture" id=9]
-[ext_resource path="res://audio/songs/ass(1).wav" type="AudioStream" id=10]
+[ext_resource path="res://audio/urgent.wav" type="AudioStream" id=10]
 [ext_resource path="res://assets/vol (1).png" type="Texture" id=12]
 
 [sub_resource type="OpenSimplexNoise" id=1]
@@ -155,7 +155,7 @@ curve = SubResource( 4 )
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-rect_scale = Vector2( 0.750003, 1 )
+rect_scale = Vector2( 1e-05, 1 )
 rect_pivot_offset = Vector2( 1920, 0 )
 texture = ExtResource( 5 )
 expand = true

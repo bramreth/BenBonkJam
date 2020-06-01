@@ -409,7 +409,7 @@ align = 1
 margin_top = 32.0
 margin_right = 1440.0
 margin_bottom = 66.0
-text = "easy (only one sheep needs to survie, wolves look guiltier)"
+text = "easy (only one sheep needs to survive, wolves look guiltier)"
 
 [node name="normal" type="Button" parent="dif/VBoxContainer"]
 margin_top = 70.0

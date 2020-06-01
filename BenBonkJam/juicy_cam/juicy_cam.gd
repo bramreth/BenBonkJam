@@ -121,10 +121,16 @@ func _on_phone_shop():
 func _on_WindowDialog_close():
 	$CanvasLayer/phone.visible = true
 
-
+func _input(event):
+	if Input.get_action_strength("ui_home"):
+		win(1, 1)
+	
 func _on_AnimationPlayer_animation_finished(anim_name):
 	if anim_name == "close":
-		get_tree().reload_current_scene()
+		if Manager.progression == 8:
+			get_tree().change_scene("res://win.tscn")
+		else:
+			get_tree().reload_current_scene()
 	else:
 		$CanvasLayer/phone.toggle(true)
 		set_tip()

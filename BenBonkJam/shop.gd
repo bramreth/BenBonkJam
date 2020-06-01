@@ -41,6 +41,7 @@ func _on_back_pressed():
 
 func _on_upg_pressed():
 	Manager.cash -= speed_price
+	$AudioStreamPlayer.play()
 	Manager.speed = Manager.speed + 1
 	Manager.save()
 	sanity()
@@ -52,6 +53,7 @@ func _on_WindowDialog_about_to_show():
 
 func _on_cb_pressed():
 	Manager.cash -= 25
+	$AudioStreamPlayer.play()
 	Manager.c_unlock = true
 	Manager.save()
 	# unlock coffee
@@ -60,6 +62,7 @@ func _on_cb_pressed():
 
 func _on_fb_pressed():
 	Manager.cash -= 100
+	$AudioStreamPlayer.play()
 	Manager.f_unlock = true
 	Manager.save()
 	# unlock flower
@@ -68,6 +71,7 @@ func _on_fb_pressed():
 
 func _on_bb_pressed():
 	Manager.cash -= 200
+	$AudioStreamPlayer.play()
 	Manager.b_unlock = true
 	Manager.save()
 	# unlock briefcase
