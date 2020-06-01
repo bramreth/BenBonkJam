@@ -9,6 +9,7 @@ export var acceptable_casualties = 3
 
 func _ready():
 	randomize()
+	$village_green/turf/grass/tut.visible = Manager.progression == 1
 	cam = get_tree().get_nodes_in_group("cam")[0]
 	setup_wave()
 	
