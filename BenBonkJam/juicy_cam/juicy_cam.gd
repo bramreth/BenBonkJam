@@ -19,7 +19,12 @@ var time = 0
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$CanvasLayer/phone.level(Manager.progression)
-	$CanvasLayer/phone.toggle(true)
+	start_day()
+	
+
+func start_day():
+	$CanvasLayer/eol/AnimationPlayer.play("open")
+	
 
 func add_trauma(trauma_in):
 	trauma = clamp(trauma + trauma_in, 0, 1)
@@ -102,7 +107,8 @@ func _on_phone_menu():
 
 
 func _on_phone_next():
-	get_tree().reload_current_scene()
+	$CanvasLayer/eol/AnimationPlayer.play("close")
+	
 
 
 func _on_phone_shop():
@@ -112,3 +118,10 @@ func _on_phone_shop():
 
 func _on_WindowDialog_close():
 	$CanvasLayer/phone.visible = true
+
+
+func _on_AnimationPlayer_animation_finished(anim_name):
+	if anim_name == "close":
+		get_tree().reload_current_scene()
+	else:
+		$CanvasLayer/phone.toggle(true)

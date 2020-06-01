@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://juicy_cam/juicy_cam.gd" type="Script" id=1]
 [ext_resource path="res://CurveTween/CurveTween.gd" type="Script" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://message.tscn" type="PackedScene" id=4]
 [ext_resource path="res://assets/speech.png" type="Texture" id=5]
 [ext_resource path="res://shop.tscn" type="PackedScene" id=6]
+[ext_resource path="res://wipe.tres" type="Material" id=7]
 
 [sub_resource type="OpenSimplexNoise" id=1]
 
@@ -38,6 +39,37 @@ tracks/0/keys = {
 "transitions": PoolRealArray( 0.5, 1 ),
 "update": 0,
 "values": [ Vector2( 1e-05, 1 ), Vector2( 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=7]
+resource_name = "close"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:material:shader_param/intensity")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 0.450625, 1 ),
+"update": 0,
+"values": [ 0.0, 0.5 ]
+}
+
+[sub_resource type="Animation" id=6]
+resource_name = "open"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:material:shader_param/intensity")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.6 ),
+"transitions": PoolRealArray( 2, 0.450625 ),
+"update": 0,
+"values": [ 0.5, 0.0 ]
 }
 
 [node name="Camera2D" type="Camera2D" groups=[
@@ -104,8 +136,23 @@ margin_bottom = 9.0
 [node name="phone" parent="CanvasLayer" instance=ExtResource( 4 )]
 position = Vector2( 2304, 744 )
 scale = Vector2( 0.85, 0.85 )
+z_index = 0
+
+[node name="eol" type="ColorRect" parent="CanvasLayer"]
+material = ExtResource( 7 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/eol"]
+anims/close = SubResource( 7 )
+anims/open = SubResource( 6 )
 [connection signal="curve_tween" from="CanvasLayer/blur/CurveTween" to="." method="_on_CurveTween_curve_tween"]
 [connection signal="close" from="CanvasLayer/WindowDialog" to="." method="_on_WindowDialog_close"]
 [connection signal="menu" from="CanvasLayer/phone" to="." method="_on_phone_menu"]
 [connection signal="next" from="CanvasLayer/phone" to="." method="_on_phone_next"]
 [connection signal="shop" from="CanvasLayer/phone" to="." method="_on_phone_shop"]
+[connection signal="animation_finished" from="CanvasLayer/eol/AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]

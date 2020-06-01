@@ -117,7 +117,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1 ),
+"times": PoolRealArray( 0.1, 0.2 ),
 "transitions": PoolRealArray( 0.329877, 0.329877 ),
 "update": 0,
 "values": [ Vector2( 1, 1e-05 ), Vector2( 1, 1 ) ]
@@ -129,7 +129,7 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2 ),
+"times": PoolRealArray( 0.1, 0.2, 0.3 ),
 "transitions": PoolRealArray( 0.329877, 0.329877, 0.329877 ),
 "update": 0,
 "values": [ Vector2( 1e-05, 1 ), Vector2( 1e-05, 1 ), Vector2( 1, 1 ) ]
@@ -141,7 +141,7 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0, 0.2, 0.3 ),
+"times": PoolRealArray( 0.1, 0.3, 0.4 ),
 "transitions": PoolRealArray( 0.329877, 0.329877, 0.329877 ),
 "update": 0,
 "values": [ Vector2( 1e-05, 1 ), Vector2( 1e-05, 1 ), Vector2( 1, 1 ) ]
@@ -153,10 +153,22 @@ tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
-"times": PoolRealArray( 0, 0.3, 0.4 ),
+"times": PoolRealArray( 0.1, 0.4, 0.5 ),
 "transitions": PoolRealArray( 0.329877, 0.329877, 0.329877 ),
 "update": 0,
 "values": [ Vector2( 1e-05, 1 ), Vector2( 1e-05, 1 ), Vector2( 1, 1 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath(".:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
 }
 
 [node name="player" type="KinematicBody2D" groups=[
@@ -258,6 +270,7 @@ occluder = SubResource( 13 )
 z_index = 4
 
 [node name="Panel" type="Panel" parent="Node2D"]
+visible = false
 margin_left = 40.0
 margin_top = 25.0
 margin_right = 160.0
