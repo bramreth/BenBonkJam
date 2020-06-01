@@ -140,7 +140,7 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 		$CanvasLayer/TextureRect2/AnimationPlayer.play("drop")
 
 func set_tip():
-	print("tip")
+#	print("tip")
 	var txt = ""
 	match Manager.level:
 		2:
@@ -155,7 +155,7 @@ func set_tip():
 
 
 func _on_atween_curve_tween(sat):
-	print(linear2db(sat))
+#	print(linear2db(sat))
 	$AudioStreamPlayer.volume_db -=1
 
 

@@ -82,10 +82,10 @@ func load_game():
 				cash = current_line["cash"]
 			if current_line.has("speed"):
 				speed = current_line["speed"]
-				print(current_line["speed"])
+#				print(current_line["speed"])
 			if current_line.has("health"):
 				health = current_line["health"]
-				print(current_line["health"])
+#				print(current_line["health"])
 			#"cu": c_unlock, "ce": c_equip, "fu": f_unlock, "fe": f_equip
 			if current_line.has("bu"):
 				b_unlock = current_line["bu"]

@@ -47,7 +47,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id=10]
 resource_name = "speak_quick"
-length = 5.0
+length = 8.0
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:rect_scale")
 tracks/0/interp = 1
@@ -55,7 +55,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0.4, 0.6, 4.8, 5 ),
+"times": PoolRealArray( 0.4, 0.6, 7.8, 8 ),
 "transitions": PoolRealArray( 0.517632, 1, 1, 0.517632 ),
 "update": 0,
 "values": [ Vector2( 1e-05, 1 ), Vector2( 1, 1 ), Vector2( 1, 1 ), Vector2( 1e-05, 1 ) ]

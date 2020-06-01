@@ -6,7 +6,7 @@ var lv = preload("res://level.tscn")
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	
-	Manager.progression = 1
+	Manager.progression = 6
 	hide()
 	if Manager.best_level:
 		high_score()
@@ -93,7 +93,7 @@ func high_score():
 	$star.visible = true
 	$top.visible = true
 	$res.visible = true
-	print(Manager.best_difficulty)
+#	print(Manager.best_difficulty)
 	match Manager.best_difficulty:
 		1000.0:
 			$res.text = "easy: " + str(Manager.best_level)

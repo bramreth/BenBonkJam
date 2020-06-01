@@ -50,13 +50,13 @@ func parse_death(type):
 		_:
 			print("BIG ERROR in parse death")
 	if wolves <= 0:
-		print("YOU WIN")
+#		print("YOU WIN")
 		if Manager.acceptable:
 			cam.win(max_w - wolves, float(casualties) / Manager.acceptable)
 		else:
 			cam.win(max_w - wolves, 1)
 	if casualties >= Manager.acceptable and Manager.acceptable:
-		print("YOU LOSE")
+#		print("YOU LOSE")
 		if Manager.acceptable:
 			cam.lose(max_w - wolves, float(casualties) / Manager.acceptable)
 		else:
