@@ -364,7 +364,7 @@ margin_bottom = 240.0
 [node name="Button2" type="Button" parent="MarginContainer3/VBoxContainer"]
 margin_right = 1440.0
 margin_bottom = 34.0
-text = "endless"
+text = "play"
 
 [node name="Button4" type="Button" parent="MarginContainer3/VBoxContainer"]
 margin_top = 38.0

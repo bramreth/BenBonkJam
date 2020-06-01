@@ -126,7 +126,7 @@ func generate_costume(is_enemy):
 		$body/head/shade.visible = randi() % 2 == 0
 		
 	if Manager.level == 3:
-		#enemies wear hat
+		#enemies hold coffee
 		if is_enemy: $body/head/Node2D/coffee.visible = true
 	else:
 		$body/head/Node2D/coffee.visible = randi() % 2 == 0

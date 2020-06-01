@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://juicy_cam/juicy_cam.gd" type="Script" id=1]
 [ext_resource path="res://CurveTween/CurveTween.gd" type="Script" id=2]
@@ -41,6 +41,22 @@ tracks/0/keys = {
 "transitions": PoolRealArray( 0.5, 1 ),
 "update": 0,
 "values": [ Vector2( 1e-05, 1 ), Vector2( 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=10]
+resource_name = "speak_quick"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rect_scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0.4, 0.6, 4.8, 5 ),
+"transitions": PoolRealArray( 0.517632, 1, 1, 0.517632 ),
+"update": 0,
+"values": [ Vector2( 1e-05, 1 ), Vector2( 1, 1 ), Vector2( 1, 1 ), Vector2( 1e-05, 1 ) ]
 }
 
 [sub_resource type="Animation" id=8]
@@ -155,7 +171,6 @@ __meta__ = {
 }
 
 [node name="result" type="Label" parent="CanvasLayer/TextureRect/CenterContainer"]
-modulate = Color( 1, 1, 1, 0 )
 margin_left = 405.0
 margin_top = 46.0
 margin_right = 495.0
@@ -164,6 +179,7 @@ text = "YOU LOSE"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/TextureRect"]
 anims/speak = SubResource( 5 )
+anims/speak_quick = SubResource( 10 )
 
 [node name="WindowDialog" parent="CanvasLayer" instance=ExtResource( 6 )]
 margin_right = 56.0

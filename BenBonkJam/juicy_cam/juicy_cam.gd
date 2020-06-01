@@ -89,7 +89,7 @@ func blur():
 
 func _on_CurveTween_curve_tween(sat):
 	$CanvasLayer/blur.get_material().set_shader_param("str", sat)
-	$CanvasLayer/TextureRect/CenterContainer/result.modulate.a = sat
+#	$CanvasLayer/TextureRect/CenterContainer/result.modulate.a = sat
 
 func initg(total_w, total_c, p):
 	$CanvasLayer/phone.up_c(0, total_c, false)
@@ -133,4 +133,20 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 		get_tree().reload_current_scene()
 	else:
 		$CanvasLayer/phone.toggle(true)
+		set_tip()
+		$CanvasLayer/TextureRect/AnimationPlayer.play("speak_quick")
 		$CanvasLayer/TextureRect2/AnimationPlayer.play("drop")
+
+func set_tip():
+	print("tip")
+	var txt = ""
+	match Manager.level:
+		2:
+			txt = "They're all wolves! defend yourself!"
+		1:
+			txt = "intelligence reports the wolves all share a colour."
+		_:
+			txt = "intelligence reports the wolves are all wearing or holding a specific item."
+	$CanvasLayer/TextureRect/CenterContainer/result.text = txt
+	print($CanvasLayer/TextureRect/CenterContainer/result.text)
+#	match Manager.level
