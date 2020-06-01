@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://juicy_cam/juicy_cam.gd" type="Script" id=1]
 [ext_resource path="res://CurveTween/CurveTween.gd" type="Script" id=2]
@@ -9,6 +9,8 @@
 [ext_resource path="res://wipe.tres" type="Material" id=7]
 [ext_resource path="res://assets/font/a-c-m-e-secret-agent/ACMESecretAgentBB_BoldItal.otf" type="DynamicFontData" id=8]
 [ext_resource path="res://assets/board.png" type="Texture" id=9]
+[ext_resource path="res://audio/songs/ass(1).wav" type="AudioStream" id=10]
+[ext_resource path="res://assets/vol (1).png" type="Texture" id=12]
 
 [sub_resource type="OpenSimplexNoise" id=1]
 
@@ -29,7 +31,7 @@ _data = [ Vector2( 0, 0 ), 0.0, 1.0, 0, 1, Vector2( 1, 1 ), -0.900901, 0.0, 0, 0
 
 [sub_resource type="Animation" id=5]
 resource_name = "speak"
-length = 0.2
+length = 2.25
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:rect_scale")
 tracks/0/interp = 1
@@ -124,6 +126,9 @@ tracks/0/keys = {
 "values": [ 0.5, 0.0 ]
 }
 
+[sub_resource type="Curve" id=11]
+_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), -0.0817096, 0.0, 0, 0 ]
+
 [node name="Camera2D" type="Camera2D" groups=[
 "cam",
 ]]
@@ -150,7 +155,7 @@ curve = SubResource( 4 )
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-rect_scale = Vector2( 1e-05, 1 )
+rect_scale = Vector2( 0.750003, 1 )
 rect_pivot_offset = Vector2( 1920, 0 )
 texture = ExtResource( 5 )
 expand = true
@@ -177,7 +182,7 @@ margin_right = 495.0
 margin_bottom = 74.0
 text = "YOU LOSE"
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/TextureRect"]
+[node name="speak" type="AnimationPlayer" parent="CanvasLayer/TextureRect"]
 anims/speak = SubResource( 5 )
 anims/speak_quick = SubResource( 10 )
 
@@ -226,9 +231,35 @@ __meta__ = {
 [node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/eol"]
 anims/close = SubResource( 7 )
 anims/open = SubResource( 6 )
+
+[node name="TextureButton" type="TextureButton" parent="CanvasLayer"]
+margin_left = 1752.0
+margin_top = -24.0
+margin_right = 1956.0
+margin_bottom = 180.0
+focus_mode = 0
+enabled_focus_mode = 0
+texture_normal = ExtResource( 12 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 10 )
+volume_db = -6.0
+autoplay = true
+bus = "song"
+
+[node name="atween" type="Tween" parent="AudioStreamPlayer"]
+script = ExtResource( 2 )
+curve = SubResource( 11 )
 [connection signal="curve_tween" from="CanvasLayer/blur/CurveTween" to="." method="_on_CurveTween_curve_tween"]
+[connection signal="animation_finished" from="CanvasLayer/TextureRect/speak" to="." method="_on_speak_animation_finished"]
 [connection signal="close" from="CanvasLayer/WindowDialog" to="." method="_on_WindowDialog_close"]
 [connection signal="menu" from="CanvasLayer/phone" to="." method="_on_phone_menu"]
 [connection signal="next" from="CanvasLayer/phone" to="." method="_on_phone_next"]
 [connection signal="shop" from="CanvasLayer/phone" to="." method="_on_phone_shop"]
 [connection signal="animation_finished" from="CanvasLayer/eol/AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
+[connection signal="pressed" from="CanvasLayer/TextureButton" to="." method="_on_TextureButton_pressed"]
+[connection signal="curve_tween" from="AudioStreamPlayer/atween" to="." method="_on_atween_curve_tween"]

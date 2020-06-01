@@ -139,7 +139,6 @@ process_material = SubResource( 6 )
 texture = ExtResource( 3 )
 
 [node name="Panel" parent="Node2D" index="0"]
-visible = false
 rect_scale = Vector2( 1, 0.00996559 )
 
 [node name="name" parent="Node2D/Panel/VBoxContainer" index="1"]

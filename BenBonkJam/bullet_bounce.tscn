@@ -244,7 +244,7 @@ curve = SubResource( 17 )
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 6 )
-volume_db = -20.0
+volume_db = -12.0
 bus = "boom"
 [connection signal="body_entered" from="." to="." method="_on_bullet_body_entered"]
 [connection signal="curve_tween" from="Sprite/CurveTween" to="." method="size_curve"]

@@ -23,9 +23,13 @@ func _ready():
 	$CanvasLayer/eol.get_material().set_shader_param("intensity", 1)
 	$CanvasLayer/phone.level(Manager.progression)
 	$CanvasLayer/TextureRect2/day.text = "day: " + str(Manager.progression)
+	$AudioStreamPlayer.volume_db = linear2db(Manager.sound_vol/2)
+	update_mute()
 	
 	start_day()
 	
+func update_settings():
+	$AudioStreamPlayer.volume_db = linear2db(Manager.sound_vol/2)
 
 func start_day():
 	$CanvasLayer/eol/AnimationPlayer.play("open")
@@ -45,29 +49,18 @@ func _process(delta):
 	
 	if trauma > 0: trauma = clamp(trauma - (delta * decay), 0, 1)
 
-func _input(event):
-#	if Input.get_action_strength("tab"):
-#		$CanvasLayer/phone.toggle(not $CanvasLayer/phone.toggle)
-	if not menu: return
-	if Input.get_action_strength("ui_accept"): 
-		if proc: 
-			return
-		proc = true
-		Manager.next_level(won)
-		$CanvasLayer/phone.add_cash()
-#		get_tree().reload_current_scene()
 		
 func lose(k, m):
-	$CanvasLayer/TextureRect/AnimationPlayer.play("speak")
-	$CanvasLayer/TextureRect/CenterContainer/result.text = "too many civilian casualties. \n unnaceptable.\n press space to continue"
+	$CanvasLayer/TextureRect/speak.play("speak")
+	$CanvasLayer/TextureRect/CenterContainer/result.text = "too many civilian casualties. \n unnaceptable."
 	menu = false
 	$CanvasLayer/phone.win(false, k, m)
 	player.dead = true
 	blur()
 	
 func win(k, m):
-	$CanvasLayer/TextureRect/AnimationPlayer.play("speak")
-	$CanvasLayer/TextureRect/CenterContainer/result.text = "you eliminated the wolves.\n well done agent.\n press space to continue"
+	$CanvasLayer/TextureRect/speak.play("speak")
+	$CanvasLayer/TextureRect/CenterContainer/result.text = "you eliminated the wolves.\n well done agent."
 	menu = false
 	won = true
 	player.dead = true
@@ -75,8 +68,8 @@ func win(k, m):
 	blur()
 	
 func die(k, m):
-	$CanvasLayer/TextureRect/AnimationPlayer.play("speak")
-	$CanvasLayer/TextureRect/CenterContainer/result.text = "That's a pity, Send in the next agent!\n press space to continue"
+	$CanvasLayer/TextureRect/speak.play("speak")
+	$CanvasLayer/TextureRect/CenterContainer/result.text = "That's a pity, Send in the next agent!"
 	$CanvasLayer/phone.win(false, k, m)
 	menu = false
 	player.dead = true
@@ -116,6 +109,7 @@ func _on_phone_menu():
 
 func _on_phone_next():
 	$CanvasLayer/eol/AnimationPlayer.play("close")
+	$AudioStreamPlayer/atween.play(0.5, Manager.sound_vol, 1)
 	
 
 
@@ -134,7 +128,7 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 	else:
 		$CanvasLayer/phone.toggle(true)
 		set_tip()
-		$CanvasLayer/TextureRect/AnimationPlayer.play("speak_quick")
+		$CanvasLayer/TextureRect/speak.play("speak_quick")
 		$CanvasLayer/TextureRect2/AnimationPlayer.play("drop")
 
 func set_tip():
@@ -148,5 +142,31 @@ func set_tip():
 		_:
 			txt = "intelligence reports the wolves are all wearing or holding a specific item."
 	$CanvasLayer/TextureRect/CenterContainer/result.text = txt
-	print($CanvasLayer/TextureRect/CenterContainer/result.text)
+#	print($CanvasLayer/TextureRect/CenterContainer/result.text)
 #	match Manager.level
+
+
+func _on_atween_curve_tween(sat):
+	print(linear2db(sat))
+	$AudioStreamPlayer.volume_db -=1
+
+
+func _on_speak_animation_finished(anim_name):
+	if anim_name == "speak":
+		Manager.next_level(won)
+		$CanvasLayer/phone.add_cash()
+
+var m1 = preload("res://assets/vol (1).png")
+var m2 = preload("res://assets/vol (2).png")
+
+func update_mute():
+	if Manager.mute:
+		$CanvasLayer/TextureButton.set_normal_texture(m2)
+	else:
+		$CanvasLayer/TextureButton.set_normal_texture(m1)
+
+func _on_TextureButton_pressed():
+	#toggle mute
+	Manager.mute(not Manager.mute)
+	update_mute()
+	

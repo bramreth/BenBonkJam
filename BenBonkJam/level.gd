@@ -33,7 +33,7 @@ func setup_wave():
 		s.connect("death", self, "parse_death")
 	wolves = num_enemies * len(spawners)
 	max_w = wolves
-	print(num_enemies + num_allies)
+#	print(num_enemies + num_allies)
 	Manager.acceptable = min(num_allies* len(spawners), Manager.difficulty)
 	cam.initg(num_enemies * len(spawners), Manager.acceptable, (num_enemies + num_allies)*get_tree().get_nodes_in_group("spawner").size())
 	# we need to setup the enemy pattern here

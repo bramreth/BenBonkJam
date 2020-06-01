@@ -94,10 +94,10 @@ func txt(t):
 		tally += likely_feature[c]
 	for c in likely_color:
 		if likely_color[c] == likely_color.values().max():
-			$VBoxContainer/HBoxContainer/likely.color = c
-			$VBoxContainer/HBoxContainer/Label.text = str((float(accuracy) / pop)*100 * likely_color[c] / tally).substr(0,2) + "%"
-	$VBoxContainer/HBoxContainer5/label.text = str((float(accuracy) / pop)*(100 * likely_feature["shades"]) / (likely_feature["shades"] + likely_feature["no_shades"])).substr(0,2) + "%"
-	$VBoxContainer/HBoxContainer6/cof.text = str((float(accuracy) / pop)*(100 * likely_feature["coffee"]) / (likely_feature["coffee"] + likely_feature["no_coffee"])).substr(0,2) + "%"
+			$VBoxContainer/HBoxContainer/VBoxContainer/likely.color = c
+			$VBoxContainer/HBoxContainer/VBoxContainer/Label.text = str((float(accuracy) / pop)*100 * likely_color[c] / tally).substr(0,2) + "%"
+	$VBoxContainer/HBoxContainer/HBoxContainer5/label.text = str((float(accuracy) / pop)*(100 * likely_feature["shades"]) / (likely_feature["shades"] + likely_feature["no_shades"])).substr(0,2) + "%"
+	$VBoxContainer/HBoxContainer/HBoxContainer6/cof.text = str((float(accuracy) / pop)*(100 * likely_feature["coffee"]) / (likely_feature["coffee"] + likely_feature["no_coffee"])).substr(0,2) + "%"
 	$VBoxContainer/Label.text = "accuracy: " + str(100 * accuracy / pop) + "%"
 	
 	

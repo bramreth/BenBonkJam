@@ -1,7 +1,12 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://shop.gd" type="Script" id=1]
 [ext_resource path="res://assets/font/a-c-m-e-secret-agent/ACMESecretAgentBB_BoldItal.otf" type="DynamicFontData" id=2]
+[ext_resource path="res://assets/bouquet.png" type="Texture" id=3]
+[ext_resource path="res://assets/briefcase.png" type="Texture" id=4]
+[ext_resource path="res://assets/coffee.png" type="Texture" id=5]
+[ext_resource path="res://normal_font.tres" type="DynamicFont" id=6]
+[ext_resource path="res://g.tres" type="ButtonGroup" id=7]
 
 [sub_resource type="DynamicFont" id=1]
 size = 72
@@ -64,10 +69,18 @@ custom_fonts/font = SubResource( 1 )
 text = "the shop"
 align = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+[node name="Label3" type="Label" parent="VBoxContainer"]
 margin_top = 92.0
 margin_right = 1504.0
-margin_bottom = 476.0
+margin_bottom = 120.0
+custom_fonts/font = ExtResource( 6 )
+text = "upgrades"
+align = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+margin_top = 124.0
+margin_right = 1504.0
+margin_bottom = 352.0
 size_flags_vertical = 3
 __meta__ = {
 "_edit_use_anchors_": false
@@ -75,7 +88,7 @@ __meta__ = {
 
 [node name="speed" type="VBoxContainer" parent="VBoxContainer/HBoxContainer"]
 margin_right = 1504.0
-margin_bottom = 384.0
+margin_bottom = 228.0
 size_flags_horizontal = 3
 
 [node name="Label" type="Label" parent="VBoxContainer/HBoxContainer/speed"]
@@ -94,10 +107,158 @@ align = 1
 [node name="upg" type="Button" parent="VBoxContainer/HBoxContainer/speed"]
 margin_top = 36.0
 margin_right = 1504.0
-margin_bottom = 384.0
+margin_bottom = 228.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 text = "upgrade"
+
+[node name="Label2" type="Label" parent="VBoxContainer"]
+margin_top = 356.0
+margin_right = 1504.0
+margin_bottom = 384.0
+custom_fonts/font = ExtResource( 6 )
+text = "cosmetics"
+align = 1
+
+[node name="cosmetics" type="HBoxContainer" parent="VBoxContainer"]
+margin_top = 388.0
+margin_right = 1504.0
+margin_bottom = 632.0
+size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="cof" type="VBoxContainer" parent="VBoxContainer/cosmetics"]
+margin_right = 498.0
+margin_bottom = 244.0
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="VBoxContainer/cosmetics/cof"]
+margin_right = 498.0
+margin_bottom = 14.0
+text = "coffee - tastes great"
+align = 1
+
+[node name="cost" type="Label" parent="VBoxContainer/cosmetics/cof"]
+margin_top = 18.0
+margin_right = 498.0
+margin_bottom = 32.0
+text = "cost: £25"
+align = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/cosmetics/cof"]
+margin_top = 36.0
+margin_right = 498.0
+margin_bottom = 244.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="cb" type="Button" parent="VBoxContainer/cosmetics/cof/HBoxContainer"]
+margin_right = 174.0
+margin_bottom = 208.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "buy"
+
+[node name="cc" type="CheckButton" parent="VBoxContainer/cosmetics/cof/HBoxContainer"]
+margin_left = 178.0
+margin_right = 498.0
+margin_bottom = 208.0
+group = ExtResource( 7 )
+text = "equip"
+icon = ExtResource( 5 )
+
+[node name="flowers" type="VBoxContainer" parent="VBoxContainer/cosmetics"]
+margin_left = 502.0
+margin_right = 1000.0
+margin_bottom = 244.0
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="VBoxContainer/cosmetics/flowers"]
+margin_right = 498.0
+margin_bottom = 14.0
+text = "flowers - smell great"
+align = 1
+
+[node name="cost" type="Label" parent="VBoxContainer/cosmetics/flowers"]
+margin_top = 18.0
+margin_right = 498.0
+margin_bottom = 32.0
+text = "cost £100"
+align = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/cosmetics/flowers"]
+margin_top = 36.0
+margin_right = 498.0
+margin_bottom = 244.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="fb" type="Button" parent="VBoxContainer/cosmetics/flowers/HBoxContainer"]
+margin_right = 174.0
+margin_bottom = 208.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "buy"
+
+[node name="fc" type="CheckButton" parent="VBoxContainer/cosmetics/flowers/HBoxContainer"]
+margin_left = 178.0
+margin_right = 498.0
+margin_bottom = 208.0
+group = ExtResource( 7 )
+text = "equip"
+icon = ExtResource( 3 )
+
+[node name="brief" type="VBoxContainer" parent="VBoxContainer/cosmetics"]
+margin_left = 1004.0
+margin_right = 1504.0
+margin_bottom = 244.0
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="VBoxContainer/cosmetics/brief"]
+margin_right = 500.0
+margin_bottom = 14.0
+text = "briefcase - looks great"
+align = 1
+
+[node name="cost" type="Label" parent="VBoxContainer/cosmetics/brief"]
+margin_top = 18.0
+margin_right = 500.0
+margin_bottom = 32.0
+text = "cost: £200"
+align = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/cosmetics/brief"]
+margin_top = 36.0
+margin_right = 500.0
+margin_bottom = 244.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="bb" type="Button" parent="VBoxContainer/cosmetics/brief/HBoxContainer"]
+margin_right = 176.0
+margin_bottom = 208.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "buy"
+
+[node name="bc" type="CheckButton" parent="VBoxContainer/cosmetics/brief/HBoxContainer"]
+margin_left = 180.0
+margin_right = 500.0
+margin_bottom = 208.0
+group = ExtResource( 7 )
+text = "equip"
+icon = ExtResource( 4 )
 
 [node name="back" type="Button" parent="VBoxContainer"]
 margin_top = 780.0
@@ -143,4 +304,10 @@ text = "£1000000"
 align = 1
 [connection signal="about_to_show" from="." to="." method="_on_WindowDialog_about_to_show"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/speed/upg" to="." method="_on_upg_pressed"]
+[connection signal="pressed" from="VBoxContainer/cosmetics/cof/HBoxContainer/cb" to="." method="_on_cb_pressed"]
+[connection signal="toggled" from="VBoxContainer/cosmetics/cof/HBoxContainer/cc" to="." method="_on_cc_toggled"]
+[connection signal="pressed" from="VBoxContainer/cosmetics/flowers/HBoxContainer/fb" to="." method="_on_fb_pressed"]
+[connection signal="toggled" from="VBoxContainer/cosmetics/flowers/HBoxContainer/fc" to="." method="_on_fc_toggled"]
+[connection signal="pressed" from="VBoxContainer/cosmetics/brief/HBoxContainer/bb" to="." method="_on_bb_pressed"]
+[connection signal="toggled" from="VBoxContainer/cosmetics/brief/HBoxContainer/bc" to="." method="_on_bc_toggled"]
 [connection signal="pressed" from="VBoxContainer/back" to="." method="_on_back_pressed"]

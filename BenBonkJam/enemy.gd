@@ -28,7 +28,7 @@ func get_kill():
 	var td = killnav.get_closest_point(seen_player.global_position)
 	var path_t = killnav.get_simple_path(global_position, td)
 	killpath = path_t
-	print(killpath)
+#	print(killpath)
 	
 var pursuit_counter = 0
 func kill_to_dest():
@@ -37,11 +37,11 @@ func kill_to_dest():
 		get_kill()
 	if killpath.size() > 0:
 		var distance_to_next_point = global_position.distance_to(killpath[0])
-		print(distance_to_next_point)
+#		print(distance_to_next_point)
 		if 20 <= distance_to_next_point:
 			# The player does not have enough movement left to get to the next point.
 			direction = global_position.direction_to(killpath[0])
-			print(direction)
+#			print(direction)
 		else:
 			# The player get to the next point
 			global_position = killpath[0]

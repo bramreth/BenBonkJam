@@ -5,6 +5,9 @@ var can_shoot = true
 
 func _ready():
 	SPEED = SPEED + ((Manager.speed - 1) * 125)
+	$body/head/Node2D/briefcase.visible = Manager.b_equip
+	$body/head/Node2D/bouquet.visible = Manager.f_equip
+	$body/head/Node2D/coffee.visible = Manager.c_equip
 		
 func shoot():
 	can_shoot = false
@@ -20,8 +23,6 @@ func _physics_process(delta):
 	if dead: return
 	if Input.get_action_strength("click") and can_shoot:
 		shoot()
-	if Input.get_action_strength("ui_cancel"):
-		get_tree().quit()
 		
 func _input(event):
 	if Input.get_action_strength("rclick"):
@@ -35,7 +36,9 @@ func _input(event):
 						cam.gather_data(res)
 			else:
 				q = true
-		if q and not $body/head/q.emitting: $body/head/q.restart()
+		if q and not $body/head/q.emitting: 
+			$body/head/q.restart()
+			$body/head/interrog/AudioStreamPlayer2D/AnimationPlayer.play("trill")
 		
 func die():
 	if dead: return
@@ -48,6 +51,8 @@ func die():
 func _on_CurveTween_curve_tween(sat):
 	$body/head/gun.position.x = sat
 
+func rand_pitch():
+	$body/head/interrog/AudioStreamPlayer2D.pitch_scale = 1 + randf()
 
 func _on_AnimationPlayer_animation_finished(anim_name):
 	can_shoot = true

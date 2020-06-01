@@ -38,7 +38,7 @@ func _ready():
 func get_dest():
 	if not nav: return
 	var td = nav.get_closest_point(Vector2(-1200 + randi()%2400, -600 + randi()%1200))
-	print(td)
+#	print(td)
 	var path_t = nav.get_simple_path(global_position, td)
 	path = path_t
 	
@@ -58,6 +58,7 @@ func walk_to_dest():
 func damage(d, origin=Vector2(0,0)):
 	$spurt.restart()
 	$spurt.look_at(origin)
+	$AudioStreamPlayer2D.play()
 	cam.add_trauma(0.1)
 	if dead: return
 	health -= d
@@ -90,7 +91,8 @@ func _physics_process(delta):
 			direction = direction.tangent()
 			#FIXME this is a bad way to stop collisions
 			
-	
+func rand_p():
+	$inter.pitch_scale = 0.5 + randf()
 
 func _input(InputEvent):
 	handle_inputs()
@@ -176,7 +178,9 @@ func generate_costume(is_enemy):
 	head.self_modulate.b = clamp(head.self_modulate.b * 1.33, 0, 1)
 	
 func interogate():
+	
 	if dead: return
+	$inter/inter.play("reply")
 	var txt = ""
 	match ceil(suspicion):
 		1.0:

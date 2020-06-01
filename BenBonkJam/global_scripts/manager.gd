@@ -11,12 +11,29 @@ var cash = 0
 var best_level = 0
 var best_difficulty = 1000
 
+var c_unlock = false
+var c_equip = false
+
+var f_unlock = false
+var f_equip = false
+
+var b_unlock = false
+var b_equip = false
+
+var sound_vol = 0.5
+
+var mute = false
 var speed = 1
 
 func _ready():
 	load_game()
 	randomize()
 	level = randi() % 4
+	mute(mute)
+	
+func mute(on):
+	mute = on
+	AudioServer.set_bus_mute(0, mute)
 	
 func update_outfits(o):
 	if not outfits and o: 
@@ -34,7 +51,8 @@ func next_level(won):
 		progression += 1
 
 func save():
-	var save_dict = {"level": best_level, "diff": difficulty, "cash": cash, "speed": speed}
+	var save_dict = {"level": best_level, "diff": difficulty, "cash": cash, "speed": speed,
+	 "bu": b_unlock, "be": b_equip, "cu": c_unlock, "ce": c_equip, "fu": f_unlock, "fe": f_equip , "vol": sound_vol, "mute": mute}
 	var save_game = File.new()
 	save_game.open("user://savegame.save", File.WRITE)
 	save_game.store_line(to_json(save_dict))
@@ -59,4 +77,21 @@ func load_game():
 			if current_line.has("speed"):
 				speed = current_line["speed"]
 				print(current_line["speed"])
+			#"cu": c_unlock, "ce": c_equip, "fu": f_unlock, "fe": f_equip
+			if current_line.has("bu"):
+				b_unlock = current_line["bu"]
+			if current_line.has("be"):
+				b_equip = current_line["be"]
+			if current_line.has("cu"):
+				c_unlock = current_line["cu"]
+			if current_line.has("ce"):
+				c_equip = current_line["ce"]
+			if current_line.has("fu"):
+				f_unlock = current_line["fu"]
+			if current_line.has("fe"):
+				f_equip = current_line["fe"]
+			if current_line.has("vol"):
+				sound_vol = current_line["vol"]
+			if current_line.has("mute"):
+				mute = current_line["mute"]
 	save_game.close()
