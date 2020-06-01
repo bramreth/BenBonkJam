@@ -50,7 +50,7 @@ func walk_to_dest():
 			direction = global_position.direction_to(path[0])/4
 		else:
 			# The player get to the next point
-			global_position = path[0]
+#			global_position = path[0]
 			path.remove(0)
 	else:
 		get_dest()
