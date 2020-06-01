@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://juicy_cam/juicy_cam.gd" type="Script" id=1]
 [ext_resource path="res://CurveTween/CurveTween.gd" type="Script" id=2]
@@ -7,6 +7,8 @@
 [ext_resource path="res://assets/speech.png" type="Texture" id=5]
 [ext_resource path="res://shop.tscn" type="PackedScene" id=6]
 [ext_resource path="res://wipe.tres" type="Material" id=7]
+[ext_resource path="res://assets/font/a-c-m-e-secret-agent/ACMESecretAgentBB_BoldItal.otf" type="DynamicFontData" id=8]
+[ext_resource path="res://assets/board.png" type="Texture" id=9]
 
 [sub_resource type="OpenSimplexNoise" id=1]
 
@@ -40,6 +42,40 @@ tracks/0/keys = {
 "update": 0,
 "values": [ Vector2( 1e-05, 1 ), Vector2( 1, 1 ) ]
 }
+
+[sub_resource type="Animation" id=8]
+resource_name = "drop"
+length = 3.3
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.6, 3, 3.3 ),
+"transitions": PoolRealArray( 2.63902, 2.63902, 2.63902, 0.34151, 2.63902 ),
+"update": 0,
+"values": [ Vector2( -72, -344 ), Vector2( -72, -64 ), Vector2( -72, -64 ), Vector2( -72, -64 ), Vector2( -72, -344 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:rect_rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.2, 0.6, 0.9 ),
+"transitions": PoolRealArray( 0.840896, 0.840896, 0.840896, 0.840896 ),
+"update": 0,
+"values": [ 0.0, 15.0, -7.5, 0.0 ]
+}
+
+[sub_resource type="DynamicFont" id=9]
+size = 222
+outline_size = 6
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 8 )
 
 [sub_resource type="Animation" id=7]
 resource_name = "close"
@@ -137,6 +173,30 @@ margin_bottom = 9.0
 position = Vector2( 2304, 744 )
 scale = Vector2( 0.85, 0.85 )
 z_index = 0
+
+[node name="TextureRect2" type="TextureRect" parent="CanvasLayer"]
+margin_left = -72.0
+margin_top = -344.0
+margin_right = 1976.0
+margin_bottom = 1704.0
+rect_scale = Vector2( 0.4, 0.4 )
+rect_pivot_offset = Vector2( 1024, 0 )
+texture = ExtResource( 9 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/TextureRect2"]
+anims/drop = SubResource( 8 )
+
+[node name="day" type="Label" parent="CanvasLayer/TextureRect2"]
+margin_left = 364.0
+margin_top = 300.0
+margin_right = 1564.0
+margin_bottom = 567.0
+custom_fonts/font = SubResource( 9 )
+text = "day: 1"
+align = 1
 
 [node name="eol" type="ColorRect" parent="CanvasLayer"]
 material = ExtResource( 7 )

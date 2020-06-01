@@ -15,4 +15,4 @@ void fragment(){
 [resource]
 resource_local_to_scene = true
 shader = SubResource( 1 )
-shader_param/intensity = 0.5
+shader_param/intensity = 1.0

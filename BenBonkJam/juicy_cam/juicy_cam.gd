@@ -16,9 +16,14 @@ var proc = false
 export(float, 0, 1) var decay = 0.6
 var won = false
 var time = 0
+var player
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	player = get_tree().get_nodes_in_group("player")[0]
+	$CanvasLayer/eol.get_material().set_shader_param("intensity", 1)
 	$CanvasLayer/phone.level(Manager.progression)
+	$CanvasLayer/TextureRect2/day.text = "day: " + str(Manager.progression)
+	
 	start_day()
 	
 
@@ -57,6 +62,7 @@ func lose(k, m):
 	$CanvasLayer/TextureRect/CenterContainer/result.text = "too many civilian casualties. \n unnaceptable.\n press space to continue"
 	menu = false
 	$CanvasLayer/phone.win(false, k, m)
+	player.dead = true
 	blur()
 	
 func win(k, m):
@@ -64,14 +70,16 @@ func win(k, m):
 	$CanvasLayer/TextureRect/CenterContainer/result.text = "you eliminated the wolves.\n well done agent.\n press space to continue"
 	menu = false
 	won = true
+	player.dead = true
 	$CanvasLayer/phone.win(true, k, m)
 	blur()
 	
 func die(k, m):
 	$CanvasLayer/TextureRect/AnimationPlayer.play("speak")
-	$CanvasLayer/TextureRect/CenterContainer/result.text = "The wolves got them - that's a pity. \nSend in the next agent!\n press space to continue"
+	$CanvasLayer/TextureRect/CenterContainer/result.text = "That's a pity, Send in the next agent!\n press space to continue"
 	$CanvasLayer/phone.win(false, k, m)
 	menu = false
+	player.dead = true
 	blur()
 	
 func blur():
@@ -125,3 +133,4 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 		get_tree().reload_current_scene()
 	else:
 		$CanvasLayer/phone.toggle(true)
+		$CanvasLayer/TextureRect2/AnimationPlayer.play("drop")

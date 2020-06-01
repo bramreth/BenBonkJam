@@ -59,7 +59,7 @@ func toggle(on):
 		$toggle_player.play_backwards("open")
 
 func level(i):
-	$level.text = "level:" + str(i)
+	$level.text = "day: " + str(i)
 
 func _on_toggle_player_animation_finished(anim_name):
 	if anim_name == "win":

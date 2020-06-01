@@ -5,6 +5,7 @@ var lv = preload("res://level.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	Manager.progression = 1
 	hide()
 	if Manager.best_level:
 		high_score()
