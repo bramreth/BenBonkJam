@@ -35,15 +35,18 @@ func _process(delta):
 			$thought.emitting = true
 	handle_inputs()
 
+
 func handle_inputs():
-	if global_position.x < -980:
-		direction.x = 0.3
-	elif global_position.x > 980:
-		direction.x = -0.3
-	if global_position.y < -600:
-		direction.y = 0.3
-	elif global_position.y > 600:
-		direction.y = -0.3
+	walk_to_dest()
+#
+#	if global_position.x < -980:
+#		direction.x = 0.3
+#	elif global_position.x > 980:
+#		direction.x = -0.3
+#	if global_position.y < -600:
+#		direction.y = 0.3
+#	elif global_position.y > 600:
+#		direction.y = -0.3
 
 func out_of_sight(b):
 	if dead: return

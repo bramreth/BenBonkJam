@@ -48,19 +48,13 @@ func _process(delta):
 
 func handle_inputs():
 	if dead: return
-	if global_position.x < -980:
-		direction.x = 0.3
-	elif global_position.x > 980:
-		direction.x = -0.3
-	if global_position.y < -600:
-		direction.y = 0.3
-	elif global_position.y > 600:
-		direction.y = -0.3
 	if aggro:
 		if not $body/head/knife/AnimationPlayer.is_playing():
 			$body/head/knife/AnimationPlayer.play("slash")
 		var angle = get_angle_to(seen_player.position)
 		direction = Vector2(cos(angle), sin(angle))
+	else:
+		walk_to_dest()
 
 func out_of_sight(b):
 	if dead: return

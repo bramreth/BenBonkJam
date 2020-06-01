@@ -18,6 +18,11 @@ export(Array, Color) var outfits
 var suspicion = 0
 var n = ""
 var f = ""
+var nav
+var pathing = true
+
+var speed = 50
+var path : = PoolVector2Array()
 
 
 func _ready():
@@ -28,7 +33,27 @@ func _ready():
 	f = Names.facts[randi()%len(Names.facts)]
 	Manager.update_outfits(outfits)
 	cam = get_tree().get_nodes_in_group("cam")[0]
+	nav = get_tree().get_nodes_in_group("nav")[0]
 	
+func get_dest():
+	if not nav: return
+	var td = nav.get_closest_point(Vector2(-1200 + randi()%2400, -600 + randi()%1200))
+	print(td)
+	var path_t = nav.get_simple_path(global_position, td)
+	path = path_t
+	
+func walk_to_dest():
+	if path.size() > 0:
+		var distance_to_next_point = global_position.distance_to(path[0])
+		if 20 <= distance_to_next_point:
+			# The player does not have enough movement left to get to the next point.
+			direction = global_position.direction_to(path[0])/4
+		else:
+			# The player get to the next point
+			global_position = path[0]
+			path.remove(0)
+	else:
+		get_dest()
 	
 func damage(d, origin=Vector2(0,0)):
 	$spurt.restart()

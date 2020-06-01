@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://better_player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://level.gd" type="Script" id=2]
@@ -12,15 +12,20 @@
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 500, 300 )
 
-[sub_resource type="RectangleShape2D" id=4]
+[sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 700, 800 )
 
-[sub_resource type="Environment" id=5]
+[sub_resource type="Environment" id=3]
 background_mode = 4
 glow_enabled = true
 adjustment_saturation = 8.0
 
-[sub_resource type="OpenSimplexNoise" id=6]
+[sub_resource type="OpenSimplexNoise" id=4]
+
+[sub_resource type="NavigationPolygon" id=5]
+vertices = PoolVector2Array( -616, 624, -832, 832, -1288, 384, -1056, 184, -928, 296, -824, 400, -864, 304, -768, 360, -872, -48, -1400, -48, -1392, -224, -800, -232, -560, -808, -552, -488, -656, -488, -1192, -800, -88, -432, -352, -432, -344, -808, 352, -808, 360, -424, 112, -424, 104, -368, -104, -368, -800, -488, -1192, -488, -648, -376, 672, -512, 576, -512, 576, -768, 1168, -768, 1168, -512, 800, -512, 800, -448, 664, -384, 832, -256, 640, 0, 1408, -256, 1408, 0, 192, 576, 192, 1152, -256, 1152, -264, 560, 448, -368, 640, 448, 576, 512, 256, 512, -608, 544 )
+polygons = [ PoolIntArray( 0, 1, 2, 3, 4, 5 ), PoolIntArray( 5, 4, 6, 7 ), PoolIntArray( 8, 9, 10, 11 ), PoolIntArray( 12, 13, 14, 15 ), PoolIntArray( 16, 17, 18, 19 ), PoolIntArray( 16, 19, 20, 21 ), PoolIntArray( 16, 21, 22, 23 ), PoolIntArray( 24, 25, 15 ), PoolIntArray( 24, 15, 14 ), PoolIntArray( 11, 24, 14, 26 ), PoolIntArray( 27, 28, 29, 30 ), PoolIntArray( 30, 31, 32 ), PoolIntArray( 27, 30, 32 ), PoolIntArray( 27, 32, 33, 34 ), PoolIntArray( 34, 33, 35, 36 ), PoolIntArray( 35, 37, 38, 36 ), PoolIntArray( 39, 40, 41, 42, 23 ), PoolIntArray( 43, 34, 36 ), PoolIntArray( 22, 43, 36, 44, 45, 46 ), PoolIntArray( 26, 7, 6, 8, 11 ), PoolIntArray( 23, 22, 46, 39 ), PoolIntArray( 26, 23, 42, 47, 7 ) ]
+outlines = [ PoolVector2Array( -256, 1152, 192, 1152, 192, 576, 256, 512, 576, 512, 640, 448, 640, 0, 1408, 0, 1408, -256, 832, -256, 800, -448, 800, -512, 1168, -512, 1168, -768, 576, -768, 576, -512, 672, -512, 664, -384, 448, -368, 104, -368, 112, -424, 360, -424, 352, -808, -344, -808, -352, -432, -88, -432, -104, -368, -648, -376, -656, -488, -552, -488, -560, -808, -1192, -800, -1192, -488, -800, -488, -800, -232, -1392, -224, -1400, -48, -872, -48, -864, 304, -928, 296, -1056, 184, -1288, 384, -832, 832, -616, 624, -824, 400, -768, 360, -608, 544, -264, 560 ) ]
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource( 2 )
@@ -206,7 +211,7 @@ scale = Vector2( 0.727747, 0.654784 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="building"]
 position = Vector2( 120.921, 219.92 )
-shape = SubResource( 4 )
+shape = SubResource( 2 )
 
 [node name="CollisionShape2D2" type="Polygon2D" parent="building"]
 color = Color( 0.219608, 0.168627, 0.0980392, 1 )
@@ -225,11 +230,11 @@ position = Vector2( 2024, -280 )
 scale = Vector2( 0.619125, 0.619125 )
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource( 5 )
+environment = SubResource( 3 )
 
 [node name="Camera2D" parent="." instance=ExtResource( 4 )]
 zoom = Vector2( 1.2, 1.2 )
-noise = SubResource( 6 )
+noise = SubResource( 4 )
 max_x = 200
 max_y = 200
 max_r = 15
@@ -250,4 +255,11 @@ delay = 1
 position = Vector2( 0, 1024 )
 s = "c"
 delay = 2
+
+[node name="Navigation2D" type="Navigation2D" parent="." groups=[
+"nav",
+]]
+
+[node name="NavigationPolygonInstance" type="NavigationPolygonInstance" parent="Navigation2D"]
+navpoly = SubResource( 5 )
 [connection signal="dead" from="player" to="." method="_on_player_dead"]
