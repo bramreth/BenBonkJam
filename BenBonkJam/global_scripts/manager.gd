@@ -11,6 +11,8 @@ var cash = 0
 var best_level = 0
 var best_difficulty = 1000
 
+var song = 0
+
 var c_unlock = false
 var c_equip = false
 
@@ -26,6 +28,7 @@ var sound_vol = 0.5
 
 var mute = false
 var speed = 1
+var health = 1
 
 func _ready():
 	load_game()
@@ -54,7 +57,8 @@ func next_level(won):
 
 func save():
 	var save_dict = {"level": best_level, "diff": difficulty, "cash": cash, "speed": speed,
-	 "bu": b_unlock, "be": b_equip, "cu": c_unlock, "ce": c_equip, "fu": f_unlock, "fe": f_equip , "vol": sound_vol, "mute": mute, "crown": crown}
+	 "bu": b_unlock, "be": b_equip, "cu": c_unlock, "ce": c_equip, "fu": f_unlock, "fe": f_equip ,
+	 "vol": sound_vol, "mute": mute, "crown": crown, "song": song, "health": health}
 	var save_game = File.new()
 	save_game.open("user://savegame.save", File.WRITE)
 	save_game.store_line(to_json(save_dict))
@@ -79,6 +83,9 @@ func load_game():
 			if current_line.has("speed"):
 				speed = current_line["speed"]
 				print(current_line["speed"])
+			if current_line.has("health"):
+				health = current_line["health"]
+				print(current_line["health"])
 			#"cu": c_unlock, "ce": c_equip, "fu": f_unlock, "fe": f_equip
 			if current_line.has("bu"):
 				b_unlock = current_line["bu"]
@@ -98,4 +105,6 @@ func load_game():
 				mute = current_line["mute"]
 			if current_line.has("crown"):
 				crown = current_line["crown"]
+			if current_line.has("song"):
+				song = current_line["song"]
 	save_game.close()

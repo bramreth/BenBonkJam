@@ -5,6 +5,8 @@ var can_shoot = true
 
 func _ready():
 	SPEED = SPEED + ((Manager.speed - 1) * 125)
+	health = health + Manager.health - 1
+	print("HEALTH", health)
 	$body/head/Node2D/briefcase.visible = Manager.b_equip
 	$body/head/Node2D/bouquet.visible = Manager.f_equip
 	$body/head/Node2D/coffee.visible = Manager.c_equip

@@ -2,15 +2,28 @@ extends WindowDialog
 signal up_manager()
 signal close()
 var speed_price = pow(5, Manager.speed)
+var health_price = pow(7, Manager.health)
 
 func _ready():
+	if not Manager.crown:
+		$VBoxContainer/songs/cof/TextureRect.self_modulate = Color("3d3d3d")
 	sanity()
 	
 func sanity():
 	emit_signal("up_manager")
 	$Panel/VBoxContainer/cash.text = "£" + str(Manager.cash)
 	speed_price = pow(5, Manager.speed)
+	health_price = pow(7, Manager.health)
 	$VBoxContainer/HBoxContainer/speed/upg.disabled = (Manager.speed > 3) or Manager.cash < speed_price
+	if (Manager.health > 3):
+		$VBoxContainer/HBoxContainer/health/Label.text = "health max"
+		$VBoxContainer/HBoxContainer/speed/cost.text = ""
+	else:
+		$VBoxContainer/HBoxContainer/health/Label.text = "health " + str(Manager.health)
+		$VBoxContainer/HBoxContainer/health/cost.text = "cost: £" + str(health_price)
+		
+	$VBoxContainer/HBoxContainer/health/hupg.disabled = (Manager.health > 3) or Manager.cash < health_price
+	
 	if (Manager.speed > 3):
 		$VBoxContainer/HBoxContainer/speed/Label.text = "speed max"
 		$VBoxContainer/HBoxContainer/speed/cost.text = ""
@@ -93,3 +106,15 @@ func _on_fc_toggled(button_pressed):
 
 func _on_bc_toggled(button_pressed):
 	up_cos()
+
+
+func _on_buy_pressed():
+	pass # Replace with function body.
+
+
+func _on_hupg_pressed():
+	Manager.cash -= health_price
+	$AudioStreamPlayer.play()
+	Manager.health = Manager.health + 1
+	Manager.save()
+	sanity()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://juicy_cam/juicy_cam.gd" type="Script" id=1]
 [ext_resource path="res://CurveTween/CurveTween.gd" type="Script" id=2]
@@ -126,6 +126,12 @@ tracks/0/keys = {
 "values": [ 0.5, 0.0 ]
 }
 
+[sub_resource type="DynamicFont" id=12]
+size = 22
+outline_size = 2
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 8 )
+
 [sub_resource type="Curve" id=11]
 _data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), -0.0817096, 0.0, 0, 0 ]
 
@@ -232,11 +238,41 @@ __meta__ = {
 anims/close = SubResource( 7 )
 anims/open = SubResource( 6 )
 
-[node name="TextureButton" type="TextureButton" parent="CanvasLayer"]
-margin_left = 1752.0
-margin_top = -24.0
-margin_right = 1956.0
-margin_bottom = 180.0
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer"]
+margin_left = 1632.0
+margin_right = 1915.0
+margin_bottom = 100.0
+custom_constants/separation = 16
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="CanvasLayer/HBoxContainer"]
+margin_top = 36.0
+margin_right = 51.0
+margin_bottom = 64.0
+custom_fonts/font = SubResource( 12 )
+text = "song"
+
+[node name="OptionButton" type="OptionButton" parent="CanvasLayer/HBoxContainer"]
+margin_left = 67.0
+margin_top = 33.0
+margin_right = 167.0
+margin_bottom = 67.0
+size_flags_vertical = 4
+custom_fonts/font = SubResource( 12 )
+text = "WOLVES"
+items = [ "WOLVES", null, false, 0, null, "SHEEP", null, false, 1, null ]
+selected = 0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureButton" type="TextureButton" parent="CanvasLayer/HBoxContainer"]
+margin_left = 183.0
+margin_right = 283.0
+margin_bottom = 100.0
+rect_min_size = Vector2( 100, 100 )
 focus_mode = 0
 enabled_focus_mode = 0
 texture_normal = ExtResource( 12 )
@@ -261,5 +297,6 @@ curve = SubResource( 11 )
 [connection signal="next" from="CanvasLayer/phone" to="." method="_on_phone_next"]
 [connection signal="shop" from="CanvasLayer/phone" to="." method="_on_phone_shop"]
 [connection signal="animation_finished" from="CanvasLayer/eol/AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
-[connection signal="pressed" from="CanvasLayer/TextureButton" to="." method="_on_TextureButton_pressed"]
+[connection signal="item_selected" from="CanvasLayer/HBoxContainer/OptionButton" to="." method="_on_OptionButton_item_selected"]
+[connection signal="pressed" from="CanvasLayer/HBoxContainer/TextureButton" to="." method="_on_TextureButton_pressed"]
 [connection signal="curve_tween" from="AudioStreamPlayer/atween" to="." method="_on_atween_curve_tween"]

@@ -19,6 +19,8 @@ var time = 0
 var player
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	$CanvasLayer/HBoxContainer/OptionButton.select(Manager.song)
+	update_song()
 	player = get_tree().get_nodes_in_group("player")[0]
 	$CanvasLayer/eol.get_material().set_shader_param("intensity", 1)
 	$CanvasLayer/phone.level(Manager.progression)
@@ -167,12 +169,23 @@ var m2 = preload("res://assets/vol (2).png")
 
 func update_mute():
 	if Manager.mute:
-		$CanvasLayer/TextureButton.set_normal_texture(m2)
+		$CanvasLayer/HBoxContainer/TextureButton.set_normal_texture(m2)
 	else:
-		$CanvasLayer/TextureButton.set_normal_texture(m1)
+		$CanvasLayer/HBoxContainer/TextureButton.set_normal_texture(m1)
 
 func _on_TextureButton_pressed():
 	#toggle mute
 	Manager.mute(not Manager.mute)
 	update_mute()
 	
+func update_song():
+	match int(Manager.song):
+		0:
+			$AudioStreamPlayer.stream = load("res://audio/urgent.wav")
+		1:
+			$AudioStreamPlayer.stream = load("res://audio/songs/ass(1).wav")
+	$AudioStreamPlayer.play()
+
+func _on_OptionButton_item_selected(id):
+	Manager.song = id
+	update_song()
